@@ -1,0 +1,49 @@
+{
+  "$schema": "./implementation-declaration-template.schema.v0.1.json",
+  "document_id": "DBA-TITMAS-CS-D02-PRE-34-IMPLEMENTATION-DECLARATION-TEMPLATE-0.1",
+  "version": "0.1.0",
+  "status": "TEMPLATE_NOT_IMPLEMENTATION_DECLARATION",
+  "implementation_id": "NOT_ASSIGNED",
+  "implementation_class": "REFERENCE_IMPLEMENTATION_CANDIDATE",
+  "owner_ref": "zhangbin",
+  "source_ref": "NOT_CREATED",
+  "source_version": "NOT_CREATED",
+  "license_ref": "NOT_ADOPTED",
+  "implemented_specification_refs": [
+    {
+      "reference": "commercialization-standards-provider-http-phase-instrumentation/http-phase-instrumentation-contract.v0.1.json",
+      "version": "0.1.0",
+      "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913",
+      "implementation_status": "NOT_IMPLEMENTED"
+    }
+  ],
+  "supported": [],
+  "partial": [],
+  "unsupported": [],
+  "unknown": [
+    "PACKAGE_NAME",
+    "PUBLIC_API",
+    "PROVIDER_BINDINGS",
+    "SECURITY_REVIEW",
+    "CONFORMANCE",
+    "RELEASE"
+  ],
+  "security_review_ref": "NOT_EXECUTED",
+  "conformance_result_refs": [],
+  "known_limitations": [
+    "TEMPLATE_ONLY",
+    "NO_SOURCE",
+    "NO_PACKAGE",
+    "NO_RUNTIME",
+    "NO_PROVIDER_SUPPORT"
+  ],
+  "release_status": "NOT_AUTHORIZED",
+  "commercial_availability": "NOT_CLAIMED",
+  "effects": {
+    "implementation_created": false,
+    "implementation_authorized": false,
+    "provider_supported": false,
+    "conformance_executed": false,
+    "release_authorized": false
+  }
+}

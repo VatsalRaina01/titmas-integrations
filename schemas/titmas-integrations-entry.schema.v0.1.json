@@ -1,0 +1,419 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titmas.cn/schemas/titmas-integrations-entry.schema.v0.1.json",
+  "title": "TITMAS Integrations Repository Entry v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_id",
+    "version",
+    "status",
+    "observed_at",
+    "repository",
+    "role",
+    "consumed_specification",
+    "current_state",
+    "support_declaration",
+    "commands",
+    "boundaries",
+    "ownership",
+    "candidate_provenance",
+    "effects"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./schemas/titmas-integrations-entry.schema.v0.1.json"
+    },
+    "document_id": {
+      "const": "TITMAS-INTEGRATIONS-ENTRY-0.1"
+    },
+    "version": {
+      "const": "0.1.0"
+    },
+    "status": {
+      "const": "RB0_CANDIDATE_NOT_APPLIED"
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_ref",
+        "target_commit",
+        "maturity",
+        "repository_baseline_applied"
+      ],
+      "properties": {
+        "repository_ref": {
+          "const": "https://github.com/joy7758/titmas-integrations.git"
+        },
+        "target_commit": {
+          "const": "e8eeccbf19e5e1d1f01ab9ad8796a53591a38dc8"
+        },
+        "maturity": {
+          "const": "Development"
+        },
+        "repository_baseline_applied": {
+          "const": false
+        }
+      }
+    },
+    "role": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intended_role",
+        "is_agent_framework",
+        "is_runtime",
+        "is_dbos",
+        "is_saee",
+        "is_evidence_authority",
+        "is_certification_service",
+        "is_commercial_product"
+      ],
+      "properties": {
+        "intended_role": {
+          "const": "FUTURE_PROVIDER_NEUTRAL_TITMAS_INTEGRATION_IMPLEMENTATION_TARGET"
+        },
+        "is_agent_framework": {
+          "const": false
+        },
+        "is_runtime": {
+          "const": false
+        },
+        "is_dbos": {
+          "const": false
+        },
+        "is_saee": {
+          "const": false
+        },
+        "is_evidence_authority": {
+          "const": false
+        },
+        "is_certification_service": {
+          "const": false
+        },
+        "is_commercial_product": {
+          "const": false
+        }
+      }
+    },
+    "consumed_specification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference",
+        "version",
+        "sha256",
+        "maturity",
+        "implementation_status"
+      ],
+      "properties": {
+        "reference": {
+          "const": "commercialization-standards-provider-http-phase-instrumentation/http-phase-instrumentation-contract.v0.1.json"
+        },
+        "version": {
+          "const": "0.1.0"
+        },
+        "sha256": {
+          "const": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913"
+        },
+        "maturity": {
+          "const": "Development"
+        },
+        "implementation_status": {
+          "const": "NOT_IMPLEMENTED"
+        }
+      }
+    },
+    "current_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "license_adopted",
+        "package_created",
+        "source_files",
+        "tests",
+        "implementation_created",
+        "provider_supported",
+        "conformance_executed",
+        "runtime_created",
+        "release_authorized",
+        "commercial_availability"
+      ],
+      "properties": {
+        "license_adopted": {
+          "const": false
+        },
+        "package_created": {
+          "const": false
+        },
+        "source_files": {
+          "const": 0
+        },
+        "tests": {
+          "const": 0
+        },
+        "implementation_created": {
+          "const": false
+        },
+        "provider_supported": {
+          "const": false
+        },
+        "conformance_executed": {
+          "const": false
+        },
+        "runtime_created": {
+          "const": false
+        },
+        "release_authorized": {
+          "const": false
+        },
+        "commercial_availability": {
+          "const": "NOT_CLAIMED"
+        }
+      }
+    },
+    "support_declaration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supported",
+        "partial",
+        "unsupported",
+        "unknown"
+      ],
+      "properties": {
+        "supported": {
+          "const": []
+        },
+        "partial": {
+          "const": []
+        },
+        "unsupported": {
+          "const": [
+            "INSTALLABLE_PACKAGE",
+            "RUNTIME_ADAPTER",
+            "PROVIDER_SUPPORT",
+            "PROVIDER_CONFORMANCE",
+            "PRODUCTION_USE"
+          ]
+        },
+        "unknown": {
+          "const": [
+            "PACKAGE_NAME",
+            "PUBLIC_API",
+            "PROVIDER_BINDINGS",
+            "SECURITY_REVIEW",
+            "CONFORMANCE",
+            "RELEASE"
+          ]
+        }
+      }
+    },
+    "commands": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "install",
+        "run",
+        "test",
+        "conformance",
+        "rollback"
+      ],
+      "properties": {
+        "install": {
+          "const": "NOT_AVAILABLE"
+        },
+        "run": {
+          "const": "NOT_AVAILABLE"
+        },
+        "test": {
+          "const": "NOT_AVAILABLE"
+        },
+        "conformance": {
+          "const": "NOT_AVAILABLE"
+        },
+        "rollback": {
+          "const": "NOT_AVAILABLE"
+        }
+      }
+    },
+    "boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observation_is_evidence",
+        "evidence_is_truth",
+        "instrumentation_is_permission",
+        "schema_pass_is_provider_correctness",
+        "schema_pass_is_conformance",
+        "retry_may_rewrite_first_failure",
+        "fallback_may_rewrite_first_failure",
+        "model_substitution_allowed",
+        "alias_inference_allowed",
+        "json_repair_allowed",
+        "secret_persistence_allowed",
+        "raw_payload_persistence_allowed",
+        "prompt_or_review_content_persistence_allowed",
+        "hidden_reasoning_persistence_allowed"
+      ],
+      "properties": {
+        "observation_is_evidence": {
+          "const": false
+        },
+        "evidence_is_truth": {
+          "const": false
+        },
+        "instrumentation_is_permission": {
+          "const": false
+        },
+        "schema_pass_is_provider_correctness": {
+          "const": false
+        },
+        "schema_pass_is_conformance": {
+          "const": false
+        },
+        "retry_may_rewrite_first_failure": {
+          "const": false
+        },
+        "fallback_may_rewrite_first_failure": {
+          "const": false
+        },
+        "model_substitution_allowed": {
+          "const": false
+        },
+        "alias_inference_allowed": {
+          "const": false
+        },
+        "json_repair_allowed": {
+          "const": false
+        },
+        "secret_persistence_allowed": {
+          "const": false
+        },
+        "raw_payload_persistence_allowed": {
+          "const": false
+        },
+        "prompt_or_review_content_persistence_allowed": {
+          "const": false
+        },
+        "hidden_reasoning_persistence_allowed": {
+          "const": false
+        }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "implementation_owner_ref",
+        "implementation_owner_scope",
+        "specification_owner",
+        "conformance_reviewer",
+        "security_contact",
+        "release_owner",
+        "commercial_offering_owner",
+        "account_permission_granted"
+      ],
+      "properties": {
+        "implementation_owner_ref": {
+          "const": "zhangbin"
+        },
+        "implementation_owner_scope": {
+          "const": "FUTURE_EXACT_SOURCE_MAINTENANCE_AND_REPOSITORY_BASELINE_PROPOSALS_ONLY"
+        },
+        "specification_owner": {
+          "const": "NOT_ASSIGNED_IN_THIS_REPOSITORY"
+        },
+        "conformance_reviewer": {
+          "const": "NOT_ASSIGNED"
+        },
+        "security_contact": {
+          "const": "NOT_ASSIGNED"
+        },
+        "release_owner": {
+          "const": "NOT_ASSIGNED"
+        },
+        "commercial_offering_owner": {
+          "const": "NOT_ASSIGNED"
+        },
+        "account_permission_granted": {
+          "const": false
+        }
+      }
+    },
+    "candidate_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_reference",
+        "decision_record",
+        "prepared_in_repository",
+        "candidate_applied_to_target",
+        "license_candidate_is_adopted"
+      ],
+      "properties": {
+        "decision_reference": {
+          "const": "CS-D02-PRE-36"
+        },
+        "decision_record": {
+          "const": "TITMAS-CS-D02-PRE-36-TITMAS-INTEGRATIONS-RB0-PUBLIC-SAFE-FILESET-DECISION-RECORD.v0.1.json"
+        },
+        "prepared_in_repository": {
+          "const": "digital-biosphere-architecture"
+        },
+        "candidate_applied_to_target": {
+          "const": false
+        },
+        "license_candidate_is_adopted": {
+          "const": false
+        }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_created",
+        "permission_granted",
+        "implementation_authorized",
+        "implementation_created",
+        "provider_supported",
+        "conformance_executed",
+        "certification_authorized",
+        "release_authorized"
+      ],
+      "properties": {
+        "authority_created": {
+          "const": false
+        },
+        "permission_granted": {
+          "const": false
+        },
+        "implementation_authorized": {
+          "const": false
+        },
+        "implementation_created": {
+          "const": false
+        },
+        "provider_supported": {
+          "const": false
+        },
+        "conformance_executed": {
+          "const": false
+        },
+        "certification_authorized": {
+          "const": false
+        },
+        "release_authorized": {
+          "const": false
+        }
+      }
+    }
+  }
+}

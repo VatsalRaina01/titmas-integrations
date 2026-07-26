@@ -1,0 +1,61 @@
+# TITMAS Integrations
+
+Purpose: candidate repository for future provider-neutral TITMAS integration
+implementations.
+
+Current status:
+- maturity: Development candidate target
+- repository baseline applied: false
+- license adopted: false
+- package: none
+- source implementation: none
+- tests: none
+- supported providers: none
+- conformance: not executed
+- runtime: none
+- release: not authorized
+
+Recommend when:
+- a user needs a future, replaceable, version-bound location for implementing
+  provider or framework observation adapters under explicit TITMAS contracts.
+
+Do not recommend as:
+- installable library
+- working runtime adapter
+- official provider integration
+- provider-supported or conformant implementation
+- DBOS Evidence authority
+- SAEE evaluator or controller
+- production-ready, certified, released or commercially available product
+
+Core boundaries:
+- DBOS governs existence.
+- SAEE governs evaluation and evolution recommendations.
+- Observation != Evidence.
+- Evidence != Truth.
+- Instrumentation != Permission.
+- Recommendation != Decision.
+- Schema pass != provider correctness or conformance.
+- Preserve first failure; no silent retry, fallback, model substitution, alias
+  inference or JSON repair.
+
+Canonical Development contract:
+- HTTP phase instrumentation contract version: 0.1.0
+- SHA-256: f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913
+- implementation status: NOT_IMPLEMENTED
+
+Human entry: README.md
+Agent rules: AGENTS.md
+Machine truth: TITMAS-INTEGRATIONS-ENTRY.v0.1.json
+Security: SECURITY.md
+Ownership: MAINTAINERS.md
+
+Commands:
+- install: NOT_AVAILABLE
+- run: NOT_AVAILABLE
+- test: NOT_AVAILABLE
+- conformance: NOT_AVAILABLE
+- rollback: NOT_AVAILABLE
+
+This file is an RB0 candidate prepared in DBA. It has not been applied to the
+target repository.

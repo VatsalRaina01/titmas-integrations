@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titmas.cn/schemas/titmas-integrations-implementation-declaration-template.schema.v0.1.json",
+  "title": "TITMAS Integrations Implementation Declaration Template v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_id",
+    "version",
+    "status",
+    "implementation_id",
+    "implementation_class",
+    "owner_ref",
+    "source_ref",
+    "source_version",
+    "license_ref",
+    "implemented_specification_refs",
+    "supported",
+    "partial",
+    "unsupported",
+    "unknown",
+    "security_review_ref",
+    "conformance_result_refs",
+    "known_limitations",
+    "release_status",
+    "commercial_availability",
+    "effects"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./implementation-declaration-template.schema.v0.1.json"
+    },
+    "document_id": {
+      "const": "DBA-TITMAS-CS-D02-PRE-34-IMPLEMENTATION-DECLARATION-TEMPLATE-0.1"
+    },
+    "version": {
+      "const": "0.1.0"
+    },
+    "status": {
+      "const": "TEMPLATE_NOT_IMPLEMENTATION_DECLARATION"
+    },
+    "implementation_id": {
+      "const": "NOT_ASSIGNED"
+    },
+    "implementation_class": {
+      "const": "REFERENCE_IMPLEMENTATION_CANDIDATE"
+    },
+    "owner_ref": {
+      "const": "zhangbin"
+    },
+    "source_ref": {
+      "const": "NOT_CREATED"
+    },
+    "source_version": {
+      "const": "NOT_CREATED"
+    },
+    "license_ref": {
+      "const": "NOT_ADOPTED"
+    },
+    "implemented_specification_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "reference",
+          "version",
+          "sha256",
+          "implementation_status"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string"
+          },
+          "version": {
+            "const": "0.1.0"
+          },
+          "sha256": {
+            "const": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913"
+          },
+          "implementation_status": {
+            "const": "NOT_IMPLEMENTED"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "supported": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "partial": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "unsupported": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "unknown": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true
+    },
+    "security_review_ref": {
+      "const": "NOT_EXECUTED"
+    },
+    "conformance_result_refs": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "known_limitations": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true
+    },
+    "release_status": {
+      "const": "NOT_AUTHORIZED"
+    },
+    "commercial_availability": {
+      "const": "NOT_CLAIMED"
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "implementation_created",
+        "implementation_authorized",
+        "provider_supported",
+        "conformance_executed",
+        "release_authorized"
+      ],
+      "properties": {
+        "implementation_created": {
+          "const": false
+        },
+        "implementation_authorized": {
+          "const": false
+        },
+        "provider_supported": {
+          "const": false
+        },
+        "conformance_executed": {
+          "const": false
+        },
+        "release_authorized": {
+          "const": false
+        }
+      }
+    }
+  }
+}

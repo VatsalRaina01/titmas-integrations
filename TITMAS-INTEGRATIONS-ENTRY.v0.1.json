@@ -1,0 +1,111 @@
+{
+  "$schema": "./schemas/titmas-integrations-entry.schema.v0.1.json",
+  "document_id": "TITMAS-INTEGRATIONS-ENTRY-0.1",
+  "version": "0.1.0",
+  "status": "RB0_CANDIDATE_NOT_APPLIED",
+  "observed_at": "2026-07-27T02:24:23+08:00",
+  "repository": {
+    "repository_ref": "https://github.com/joy7758/titmas-integrations.git",
+    "target_commit": "e8eeccbf19e5e1d1f01ab9ad8796a53591a38dc8",
+    "maturity": "Development",
+    "repository_baseline_applied": false
+  },
+  "role": {
+    "intended_role": "FUTURE_PROVIDER_NEUTRAL_TITMAS_INTEGRATION_IMPLEMENTATION_TARGET",
+    "is_agent_framework": false,
+    "is_runtime": false,
+    "is_dbos": false,
+    "is_saee": false,
+    "is_evidence_authority": false,
+    "is_certification_service": false,
+    "is_commercial_product": false
+  },
+  "consumed_specification": {
+    "reference": "commercialization-standards-provider-http-phase-instrumentation/http-phase-instrumentation-contract.v0.1.json",
+    "version": "0.1.0",
+    "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913",
+    "maturity": "Development",
+    "implementation_status": "NOT_IMPLEMENTED"
+  },
+  "current_state": {
+    "license_adopted": false,
+    "package_created": false,
+    "source_files": 0,
+    "tests": 0,
+    "implementation_created": false,
+    "provider_supported": false,
+    "conformance_executed": false,
+    "runtime_created": false,
+    "release_authorized": false,
+    "commercial_availability": "NOT_CLAIMED"
+  },
+  "support_declaration": {
+    "supported": [],
+    "partial": [],
+    "unsupported": [
+      "INSTALLABLE_PACKAGE",
+      "RUNTIME_ADAPTER",
+      "PROVIDER_SUPPORT",
+      "PROVIDER_CONFORMANCE",
+      "PRODUCTION_USE"
+    ],
+    "unknown": [
+      "PACKAGE_NAME",
+      "PUBLIC_API",
+      "PROVIDER_BINDINGS",
+      "SECURITY_REVIEW",
+      "CONFORMANCE",
+      "RELEASE"
+    ]
+  },
+  "commands": {
+    "install": "NOT_AVAILABLE",
+    "run": "NOT_AVAILABLE",
+    "test": "NOT_AVAILABLE",
+    "conformance": "NOT_AVAILABLE",
+    "rollback": "NOT_AVAILABLE"
+  },
+  "boundaries": {
+    "observation_is_evidence": false,
+    "evidence_is_truth": false,
+    "instrumentation_is_permission": false,
+    "schema_pass_is_provider_correctness": false,
+    "schema_pass_is_conformance": false,
+    "retry_may_rewrite_first_failure": false,
+    "fallback_may_rewrite_first_failure": false,
+    "model_substitution_allowed": false,
+    "alias_inference_allowed": false,
+    "json_repair_allowed": false,
+    "secret_persistence_allowed": false,
+    "raw_payload_persistence_allowed": false,
+    "prompt_or_review_content_persistence_allowed": false,
+    "hidden_reasoning_persistence_allowed": false
+  },
+  "ownership": {
+    "implementation_owner_ref": "zhangbin",
+    "implementation_owner_scope": "FUTURE_EXACT_SOURCE_MAINTENANCE_AND_REPOSITORY_BASELINE_PROPOSALS_ONLY",
+    "specification_owner": "NOT_ASSIGNED_IN_THIS_REPOSITORY",
+    "conformance_reviewer": "NOT_ASSIGNED",
+    "security_contact": "NOT_ASSIGNED",
+    "release_owner": "NOT_ASSIGNED",
+    "commercial_offering_owner": "NOT_ASSIGNED",
+    "account_permission_granted": false
+  },
+  "candidate_provenance": {
+    "decision_reference": "CS-D02-PRE-36",
+    "decision_record": "TITMAS-CS-D02-PRE-36-TITMAS-INTEGRATIONS-RB0-PUBLIC-SAFE-FILESET-DECISION-RECORD.v0.1.json",
+    "prepared_in_repository": "digital-biosphere-architecture",
+    "candidate_applied_to_target": false,
+    "license_candidate_is_adopted": false
+  },
+  "effects": {
+    "authority_created": false,
+    "permission_granted": false,
+    "implementation_authorized": false,
+    "implementation_created": false,
+    "provider_supported": false,
+    "conformance_executed": false,
+    "certification_authorized": false,
+    "release_authorized": false
+  }
+}
