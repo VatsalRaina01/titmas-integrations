@@ -32,7 +32,7 @@
       "const": "0.1.0"
     },
     "status": {
-      "const": "RB0_CANDIDATE_NOT_APPLIED"
+      "const": "RB0_APPLIED_TO_BRANCH_NOT_MERGED"
     },
     "observed_at": {
       "type": "string",
@@ -45,19 +45,31 @@
         "repository_ref",
         "target_commit",
         "maturity",
-        "repository_baseline_applied"
+        "repository_baseline_applied",
+        "repository_baseline_scope",
+        "repository_baseline_validated",
+        "repository_baseline_adopted"
       ],
       "properties": {
         "repository_ref": {
           "const": "https://github.com/joy7758/titmas-integrations.git"
         },
         "target_commit": {
-          "const": "e8eeccbf19e5e1d1f01ab9ad8796a53591a38dc8"
+          "const": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b"
         },
         "maturity": {
           "const": "Development"
         },
         "repository_baseline_applied": {
+          "const": true
+        },
+        "repository_baseline_scope": {
+          "const": "BRANCH_ONLY_NOT_MERGED"
+        },
+        "repository_baseline_validated": {
+          "const": false
+        },
+        "repository_baseline_adopted": {
           "const": false
         }
       }
@@ -147,7 +159,7 @@
       ],
       "properties": {
         "license_adopted": {
-          "const": false
+          "const": true
         },
         "package_created": {
           "const": false
@@ -355,7 +367,10 @@
         "decision_record",
         "prepared_in_repository",
         "candidate_applied_to_target",
-        "license_candidate_is_adopted"
+        "license_candidate_is_adopted",
+        "application_decision_reference",
+        "application_branch",
+        "application_commit"
       ],
       "properties": {
         "decision_reference": {
@@ -368,10 +383,19 @@
           "const": "digital-biosphere-architecture"
         },
         "candidate_applied_to_target": {
-          "const": false
+          "const": true
         },
         "license_candidate_is_adopted": {
-          "const": false
+          "const": true
+        },
+        "application_decision_reference": {
+          "const": "CS-D02-PRE-38"
+        },
+        "application_branch": {
+          "const": "codex/rb0-governance-baseline"
+        },
+        "application_commit": {
+          "const": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b"
         }
       }
     },

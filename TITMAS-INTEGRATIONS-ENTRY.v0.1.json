@@ -2,13 +2,16 @@
   "$schema": "./schemas/titmas-integrations-entry.schema.v0.1.json",
   "document_id": "TITMAS-INTEGRATIONS-ENTRY-0.1",
   "version": "0.1.0",
-  "status": "RB0_CANDIDATE_NOT_APPLIED",
-  "observed_at": "2026-07-27T02:24:23+08:00",
+  "status": "RB0_APPLIED_TO_BRANCH_NOT_MERGED",
+  "observed_at": "2026-07-27T03:01:19+08:00",
   "repository": {
     "repository_ref": "https://github.com/joy7758/titmas-integrations.git",
-    "target_commit": "e8eeccbf19e5e1d1f01ab9ad8796a53591a38dc8",
+    "target_commit": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b",
     "maturity": "Development",
-    "repository_baseline_applied": false
+    "repository_baseline_applied": true,
+    "repository_baseline_scope": "BRANCH_ONLY_NOT_MERGED",
+    "repository_baseline_validated": false,
+    "repository_baseline_adopted": false
   },
   "role": {
     "intended_role": "FUTURE_PROVIDER_NEUTRAL_TITMAS_INTEGRATION_IMPLEMENTATION_TARGET",
@@ -28,7 +31,7 @@
     "implementation_status": "NOT_IMPLEMENTED"
   },
   "current_state": {
-    "license_adopted": false,
+    "license_adopted": true,
     "package_created": false,
     "source_files": 0,
     "tests": 0,
@@ -95,8 +98,11 @@
     "decision_reference": "CS-D02-PRE-36",
     "decision_record": "TITMAS-CS-D02-PRE-36-TITMAS-INTEGRATIONS-RB0-PUBLIC-SAFE-FILESET-DECISION-RECORD.v0.1.json",
     "prepared_in_repository": "digital-biosphere-architecture",
-    "candidate_applied_to_target": false,
-    "license_candidate_is_adopted": false
+    "candidate_applied_to_target": true,
+    "license_candidate_is_adopted": true,
+    "application_decision_reference": "CS-D02-PRE-38",
+    "application_branch": "codex/rb0-governance-baseline",
+    "application_commit": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b"
   },
   "effects": {
     "authority_created": false,

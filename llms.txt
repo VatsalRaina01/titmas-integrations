@@ -4,9 +4,12 @@ Purpose: candidate repository for future provider-neutral TITMAS integration
 implementations.
 
 Current status:
-- maturity: Development candidate target
-- repository baseline applied: false
-- license adopted: false
+- maturity: Development branch baseline
+- RB0 files applied to branch: true
+- repository baseline scope: branch only, not merged
+- repository baseline validated: false
+- repository baseline adopted: false
+- license adopted: true
 - package: none
 - source implementation: none
 - tests: none
@@ -57,5 +60,6 @@ Commands:
 - conformance: NOT_AVAILABLE
 - rollback: NOT_AVAILABLE
 
-This file is an RB0 candidate prepared in DBA. It has not been applied to the
-target repository.
+The RB0 governance files and Apache-2.0 license are applied to
+codex/rb0-governance-baseline under CS-D02-PRE-38. The branch is not merged;
+truth-consistency validation and RB0 adoption remain pending.

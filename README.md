@@ -6,9 +6,11 @@ community for trustworthy multi-agent infrastructure.
 中文：TITMAS 可信多智能体基础设施开发者社区的 provider-neutral（供应商中立）集成基础
 候选仓库。
 
-> Current truth: this repository is a Development candidate target. At the
-> frozen target commit it has no package, source implementation, tests,
-> supported provider, conformance result, runtime, or release.
+> Current truth: the RB0 governance files and Apache-2.0 license are applied to
+> `codex/rb0-governance-baseline`. The branch is not merged, the RB0 baseline is
+> not yet truth-consistency validated or adopted, and the repository has no
+> package, source implementation, tests, supported provider, conformance result,
+> runtime, or release.
 
 ## Why this repository exists
 
@@ -44,8 +46,11 @@ Canonical Development contract:
 ## Current capability truth
 
 ```text
-REPOSITORY_BASELINE_APPLIED=false
-LICENSE_ADOPTED=false
+RB0_FILES_APPLIED_TO_BRANCH=true
+REPOSITORY_BASELINE_SCOPE=BRANCH_ONLY_NOT_MERGED
+REPOSITORY_BASELINE_VALIDATED=false
+REPOSITORY_BASELINE_ADOPTED=false
+LICENSE_ADOPTED=true
 PACKAGE_CREATED=false
 SOURCE_FILES=0
 TESTS=0
@@ -120,8 +125,10 @@ An Issue, pull request, model review, passing Schema or maintainer action does
 not automatically create Architecture Authority, acceptance, conformance,
 release, permission, certification or commercial availability.
 
-## Candidate status
+## Branch status
 
-This text is an RB0 candidate prepared in DBA. It has not been applied to the
-target repository. License adoption and target repository modification require
-a separate explicit decision.
+The exact RB0 candidate prepared in DBA and the Apache-2.0 license were applied
+to `codex/rb0-governance-baseline` under `CS-D02-PRE-38`. This branch has not
+been merged to `main`; RB0 truth-consistency validation and adoption remain
+pending. This truth-surface correction does not create implementation, provider
+support, conformance, runtime, release or commercial availability.

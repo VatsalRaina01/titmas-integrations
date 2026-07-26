@@ -8,8 +8,11 @@ runtime adapter, supported provider integration, Evidence authority,
 conformance implementation, release, certification service, DBOS or SAEE.
 
 ```text
-REPOSITORY_BASELINE_APPLIED=false
-LICENSE_ADOPTED=false
+RB0_FILES_APPLIED_TO_BRANCH=true
+REPOSITORY_BASELINE_SCOPE=BRANCH_ONLY_NOT_MERGED
+REPOSITORY_BASELINE_VALIDATED=false
+REPOSITORY_BASELINE_ADOPTED=false
+LICENSE_ADOPTED=true
 PACKAGE_CREATED=false
 IMPLEMENTATION_CREATED=false
 PROVIDER_SUPPORTED=false
@@ -109,5 +112,7 @@ Do not invent commands or implementation facts.
 and repository-baseline proposals. This role does not grant Specification,
 Conformance, Operational, Evolution, Certification or Commercial Authority.
 
-This file is an RB0 candidate prepared in DBA and has not been applied to the
-target repository.
+The RB0 governance files and Apache-2.0 license are applied to
+`codex/rb0-governance-baseline` under `CS-D02-PRE-38`. The branch is not merged;
+truth-consistency validation and RB0 adoption remain pending. No implementation,
+provider support, conformance, runtime, release or commercial state is created.

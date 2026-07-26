@@ -27,5 +27,6 @@ or maintainer action does not automatically create acceptance, adoption,
 conformance, release or authority. Each material gate requires its own explicit
 Decision and version-bound evidence.
 
-This file is an RB0 candidate prepared in DBA and has not been applied to the
-target repository.
+This RB0 ownership boundary is applied to `codex/rb0-governance-baseline` under
+`CS-D02-PRE-38`. The branch is not merged, and this application creates no
+account Permission, new Authority, implementation, conformance or release role.

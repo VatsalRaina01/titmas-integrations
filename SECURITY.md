@@ -39,5 +39,6 @@ Any future implementation proposal must define and test:
 Passing a Schema does not constitute a security review. A security report does
 not create release, conformance, certification or commercial authorization.
 
-This file is an RB0 candidate prepared in DBA and has not been applied to the
-target repository.
+This RB0 security boundary is applied to `codex/rb0-governance-baseline` under
+`CS-D02-PRE-38`. The branch is not merged, no security review has been executed,
+and no supported version, package, implementation, runtime or release exists.
