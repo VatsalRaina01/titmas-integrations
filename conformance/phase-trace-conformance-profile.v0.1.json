@@ -1,0 +1,57 @@
+{
+  "$schema": "./phase-trace-conformance-profile.schema.v0.1.json",
+  "document_id": "TITMAS-PHASE-TRACE-CONFORMANCE-PROFILE-0.1",
+  "version": "0.1.0",
+  "status": "DEVELOPMENT_LOCAL_CONTRACT_REHEARSAL_PROFILE",
+  "decision_reference": "CS-D02-PRE-49",
+  "target_implementation_commit": "001da006aa32a1eeeb058daa31dcab39197fa4de",
+  "implemented_contract": {
+    "version": "0.1.0",
+    "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913"
+  },
+  "scope": [
+    "SERIALIZED_TOP_LEVEL_SHAPE",
+    "SCHEMA_VERSION",
+    "P0_P9_ORDER_AND_PREDECESSOR",
+    "STATUS_EXECUTED_FAILURE_INVARIANTS",
+    "FIRST_FAILURE_CLOSURE",
+    "BOUNDED_SANITIZED_FIELD_TYPES",
+    "FIXTURE_MANIFEST_INTEGRITY"
+  ],
+  "out_of_scope": [
+    "NETWORK_EXECUTION",
+    "PROVIDER_BEHAVIOR",
+    "PROVIDER_CORRECTNESS",
+    "DBOS_EVIDENCE_ADMISSION",
+    "SAEE_EVALUATION",
+    "OPERATIONAL_SECURITY",
+    "PRODUCTION_RELIABILITY",
+    "CUSTOMER_VALUE",
+    "CERTIFICATION"
+  ],
+  "validator": {
+    "path": "conformance/validate.py",
+    "imports_target_implementation": false,
+    "runtime_dependencies": 0,
+    "network_access": false,
+    "writes_input_or_history": false,
+    "fixture_repair": false
+  },
+  "fixture_corpus": {
+    "manifest": "conformance/case-manifest.v0.1.json",
+    "total": 7,
+    "expected_pass": 3,
+    "expected_fail": 4
+  },
+  "claim_boundary": {
+    "independent_path": true,
+    "third_party_independent_conformance": false,
+    "provider_conformance": false,
+    "provider_support": false,
+    "certification": false,
+    "release": false,
+    "evidence_created": false,
+    "truth_created": false,
+    "permission_granted": false
+  }
+}

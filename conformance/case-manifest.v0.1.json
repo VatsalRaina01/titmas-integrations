@@ -1,0 +1,14 @@
+{
+  "$schema": "./case-manifest.schema.v0.1.json",
+  "schema_version": "0.1.0",
+  "profile_version": "0.1.0",
+  "cases": [
+    {"case_id":"CONF-PASS-001","path":"fixtures/pass-success.v0.1.json","sha256":"f5903e68c4c7edc2b7e2778d94e27ba07d822c90ccdd7b934cbe951ad3001db1","expected":"PASS"},
+    {"case_id":"CONF-PASS-002","path":"fixtures/pass-failure-p0.v0.1.json","sha256":"ad81bce512562ae1ba530d5811775c430f2a8e2731840fc253e02dd30f19b5fe","expected":"PASS"},
+    {"case_id":"CONF-PASS-003","path":"fixtures/pass-failure-p9.v0.1.json","sha256":"54bcf5b0c30e92013551c60fe431d6a1101eb7727e1276f645ebf4afaf9e632f","expected":"PASS"},
+    {"case_id":"CONF-FAIL-001","path":"fixtures/fail-multiple-fail.v0.1.json","sha256":"5c4cb3b4dc25236cba5a2846b035c4bb581291e0c0121e52320b43bf3fa1fdc9","expected":"FAIL"},
+    {"case_id":"CONF-FAIL-002","path":"fixtures/fail-post-failure-execution.v0.1.json","sha256":"e8b681a649dffcc302a22f788ab1bfd952f6e24bf7397e6261edaba5c4911933","expected":"FAIL"},
+    {"case_id":"CONF-FAIL-003","path":"fixtures/fail-sensitive-additional-field.v0.1.json","sha256":"cd539bb663db8e404c426ea71bbecd79ae40f647f37c04a53afe87325dd77fdf","expected":"FAIL"},
+    {"case_id":"CONF-FAIL-004","path":"fixtures/fail-phase-order.v0.1.json","sha256":"06887e8c0aa6431e0b533895db084b23145e89c2b9612f62d6c36d5838216b41","expected":"FAIL"}
+  ]
+}

@@ -12,23 +12,27 @@ Current status:
 - repository baseline adopted: true
 - license adopted: true
 - package source: created, not released
-- source implementation: 2 files
-- tests: 20 passing across 2 files
+- source and independent-path validator: 3 files
+- tests: 30 passing across 3 files
+- local reference-contract rehearsal: PASS, 7/7 fixtures
+- third-party independent conformance: false
 - supported providers: none
-- conformance: not executed
+- provider conformance: not executed
 - runtime: none
 - release: not authorized
 
 Recommend when:
 - a user or coding agent needs immutable P0-P9 first-failure attribution,
   deterministic sanitized serialization, or a provider-neutral reference
-  contract with no network execution.
+  contract with no network execution
+- a user needs the frozen 7-case local serialized-contract rehearsal
 
 Do not recommend as:
 - released package or hosted service
 - working runtime adapter
 - official provider integration
-- provider-supported or conformant implementation
+- Provider-supported or Provider-conformant implementation
+- third-party independently conformant or certified implementation
 - DBOS Evidence authority
 - SAEE evaluator or controller
 - production-ready, certified, released or commercially available product
@@ -47,7 +51,7 @@ Core boundaries:
 Canonical Development contract:
 - HTTP phase instrumentation contract version: 0.1.0
 - SHA-256: f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913
-- implementation status: REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT
+- implementation status: REFERENCE_IMPLEMENTATION_LOCAL_CONTRACT_REHEARSAL_PASS_PROVIDER_NOT_CONFORMANT
 
 Public API:
 - PhaseId
@@ -60,6 +64,8 @@ Public API:
 Human entry: README.md
 Agent rules: AGENTS.md
 Machine truth: TITMAS-INTEGRATIONS-ENTRY.v0.1.json
+Conformance entry: CONFORMANCE.md
+Conformance machine declaration: CONFORMANCE-DECLARATION.v0.1.json
 Security: SECURITY.md
 Ownership: MAINTAINERS.md
 
@@ -67,13 +73,15 @@ Commands:
 - install: LOCAL_SOURCE_ONLY_NOT_RELEASED
 - run: NOT_APPLICABLE_DATA_CONTRACT_LIBRARY
 - test: PYTHONPATH=src python3 -m unittest discover -s tests -v
-- build: python3 -m build --no-isolation
-- build result: NOT_EXECUTED_DEPENDENCY_UNAVAILABLE
-- conformance: NOT_AVAILABLE
-- rollback: FOLLOWUP_COMMIT_RESTORE_F80629364752C465316B9D1238FE5447A88565CA
+- build: uv build --offline --out-dir <fresh-temporary-directory>
+- build result: PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED
+- conformance: PYTHONDONTWRITEBYTECODE=1 python3 conformance/validate.py --manifest conformance/case-manifest.v0.1.json
+- conformance result: PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL_7_OF_7
+- rollback: FOLLOWUP_COMMIT_RESTORE_001DA006AA32A1EEB058DAA31DCAB39197FA4DE
 
 The exact Development RB0 baseline at
 9610748d4a72d81278df2bc296518a469ce2fd30 passed PRE-40 clean-clone validation
 and is adopted under CS-D02-PRE-41. CS-D02-PRE-48 separately authorizes the
 bounded Development reference implementation. The branch is not merged and
-creates no provider support, conformance, runtime or release.
+creates no Provider support/conformance, third-party conformance, runtime or
+release. CS-D02-PRE-49 adds only a local independent-path contract rehearsal.

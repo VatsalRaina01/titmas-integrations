@@ -2,8 +2,8 @@
   "$schema": "./schemas/titmas-integrations-entry.schema.v0.1.json",
   "document_id": "TITMAS-INTEGRATIONS-ENTRY-0.1",
   "version": "0.1.0",
-  "status": "RB1_DEVELOPMENT_REFERENCE_IMPLEMENTATION_CREATED_TESTED_BRANCH_NOT_MERGED",
-  "observed_at": "2026-07-27T05:33:21+08:00",
+  "status": "RB1_DEVELOPMENT_REFERENCE_IMPLEMENTATION_LOCAL_CONTRACT_REHEARSAL_PASS_BRANCH_NOT_MERGED",
+  "observed_at": "2026-07-27T06:09:50+08:00",
   "repository": {
     "repository_ref": "https://github.com/joy7758/titmas-integrations.git",
     "maturity": "Development",
@@ -15,7 +15,9 @@
     "verified_baseline_commit": "9610748d4a72d81278df2bc296518a469ce2fd30",
     "repository_baseline_clean_clone_verified": true,
     "implementation_parent_commit": "f80629364752c465316b9d1238fe5447a88565ca",
-    "implementation_decision_commit": "91995fc07fa7ffc01adf4d3a875ee800e846f76a"
+    "implementation_decision_commit": "91995fc07fa7ffc01adf4d3a875ee800e846f76a",
+    "conformance_parent_commit": "001da006aa32a1eeeb058daa31dcab39197fa4de",
+    "conformance_decision_commit": "9f317aacdeec73dfaceff9b52df61953fb45c6fa"
   },
   "role": {
     "intended_role": "FUTURE_PROVIDER_NEUTRAL_TITMAS_INTEGRATION_IMPLEMENTATION_TARGET",
@@ -32,17 +34,21 @@
     "version": "0.1.0",
     "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913",
     "maturity": "Development",
-    "implementation_status": "REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT"
+    "implementation_status": "REFERENCE_IMPLEMENTATION_LOCAL_CONTRACT_REHEARSAL_PASS_PROVIDER_NOT_CONFORMANT"
   },
   "current_state": {
     "license_adopted": true,
     "package_created": true,
-    "source_files": 2,
-    "tests": 2,
-    "tests_pass": 20,
+    "source_files": 3,
+    "tests": 3,
+    "tests_pass": 30,
     "implementation_created": true,
+    "local_reference_contract_rehearsal": "PASS",
+    "independent_path_validator": true,
+    "third_party_independent_conformance": false,
     "provider_supported": false,
     "conformance_executed": false,
+    "provider_conformance_executed": false,
     "runtime_created": false,
     "release_authorized": false,
     "commercial_availability": "NOT_CLAIMED"
@@ -50,7 +56,8 @@
   "support_declaration": {
     "supported": [],
     "partial": [
-      "PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION"
+      "PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION",
+      "LOCAL_REFERENCE_CONTRACT_REHEARSAL"
     ],
     "unsupported": [
       "RELEASED_PACKAGE",
@@ -65,7 +72,7 @@
     ],
     "unknown": [
       "SECURITY_REVIEW",
-      "INDEPENDENT_CONFORMANCE",
+      "THIRD_PARTY_INDEPENDENT_CONFORMANCE",
       "RELEASE"
     ]
   },
@@ -73,10 +80,11 @@
     "install": "LOCAL_SOURCE_ONLY_NOT_RELEASED",
     "run": "NOT_APPLICABLE_DATA_CONTRACT_LIBRARY",
     "test": "PYTHONPATH=src python3 -m unittest discover -s tests -v",
-    "build": "python3 -m build --no-isolation",
-    "build_result": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE",
-    "conformance": "NOT_AVAILABLE",
-    "rollback": "FOLLOWUP_COMMIT_RESTORE_F80629364752C465316B9D1238FE5447A88565CA"
+    "build": "uv build --offline --out-dir <fresh-temporary-directory>",
+    "build_result": "PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED",
+    "conformance": "PYTHONDONTWRITEBYTECODE=1 python3 conformance/validate.py --manifest conformance/case-manifest.v0.1.json",
+    "conformance_result": "PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL_7_OF_7",
+    "rollback": "FOLLOWUP_COMMIT_RESTORE_001DA006AA32A1EEEB058DAA31DCAB39197FA4DE"
   },
   "boundaries": {
     "observation_is_evidence": false,
@@ -127,13 +135,29 @@
       "PhaseTrace",
       "validate_phase_trace"
     ],
-    "test_result": "PASS_20_OF_20",
-    "build_result": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE",
+    "test_result": "PASS_30_OF_30",
+    "build_result": "PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED",
     "network_execution_implemented": false,
     "provider_binding_created": false,
     "persistence_store_created": false,
     "retention_policy_implemented": false,
     "caller_must_declare_retention": true
+  },
+  "conformance": {
+    "decision_reference": "CS-D02-PRE-49",
+    "decision_commit": "9f317aacdeec73dfaceff9b52df61953fb45c6fa",
+    "declaration_reference": "CONFORMANCE-DECLARATION.v0.1.json",
+    "declaration_sha256": "31bf3bfbdd36a4b7494f279e1e38edcfa9d2cd5c073f213ed729b7d8458c6809",
+    "profile_reference": "conformance/phase-trace-conformance-profile.v0.1.json",
+    "profile_version": "0.1.0",
+    "result": "PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL",
+    "fixtures_matched": "7/7",
+    "independent_path_validator": true,
+    "validator_imports_target_implementation": false,
+    "third_party_independent_conformance": false,
+    "provider_conformance_executed": false,
+    "provider_supported": false,
+    "certification_authorized": false
   },
   "effects": {
     "authority_created": false,
@@ -142,6 +166,8 @@
     "implementation_created": true,
     "provider_supported": false,
     "conformance_executed": false,
+    "local_conformance_rehearsal_executed": true,
+    "provider_conformance_executed": false,
     "certification_authorized": false,
     "release_authorized": false
   },

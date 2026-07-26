@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titmas.cn/schemas/phase-trace-conformance-profile.schema.v0.1.json",
+  "title": "TITMAS Phase Trace Conformance Profile v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "document_id", "version", "status", "decision_reference", "target_implementation_commit", "implemented_contract", "scope", "out_of_scope", "validator", "fixture_corpus", "claim_boundary"],
+  "properties": {
+    "$schema": {"const": "./phase-trace-conformance-profile.schema.v0.1.json"},
+    "document_id": {"const": "TITMAS-PHASE-TRACE-CONFORMANCE-PROFILE-0.1"},
+    "version": {"const": "0.1.0"},
+    "status": {"const": "DEVELOPMENT_LOCAL_CONTRACT_REHEARSAL_PROFILE"},
+    "decision_reference": {"const": "CS-D02-PRE-49"},
+    "target_implementation_commit": {"const": "001da006aa32a1eeeb058daa31dcab39197fa4de"},
+    "implemented_contract": {"const": {"version": "0.1.0", "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913"}},
+    "scope": {"const": ["SERIALIZED_TOP_LEVEL_SHAPE", "SCHEMA_VERSION", "P0_P9_ORDER_AND_PREDECESSOR", "STATUS_EXECUTED_FAILURE_INVARIANTS", "FIRST_FAILURE_CLOSURE", "BOUNDED_SANITIZED_FIELD_TYPES", "FIXTURE_MANIFEST_INTEGRITY"]},
+    "out_of_scope": {"const": ["NETWORK_EXECUTION", "PROVIDER_BEHAVIOR", "PROVIDER_CORRECTNESS", "DBOS_EVIDENCE_ADMISSION", "SAEE_EVALUATION", "OPERATIONAL_SECURITY", "PRODUCTION_RELIABILITY", "CUSTOMER_VALUE", "CERTIFICATION"]},
+    "validator": {"const": {"path": "conformance/validate.py", "imports_target_implementation": false, "runtime_dependencies": 0, "network_access": false, "writes_input_or_history": false, "fixture_repair": false}},
+    "fixture_corpus": {"const": {"manifest": "conformance/case-manifest.v0.1.json", "total": 7, "expected_pass": 3, "expected_fail": 4}},
+    "claim_boundary": {"const": {"independent_path": true, "third_party_independent_conformance": false, "provider_conformance": false, "provider_support": false, "certification": false, "release": false, "evidence_created": false, "truth_created": false, "permission_granted": false}}
+  }
+}

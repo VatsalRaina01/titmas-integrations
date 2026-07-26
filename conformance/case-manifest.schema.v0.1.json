@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titmas.cn/schemas/phase-trace-conformance-case-manifest.schema.v0.1.json",
+  "title": "TITMAS Phase Trace Conformance Case Manifest v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schema_version", "profile_version", "cases"],
+  "properties": {
+    "$schema": {"const": "./case-manifest.schema.v0.1.json"},
+    "schema_version": {"const": "0.1.0"},
+    "profile_version": {"const": "0.1.0"},
+    "cases": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id", "path", "sha256", "expected"],
+        "properties": {
+          "case_id": {"type": "string", "pattern": "^CONF-(PASS|FAIL)-[0-9]{3}$"},
+          "path": {"type": "string", "pattern": "^fixtures/[a-z0-9.-]+\\.json$"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "expected": {"enum": ["PASS", "FAIL"]}
+        }
+      }
+    }
+  }
+}

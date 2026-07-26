@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titmas.cn/schemas/conformance-declaration.schema.v0.1.json",
+  "title": "TITMAS Integrations RB1 Conformance Declaration v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "document_id", "version", "status", "decision_reference", "decision_commit", "target_parent_commit", "profile", "validator", "manifest", "artifacts", "test_history", "build_smoke", "claim_boundary", "effects"],
+  "properties": {
+    "$schema": {"const": "./schemas/conformance-declaration.schema.v0.1.json"},
+    "document_id": {"const": "TITMAS-INTEGRATIONS-RB1-CONFORMANCE-DECLARATION-0.1"},
+    "version": {"const": "0.1.0"},
+    "status": {"const": "PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL"},
+    "decision_reference": {"const": "CS-D02-PRE-49"},
+    "decision_commit": {"const": "9f317aacdeec73dfaceff9b52df61953fb45c6fa"},
+    "target_parent_commit": {"const": "001da006aa32a1eeeb058daa31dcab39197fa4de"},
+    "profile": {"const": {"reference": "conformance/phase-trace-conformance-profile.v0.1.json", "version": "0.1.0", "sha256": "1f62926c9072afc8872072a1c0238b1d717858895098ca1a4459b64ea9dcc43e", "maturity": "Development"}},
+    "validator": {"const": {"reference": "conformance/validate.py", "sha256": "1c537539d3eaacc0d4dd51fca33418cbd68d5981eb8a7bc09bdf71b9112800ae", "imports_target_implementation": false, "runtime_dependencies": 0, "network_access": false, "writes_input_or_history": false}},
+    "manifest": {"const": {"reference": "conformance/case-manifest.v0.1.json", "sha256": "14dbb05ba3c8f9cbf8e56f906488a3ebd2e25bf50aa9ab111a2b3e3fef611236", "cases": 7, "expected_pass": 3, "expected_fail": 4, "matched": 7}},
+    "artifacts": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "role"],
+        "properties": {
+          "path": {"type": "string", "minLength": 5},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "role": {"enum": ["HUMAN_AND_AGENT_ENTRY", "PROFILE_SCHEMA", "MANIFEST_SCHEMA", "PASS_FIXTURE", "FAIL_FIXTURE", "HARNESS_TESTS"]}
+        }
+      }
+    },
+    "test_history": {"const": {"initial_run": {"tests_run": 30, "passed": 29, "failed": 1, "failure": "TEST_TEMP_SYMLINK_REJECTED_BY_PATH_ESCAPE_GUARD", "validator_threshold_changed": false}, "remediation": "REPLACE_TEST_SYMLINK_WITH_TEMPORARY_ENTITY_COPY", "final_run": {"tests_run": 30, "passed": 30, "failed": 0, "status": "PASS"}}},
+    "build_smoke": {"const": {"command": "uv build --offline --out-dir <fresh-temporary-directory>", "status": "PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED", "network_allowed": false, "network_install_attempted": false, "source_tree_generated_artifact_removed": "src/titmas_integrations.egg-info", "sdist": {"name": "titmas_integrations-0.1.0.dev1.tar.gz", "sha256": "4cf69c13015b44e21a7021225f54a200cd93e5092dfc18e78fe7f8f978edf696"}, "wheel": {"name": "titmas_integrations-0.1.0.dev1-py3-none-any.whl", "sha256": "9bfc8525001956135e54124c7e642c29081701108267c24ece6e0db66653a6c2"}, "published": false, "retained_in_repository": false, "license_metadata_deprecation_warning_observed": true}},
+    "claim_boundary": {"const": {"local_reference_contract_rehearsal": true, "independent_path_validator": true, "third_party_independent_conformance": false, "provider_conformance": false, "provider_support": false, "provider_correctness_proven": false, "security_review": false, "certification": false, "release": false, "commercial_availability": "NOT_CLAIMED"}},
+    "effects": {"const": {"evidence_created": false, "truth_created": false, "authority_created": false, "permission_granted": false, "runtime_created": false, "agent_created": false, "main_changed": false, "release_authorized": false}}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

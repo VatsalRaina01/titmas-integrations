@@ -2,7 +2,7 @@
   "$schema": "./schemas/implementation-declaration.schema.v0.1.json",
   "document_id": "TITMAS-INTEGRATIONS-RB1-IMPLEMENTATION-DECLARATION-0.1",
   "version": "0.1.0",
-  "status": "DEVELOPMENT_REFERENCE_IMPLEMENTATION_CREATED_TESTED_NOT_CONFORMANT",
+  "status": "DEVELOPMENT_REFERENCE_IMPLEMENTATION_TESTED_LOCAL_REHEARSAL_PASS_PROVIDER_NOT_CONFORMANT",
   "implementation_id": "TITMAS-INTEGRATIONS-RB1-REFERENCE-0.1",
   "implementation_class": "REFERENCE_IMPLEMENTATION",
   "owner_ref": "zhangbin",
@@ -15,7 +15,7 @@
     "version": "0.1.0",
     "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913",
     "maturity": "Development",
-    "implementation_status": "REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT"
+    "implementation_status": "REFERENCE_IMPLEMENTATION_LOCAL_CONTRACT_REHEARSAL_PASS_PROVIDER_NOT_CONFORMANT"
   },
   "artifacts": [
     {"path": "pyproject.toml", "sha256": "c231da797a8e513158009b9dbb17e8b290e81f7b40cfbf352b5a3fbd3ae31200", "role": "PACKAGE_METADATA"},
@@ -35,20 +35,34 @@
   ],
   "test_result": {
     "command": "PYTHONPATH=src python3 -m unittest discover -s tests -v",
-    "tests_run": 20,
+    "tests_run": 30,
     "failures": 0,
     "errors": 0,
     "status": "PASS"
   },
   "build_result": {
-    "command": "python3 -m build --no-isolation",
-    "status": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE",
+    "command": "uv build --offline --out-dir <fresh-temporary-directory>",
+    "status": "PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED",
     "network_install_attempted": false,
-    "artifact_created": false
+    "artifact_created": true,
+    "artifact_retained_in_repository": false,
+    "license_metadata_deprecation_warning_observed": true
+  },
+  "local_conformance": {
+    "declaration_reference": "CONFORMANCE-DECLARATION.v0.1.json",
+    "profile_version": "0.1.0",
+    "status": "PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL",
+    "fixtures_matched": "7/7",
+    "independent_path_validator": true,
+    "third_party_independent_conformance": false,
+    "provider_conformance_executed": false
   },
   "support_declaration": {
     "supported": [],
-    "partial": ["PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION"],
+    "partial": [
+      "PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION",
+      "LOCAL_REFERENCE_CONTRACT_REHEARSAL"
+    ],
     "unsupported": [
       "NETWORK_EXECUTION",
       "PROVIDER_BINDING",
@@ -60,7 +74,7 @@
       "PRODUCTION_USE"
     ],
     "unknown": [
-      "INDEPENDENT_CONFORMANCE",
+      "THIRD_PARTY_INDEPENDENT_CONFORMANCE",
       "SECURITY_REVIEW",
       "RELEASE"
     ]
@@ -75,9 +89,10 @@
     "DEVELOPMENT_REFERENCE_IMPLEMENTATION_ONLY",
     "NO_PROVIDER_BINDING",
     "NO_NETWORK_EXECUTION",
-    "NO_INDEPENDENT_CONFORMANCE",
+    "NO_THIRD_PARTY_INDEPENDENT_CONFORMANCE",
     "NO_SECURITY_REVIEW",
-    "BUILD_NOT_EXECUTED_BUILD_MODULE_UNAVAILABLE",
+    "OFFLINE_BUILD_ONLY_NOT_PUBLISHED",
+    "LICENSE_METADATA_DEPRECATION_WARNING_OPEN",
     "NOT_RELEASED"
   ],
   "release_status": "NOT_AUTHORIZED",
@@ -87,6 +102,8 @@
     "implementation_authorized": true,
     "provider_supported": false,
     "conformance_executed": false,
+    "local_conformance_rehearsal_executed": true,
+    "provider_conformance_executed": false,
     "runtime_created": false,
     "agent_created": false,
     "permission_granted": false,

@@ -3,9 +3,10 @@
 ## Repository role
 
 This repository contains a bounded Development reference implementation of a
-provider-neutral P0-P9 phase-trace contract. It is not a network adapter,
-supported provider integration, Evidence authority, conformant implementation,
-release, certification service, DBOS or SAEE.
+provider-neutral P0-P9 phase-trace contract plus an independent-path local
+contract rehearsal. It is not a network adapter, supported Provider integration,
+Provider-conformant implementation, third-party certification, release, DBOS or
+SAEE.
 
 ```text
 RB0_FILES_APPLIED_TO_BRANCH=true
@@ -14,10 +15,12 @@ REPOSITORY_BASELINE_VALIDATED=true
 REPOSITORY_BASELINE_ADOPTED=true
 LICENSE_ADOPTED=true
 PACKAGE_CREATED=true
-SOURCE_FILES=2
-TEST_FILES=2
-TESTS_PASS=20
+SOURCE_FILES=3
+TEST_FILES=3
+TESTS_PASS=30
 IMPLEMENTATION_CREATED=true
+LOCAL_REFERENCE_CONTRACT_REHEARSAL=PASS
+THIRD_PARTY_INDEPENDENT_CONFORMANCE=false
 PROVIDER_SUPPORTED=false
 CONFORMANCE_EXECUTED=false
 RELEASE_AUTHORIZED=false
@@ -28,8 +31,10 @@ RELEASE_AUTHORIZED=false
 1. `README.md`;
 2. `TITMAS-INTEGRATIONS-ENTRY.v0.1.json`;
 3. `SECURITY.md`;
-4. `MAINTAINERS.md`;
-5. the exact versioned specification and implementation declaration relevant to
+4. `CONFORMANCE.md`;
+5. `CONFORMANCE-DECLARATION.v0.1.json`;
+6. `MAINTAINERS.md`;
+7. the exact versioned specification and implementation declaration relevant to
    the proposed change.
 
 If those files are absent or disagree, stop and report
@@ -39,6 +44,8 @@ If those files are absent or disagree, stop and report
 
 An agent may recommend this repository as a Development reference for immutable,
 fail-closed P0-P9 phase traces and provider-neutral data minimization.
+It may also recommend the frozen local contract rehearsal when the user needs
+an independent-path serialized-fixture check.
 
 An agent must not recommend it as a working library, drop-in adapter, official
 provider integration, conformant implementation, production system, certified
@@ -93,14 +100,16 @@ allow it.
 INSTALL=LOCAL_SOURCE_ONLY_NOT_RELEASED
 RUN=NOT_APPLICABLE_DATA_CONTRACT_LIBRARY
 TEST=PYTHONPATH=src python3 -m unittest discover -s tests -v
-BUILD=python3 -m build --no-isolation
-BUILD_RESULT=NOT_EXECUTED_DEPENDENCY_UNAVAILABLE
-CONFORMANCE=NOT_AVAILABLE
-ROLLBACK=FOLLOWUP_COMMIT_RESTORE_F80629364752C465316B9D1238FE5447A88565CA
+BUILD=uv build --offline --out-dir <fresh-temporary-directory>
+BUILD_RESULT=PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED
+CONFORMANCE=PYTHONDONTWRITEBYTECODE=1 python3 conformance/validate.py --manifest conformance/case-manifest.v0.1.json
+CONFORMANCE_RESULT=PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL_7_OF_7
+ROLLBACK=FOLLOWUP_COMMIT_RESTORE_001DA006AA32A1EEB058DAA31DCAB39197FA4DE
 ```
 
-Do not install missing build dependencies from the network. Do not invent
-provider, conformance, release or Runtime facts.
+Do not install missing build dependencies from the network. Do not promote the
+local rehearsal to Provider conformance, third-party independence, release or
+Runtime facts.
 
 ## Change discipline
 
@@ -124,3 +133,5 @@ and is adopted under `CS-D02-PRE-41`. The branch is not merged. Adoption creates
 no provider support, conformance, runtime, release, Permission or commercial
 state. `CS-D02-PRE-48` separately authorizes the current bounded reference
 implementation and its tests.
+`CS-D02-PRE-49` separately authorizes the independent-path local contract
+rehearsal; it creates no Provider or third-party conformance claim.

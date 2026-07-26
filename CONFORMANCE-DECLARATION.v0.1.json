@@ -1,0 +1,100 @@
+{
+  "$schema": "./schemas/conformance-declaration.schema.v0.1.json",
+  "document_id": "TITMAS-INTEGRATIONS-RB1-CONFORMANCE-DECLARATION-0.1",
+  "version": "0.1.0",
+  "status": "PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL",
+  "decision_reference": "CS-D02-PRE-49",
+  "decision_commit": "9f317aacdeec73dfaceff9b52df61953fb45c6fa",
+  "target_parent_commit": "001da006aa32a1eeeb058daa31dcab39197fa4de",
+  "profile": {
+    "reference": "conformance/phase-trace-conformance-profile.v0.1.json",
+    "version": "0.1.0",
+    "sha256": "1f62926c9072afc8872072a1c0238b1d717858895098ca1a4459b64ea9dcc43e",
+    "maturity": "Development"
+  },
+  "validator": {
+    "reference": "conformance/validate.py",
+    "sha256": "1c537539d3eaacc0d4dd51fca33418cbd68d5981eb8a7bc09bdf71b9112800ae",
+    "imports_target_implementation": false,
+    "runtime_dependencies": 0,
+    "network_access": false,
+    "writes_input_or_history": false
+  },
+  "manifest": {
+    "reference": "conformance/case-manifest.v0.1.json",
+    "sha256": "14dbb05ba3c8f9cbf8e56f906488a3ebd2e25bf50aa9ab111a2b3e3fef611236",
+    "cases": 7,
+    "expected_pass": 3,
+    "expected_fail": 4,
+    "matched": 7
+  },
+  "artifacts": [
+    {"path":"CONFORMANCE.md","sha256":"13b419bc09d7bc6b69c0f76108f530c6944619d94597aabee86705a891296728","role":"HUMAN_AND_AGENT_ENTRY"},
+    {"path":"conformance/phase-trace-conformance-profile.schema.v0.1.json","sha256":"b81be45cb5c84f30792412300df0fd24c84b15587df38b15ac57466f3c762fd9","role":"PROFILE_SCHEMA"},
+    {"path":"conformance/case-manifest.schema.v0.1.json","sha256":"f416cc490a5deb973b7f95ddceffe17ffa3288f703fbe73cc61364fd7bc1184b","role":"MANIFEST_SCHEMA"},
+    {"path":"conformance/fixtures/pass-success.v0.1.json","sha256":"f5903e68c4c7edc2b7e2778d94e27ba07d822c90ccdd7b934cbe951ad3001db1","role":"PASS_FIXTURE"},
+    {"path":"conformance/fixtures/pass-failure-p0.v0.1.json","sha256":"ad81bce512562ae1ba530d5811775c430f2a8e2731840fc253e02dd30f19b5fe","role":"PASS_FIXTURE"},
+    {"path":"conformance/fixtures/pass-failure-p9.v0.1.json","sha256":"54bcf5b0c30e92013551c60fe431d6a1101eb7727e1276f645ebf4afaf9e632f","role":"PASS_FIXTURE"},
+    {"path":"conformance/fixtures/fail-multiple-fail.v0.1.json","sha256":"5c4cb3b4dc25236cba5a2846b035c4bb581291e0c0121e52320b43bf3fa1fdc9","role":"FAIL_FIXTURE"},
+    {"path":"conformance/fixtures/fail-post-failure-execution.v0.1.json","sha256":"e8b681a649dffcc302a22f788ab1bfd952f6e24bf7397e6261edaba5c4911933","role":"FAIL_FIXTURE"},
+    {"path":"conformance/fixtures/fail-sensitive-additional-field.v0.1.json","sha256":"cd539bb663db8e404c426ea71bbecd79ae40f647f37c04a53afe87325dd77fdf","role":"FAIL_FIXTURE"},
+    {"path":"conformance/fixtures/fail-phase-order.v0.1.json","sha256":"06887e8c0aa6431e0b533895db084b23145e89c2b9612f62d6c36d5838216b41","role":"FAIL_FIXTURE"},
+    {"path":"tests/test_conformance_harness.py","sha256":"52a29d3072e571d2889c8f0e775a65a7d97334db7d269f067c3d0888df2b7c04","role":"HARNESS_TESTS"}
+  ],
+  "test_history": {
+    "initial_run": {
+      "tests_run": 30,
+      "passed": 29,
+      "failed": 1,
+      "failure": "TEST_TEMP_SYMLINK_REJECTED_BY_PATH_ESCAPE_GUARD",
+      "validator_threshold_changed": false
+    },
+    "remediation": "REPLACE_TEST_SYMLINK_WITH_TEMPORARY_ENTITY_COPY",
+    "final_run": {
+      "tests_run": 30,
+      "passed": 30,
+      "failed": 0,
+      "status": "PASS"
+    }
+  },
+  "build_smoke": {
+    "command": "uv build --offline --out-dir <fresh-temporary-directory>",
+    "status": "PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED",
+    "network_allowed": false,
+    "network_install_attempted": false,
+    "source_tree_generated_artifact_removed": "src/titmas_integrations.egg-info",
+    "sdist": {
+      "name": "titmas_integrations-0.1.0.dev1.tar.gz",
+      "sha256": "4cf69c13015b44e21a7021225f54a200cd93e5092dfc18e78fe7f8f978edf696"
+    },
+    "wheel": {
+      "name": "titmas_integrations-0.1.0.dev1-py3-none-any.whl",
+      "sha256": "9bfc8525001956135e54124c7e642c29081701108267c24ece6e0db66653a6c2"
+    },
+    "published": false,
+    "retained_in_repository": false,
+    "license_metadata_deprecation_warning_observed": true
+  },
+  "claim_boundary": {
+    "local_reference_contract_rehearsal": true,
+    "independent_path_validator": true,
+    "third_party_independent_conformance": false,
+    "provider_conformance": false,
+    "provider_support": false,
+    "provider_correctness_proven": false,
+    "security_review": false,
+    "certification": false,
+    "release": false,
+    "commercial_availability": "NOT_CLAIMED"
+  },
+  "effects": {
+    "evidence_created": false,
+    "truth_created": false,
+    "authority_created": false,
+    "permission_granted": false,
+    "runtime_created": false,
+    "agent_created": false,
+    "main_changed": false,
+    "release_authorized": false
+  }
+}
