@@ -2,8 +2,8 @@
   "$schema": "./schemas/titmas-integrations-entry.schema.v0.1.json",
   "document_id": "TITMAS-INTEGRATIONS-ENTRY-0.1",
   "version": "0.1.0",
-  "status": "RB0_DEVELOPMENT_BASELINE_ADOPTED_BRANCH_NOT_MERGED",
-  "observed_at": "2026-07-27T03:23:49+08:00",
+  "status": "RB1_DEVELOPMENT_REFERENCE_IMPLEMENTATION_CREATED_TESTED_BRANCH_NOT_MERGED",
+  "observed_at": "2026-07-27T05:33:21+08:00",
   "repository": {
     "repository_ref": "https://github.com/joy7758/titmas-integrations.git",
     "maturity": "Development",
@@ -13,7 +13,9 @@
     "repository_baseline_adopted": true,
     "application_anchor_commit": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b",
     "verified_baseline_commit": "9610748d4a72d81278df2bc296518a469ce2fd30",
-    "repository_baseline_clean_clone_verified": true
+    "repository_baseline_clean_clone_verified": true,
+    "implementation_parent_commit": "f80629364752c465316b9d1238fe5447a88565ca",
+    "implementation_decision_commit": "91995fc07fa7ffc01adf4d3a875ee800e846f76a"
   },
   "role": {
     "intended_role": "FUTURE_PROVIDER_NEUTRAL_TITMAS_INTEGRATION_IMPLEMENTATION_TARGET",
@@ -30,14 +32,15 @@
     "version": "0.1.0",
     "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913",
     "maturity": "Development",
-    "implementation_status": "NOT_IMPLEMENTED"
+    "implementation_status": "REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT"
   },
   "current_state": {
     "license_adopted": true,
-    "package_created": false,
-    "source_files": 0,
-    "tests": 0,
-    "implementation_created": false,
+    "package_created": true,
+    "source_files": 2,
+    "tests": 2,
+    "tests_pass": 20,
+    "implementation_created": true,
     "provider_supported": false,
     "conformance_executed": false,
     "runtime_created": false,
@@ -46,29 +49,34 @@
   },
   "support_declaration": {
     "supported": [],
-    "partial": [],
+    "partial": [
+      "PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION"
+    ],
     "unsupported": [
-      "INSTALLABLE_PACKAGE",
+      "RELEASED_PACKAGE",
+      "NETWORK_EXECUTION",
       "RUNTIME_ADAPTER",
+      "PROVIDER_BINDING",
       "PROVIDER_SUPPORT",
       "PROVIDER_CONFORMANCE",
+      "DBOS_EVIDENCE_WRITER",
+      "SAEE_EVALUATOR",
       "PRODUCTION_USE"
     ],
     "unknown": [
-      "PACKAGE_NAME",
-      "PUBLIC_API",
-      "PROVIDER_BINDINGS",
       "SECURITY_REVIEW",
-      "CONFORMANCE",
+      "INDEPENDENT_CONFORMANCE",
       "RELEASE"
     ]
   },
   "commands": {
-    "install": "NOT_AVAILABLE",
-    "run": "NOT_AVAILABLE",
-    "test": "NOT_AVAILABLE",
+    "install": "LOCAL_SOURCE_ONLY_NOT_RELEASED",
+    "run": "NOT_APPLICABLE_DATA_CONTRACT_LIBRARY",
+    "test": "PYTHONPATH=src python3 -m unittest discover -s tests -v",
+    "build": "python3 -m build --no-isolation",
+    "build_result": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE",
     "conformance": "NOT_AVAILABLE",
-    "rollback": "NOT_AVAILABLE"
+    "rollback": "FOLLOWUP_COMMIT_RESTORE_F80629364752C465316B9D1238FE5447A88565CA"
   },
   "boundaries": {
     "observation_is_evidence": false,
@@ -106,11 +114,32 @@
     "application_branch": "codex/rb0-governance-baseline",
     "application_commit": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b"
   },
+  "implementation": {
+    "decision_reference": "CS-D02-PRE-48",
+    "decision_commit": "91995fc07fa7ffc01adf4d3a875ee800e846f76a",
+    "declaration_reference": "IMPLEMENTATION-DECLARATION.v0.1.json",
+    "maturity": "Development",
+    "public_api": [
+      "PhaseId",
+      "PhaseStatus",
+      "FailureCategory",
+      "PhaseEvent",
+      "PhaseTrace",
+      "validate_phase_trace"
+    ],
+    "test_result": "PASS_20_OF_20",
+    "build_result": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE",
+    "network_execution_implemented": false,
+    "provider_binding_created": false,
+    "persistence_store_created": false,
+    "retention_policy_implemented": false,
+    "caller_must_declare_retention": true
+  },
   "effects": {
     "authority_created": false,
     "permission_granted": false,
-    "implementation_authorized": false,
-    "implementation_created": false,
+    "implementation_authorized": true,
+    "implementation_created": true,
     "provider_supported": false,
     "conformance_executed": false,
     "certification_authorized": false,

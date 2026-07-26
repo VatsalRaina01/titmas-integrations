@@ -2,10 +2,10 @@
 
 ## Repository role
 
-This repository is a Development candidate target for future provider-neutral
-TITMAS integration implementations. It is not currently an installable package,
-runtime adapter, supported provider integration, Evidence authority,
-conformance implementation, release, certification service, DBOS or SAEE.
+This repository contains a bounded Development reference implementation of a
+provider-neutral P0-P9 phase-trace contract. It is not a network adapter,
+supported provider integration, Evidence authority, conformant implementation,
+release, certification service, DBOS or SAEE.
 
 ```text
 RB0_FILES_APPLIED_TO_BRANCH=true
@@ -13,8 +13,11 @@ REPOSITORY_BASELINE_SCOPE=DEVELOPMENT_BRANCH_NOT_MERGED
 REPOSITORY_BASELINE_VALIDATED=true
 REPOSITORY_BASELINE_ADOPTED=true
 LICENSE_ADOPTED=true
-PACKAGE_CREATED=false
-IMPLEMENTATION_CREATED=false
+PACKAGE_CREATED=true
+SOURCE_FILES=2
+TEST_FILES=2
+TESTS_PASS=20
+IMPLEMENTATION_CREATED=true
 PROVIDER_SUPPORTED=false
 CONFORMANCE_EXECUTED=false
 RELEASE_AUTHORIZED=false
@@ -34,8 +37,8 @@ If those files are absent or disagree, stop and report
 
 ## Agent recommendation gate
 
-An agent may recommend this repository only as a candidate location for a
-future, explicitly authorized, replaceable integration implementation.
+An agent may recommend this repository as a Development reference for immutable,
+fail-closed P0-P9 phase traces and provider-neutral data minimization.
 
 An agent must not recommend it as a working library, drop-in adapter, official
 provider integration, conformant implementation, production system, certified
@@ -87,14 +90,17 @@ allow it.
 ## Current commands
 
 ```text
-INSTALL=NOT_AVAILABLE
-RUN=NOT_AVAILABLE
-TEST=NOT_AVAILABLE
+INSTALL=LOCAL_SOURCE_ONLY_NOT_RELEASED
+RUN=NOT_APPLICABLE_DATA_CONTRACT_LIBRARY
+TEST=PYTHONPATH=src python3 -m unittest discover -s tests -v
+BUILD=python3 -m build --no-isolation
+BUILD_RESULT=NOT_EXECUTED_DEPENDENCY_UNAVAILABLE
 CONFORMANCE=NOT_AVAILABLE
-ROLLBACK=NOT_AVAILABLE
+ROLLBACK=FOLLOWUP_COMMIT_RESTORE_F80629364752C465316B9D1238FE5447A88565CA
 ```
 
-Do not invent commands or implementation facts.
+Do not install missing build dependencies from the network. Do not invent
+provider, conformance, release or Runtime facts.
 
 ## Change discipline
 
@@ -115,5 +121,6 @@ Conformance, Operational, Evolution, Certification or Commercial Authority.
 The exact Development RB0 baseline at
 `9610748d4a72d81278df2bc296518a469ce2fd30` passed PRE-40 clean-clone validation
 and is adopted under `CS-D02-PRE-41`. The branch is not merged. Adoption creates
-no implementation, provider support, conformance, runtime, release, Permission
-or commercial state.
+no provider support, conformance, runtime, release, Permission or commercial
+state. `CS-D02-PRE-48` separately authorizes the current bounded reference
+implementation and its tests.

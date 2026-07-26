@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titmas.cn/schemas/implementation-declaration.schema.v0.1.json",
+  "title": "TITMAS Integrations RB1 Implementation Declaration v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "document_id", "version", "status", "implementation_id", "implementation_class", "owner_ref", "decision_reference", "decision_commit", "source_version", "license_ref", "implemented_specification", "artifacts", "public_api", "test_result", "build_result", "support_declaration", "retention_boundary", "known_limitations", "release_status", "commercial_availability", "effects"],
+  "properties": {
+    "$schema": {"const": "./schemas/implementation-declaration.schema.v0.1.json"},
+    "document_id": {"const": "TITMAS-INTEGRATIONS-RB1-IMPLEMENTATION-DECLARATION-0.1"},
+    "version": {"const": "0.1.0"},
+    "status": {"const": "DEVELOPMENT_REFERENCE_IMPLEMENTATION_CREATED_TESTED_NOT_CONFORMANT"},
+    "implementation_id": {"const": "TITMAS-INTEGRATIONS-RB1-REFERENCE-0.1"},
+    "implementation_class": {"const": "REFERENCE_IMPLEMENTATION"},
+    "owner_ref": {"const": "zhangbin"},
+    "decision_reference": {"const": "CS-D02-PRE-48"},
+    "decision_commit": {"const": "91995fc07fa7ffc01adf4d3a875ee800e846f76a"},
+    "source_version": {"const": "0.1.0.dev1"},
+    "license_ref": {"const": "Apache-2.0"},
+    "implemented_specification": {"const": {"reference": "commercialization-standards-provider-http-phase-instrumentation/http-phase-instrumentation-contract.v0.1.json", "version": "0.1.0", "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913", "maturity": "Development", "implementation_status": "REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT"}},
+    "artifacts": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "role"],
+        "properties": {
+          "path": {"type": "string", "minLength": 3},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "role": {"type": "string", "minLength": 3}
+        }
+      }
+    },
+    "public_api": {"const": ["PhaseId", "PhaseStatus", "FailureCategory", "PhaseEvent", "PhaseTrace", "validate_phase_trace"]},
+    "test_result": {"const": {"command": "PYTHONPATH=src python3 -m unittest discover -s tests -v", "tests_run": 20, "failures": 0, "errors": 0, "status": "PASS"}},
+    "build_result": {"const": {"command": "python3 -m build --no-isolation", "status": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE", "network_install_attempted": false, "artifact_created": false}},
+    "support_declaration": {"const": {"supported": [], "partial": ["PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION"], "unsupported": ["NETWORK_EXECUTION", "PROVIDER_BINDING", "PROVIDER_SUPPORT", "PROVIDER_CONFORMANCE", "DBOS_EVIDENCE_WRITER", "SAEE_EVALUATOR", "RUNTIME", "PRODUCTION_USE"], "unknown": ["INDEPENDENT_CONFORMANCE", "SECURITY_REVIEW", "RELEASE"]}},
+    "retention_boundary": {"const": {"retention_policy_implemented": false, "caller_must_declare_retention": true, "immutable_record_means_permanent_storage": false, "persistence_store_created": false}},
+    "known_limitations": {"type": "array", "minItems": 7, "uniqueItems": true, "items": {"type": "string", "minLength": 5}},
+    "release_status": {"const": "NOT_AUTHORIZED"},
+    "commercial_availability": {"const": "NOT_CLAIMED"},
+    "effects": {"const": {"implementation_created": true, "implementation_authorized": true, "provider_supported": false, "conformance_executed": false, "runtime_created": false, "agent_created": false, "permission_granted": false, "evidence_truth_changed": false, "release_authorized": false}}
+  }
+}

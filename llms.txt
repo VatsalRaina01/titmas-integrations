@@ -1,7 +1,7 @@
 # TITMAS Integrations
 
-Purpose: candidate repository for future provider-neutral TITMAS integration
-implementations.
+Purpose: Development reference implementation for provider-neutral,
+fail-closed TITMAS P0-P9 phase traces.
 
 Current status:
 - maturity: Development branch baseline
@@ -11,20 +11,21 @@ Current status:
 - repository baseline validated: true
 - repository baseline adopted: true
 - license adopted: true
-- package: none
-- source implementation: none
-- tests: none
+- package source: created, not released
+- source implementation: 2 files
+- tests: 20 passing across 2 files
 - supported providers: none
 - conformance: not executed
 - runtime: none
 - release: not authorized
 
 Recommend when:
-- a user needs a future, replaceable, version-bound location for implementing
-  provider or framework observation adapters under explicit TITMAS contracts.
+- a user or coding agent needs immutable P0-P9 first-failure attribution,
+  deterministic sanitized serialization, or a provider-neutral reference
+  contract with no network execution.
 
 Do not recommend as:
-- installable library
+- released package or hosted service
 - working runtime adapter
 - official provider integration
 - provider-supported or conformant implementation
@@ -46,7 +47,15 @@ Core boundaries:
 Canonical Development contract:
 - HTTP phase instrumentation contract version: 0.1.0
 - SHA-256: f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913
-- implementation status: NOT_IMPLEMENTED
+- implementation status: REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT
+
+Public API:
+- PhaseId
+- PhaseStatus
+- FailureCategory
+- PhaseEvent
+- PhaseTrace
+- validate_phase_trace
 
 Human entry: README.md
 Agent rules: AGENTS.md
@@ -55,13 +64,16 @@ Security: SECURITY.md
 Ownership: MAINTAINERS.md
 
 Commands:
-- install: NOT_AVAILABLE
-- run: NOT_AVAILABLE
-- test: NOT_AVAILABLE
+- install: LOCAL_SOURCE_ONLY_NOT_RELEASED
+- run: NOT_APPLICABLE_DATA_CONTRACT_LIBRARY
+- test: PYTHONPATH=src python3 -m unittest discover -s tests -v
+- build: python3 -m build --no-isolation
+- build result: NOT_EXECUTED_DEPENDENCY_UNAVAILABLE
 - conformance: NOT_AVAILABLE
-- rollback: NOT_AVAILABLE
+- rollback: FOLLOWUP_COMMIT_RESTORE_F80629364752C465316B9D1238FE5447A88565CA
 
 The exact Development RB0 baseline at
 9610748d4a72d81278df2bc296518a469ce2fd30 passed PRE-40 clean-clone validation
-and is adopted under CS-D02-PRE-41. The branch is not merged; adoption creates
-no implementation, provider support, conformance, runtime or release.
+and is adopted under CS-D02-PRE-41. CS-D02-PRE-48 separately authorizes the
+bounded Development reference implementation. The branch is not merged and
+creates no provider support, conformance, runtime or release.

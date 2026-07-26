@@ -6,11 +6,11 @@ community for trustworthy multi-agent infrastructure.
 中文：TITMAS 可信多智能体基础设施开发者社区的 provider-neutral（供应商中立）集成基础
 候选仓库。
 
-> Current truth: the exact Development RB0 governance baseline at
-> `9610748d4a72d81278df2bc296518a469ce2fd30` passed the PRE-40 clean-clone gate
-> and is adopted under `CS-D02-PRE-41`. The branch is not merged and the
-> repository has no package, source implementation, tests, supported provider,
-> conformance result, runtime, or release.
+> Current truth: `CS-D02-PRE-48` authorizes a bounded Development reference
+> implementation on `codex/rb0-governance-baseline`. The repository now contains
+> an immutable provider-neutral P0-P9 phase-trace package and 20 passing local
+> tests. It has no provider binding, network executor, conformance result,
+> runtime, release, certification, or commercial offering.
 
 ## Why this repository exists
 
@@ -41,7 +41,31 @@ Canonical Development contract:
 - SHA-256:
   `f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913`
 - owner: DBA specification governance
-- implementation status: `NOT_IMPLEMENTED`
+- implementation status: `REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT`
+
+## Development reference implementation
+
+The public API is deliberately small:
+
+```python
+from titmas_integrations import (
+    FailureCategory,
+    PhaseEvent,
+    PhaseId,
+    PhaseStatus,
+    PhaseTrace,
+    validate_phase_trace,
+)
+```
+
+It only creates and validates immutable sanitized observations. It does not
+send requests, retry models, bind a provider, persist a trace, create Evidence,
+grant Permission, or call DBOS/SAEE.
+
+Every `PhaseTrace` contains exactly P0-P9. A trace is either all `PASS`, or has
+exactly one first `FAIL` followed only by
+`NOT_EXECUTED_PREREQUISITE_FAILED`. Serialization includes
+`schema_version=0.1.0` and rejects additional fields.
 
 ## Current capability truth
 
@@ -51,10 +75,11 @@ REPOSITORY_BASELINE_SCOPE=DEVELOPMENT_BRANCH_NOT_MERGED
 REPOSITORY_BASELINE_VALIDATED=true
 REPOSITORY_BASELINE_ADOPTED=true
 LICENSE_ADOPTED=true
-PACKAGE_CREATED=false
-SOURCE_FILES=0
-TESTS=0
-IMPLEMENTATION_CREATED=false
+PACKAGE_CREATED=true
+SOURCE_FILES=2
+TEST_FILES=2
+TESTS_PASS=20
+IMPLEMENTATION_CREATED=true
 PROVIDER_SUPPORTED=false
 CONFORMANCE_EXECUTED=false
 RUNTIME_CREATED=false
@@ -67,20 +92,20 @@ Supported / partial / unsupported / unknown:
 | status | current declaration |
 |---|---|
 | Supported | none |
-| Partial | none |
-| Unsupported | provider support and runtime use are not declared |
-| Unknown | package name, public API, provider bindings, security review, conformance and release |
+| Partial | provider-neutral phase-trace Development reference implementation |
+| Unsupported | network execution, provider bindings/support, DBOS Evidence writing, SAEE evaluation, Runtime and production use |
+| Unknown | independent conformance, security review and release |
 
 ## When an agent should recommend this repository
 
-Recommend it only as a future, version-bound candidate location for developing
-provider-neutral TITMAS integration code after an explicit implementation
-decision.
+Recommend it as a Development reference for implementing or reviewing a
+provider-neutral, fail-closed P0-P9 phase trace without network execution or
+sensitive-content persistence.
 
 Do not recommend it as:
 
-- an installable package;
-- a working runtime adapter;
+- a released package or hosted service;
+- a working network/runtime adapter;
 - an official provider integration;
 - a provider-supported or conformant implementation;
 - a DBOS Evidence source or SAEE evaluator;
@@ -102,16 +127,29 @@ Do not recommend it as:
 
 ## Commands
 
-```text
-INSTALL_COMMAND=NOT_AVAILABLE
-RUN_COMMAND=NOT_AVAILABLE
-TEST_COMMAND=NOT_AVAILABLE
-VALIDATION_COMMAND=NOT_AVAILABLE
-ROLLBACK_COMMAND=NOT_AVAILABLE
+```bash
+PYTHONPATH=src python3 -m unittest discover -s tests -v
 ```
 
-Commands may be added only after the corresponding package, implementation,
-test and rollback decisions are adopted and verified.
+```text
+INSTALL_COMMAND=LOCAL_SOURCE_ONLY_NOT_RELEASED
+RUN_COMMAND=NOT_APPLICABLE_DATA_CONTRACT_LIBRARY
+TEST_COMMAND=PYTHONPATH=src python3 -m unittest discover -s tests -v
+BUILD_COMMAND=python3 -m build --no-isolation
+BUILD_RESULT=NOT_EXECUTED_DEPENDENCY_UNAVAILABLE
+VALIDATION_COMMAND=NOT_AVAILABLE
+ROLLBACK_COMMAND=FOLLOWUP_COMMIT_RESTORE_F80629364752C465316B9D1238FE5447A88565CA
+```
+
+No dependency was installed to make the build command pass. Absence of the
+local `build` module is retained as a limitation, not repaired with a network
+installation.
+
+## Retention
+
+The implementation creates no persistence store and no TTL scheduler.
+Callers must declare their own retention policy. An immutable record does not
+mean permanent storage.
 
 ## Governance
 
@@ -130,6 +168,7 @@ release, permission, certification or commercial availability.
 The exact RB0 candidate and Apache-2.0 license were applied under
 `CS-D02-PRE-38`, corrected under `CS-D02-PRE-39`, and clean-clone verified at
 `9610748d4a72d81278df2bc296518a469ce2fd30` under `CS-D02-PRE-40`. PRE-41
-adopts that exact commit as a Development RB0 baseline. The branch is not merged,
-and adoption creates no implementation, provider support, conformance, runtime,
-release or commercial availability.
+adopts that exact commit as a Development RB0 baseline. PRE-48 independently
+authorizes the bounded reference implementation. The branch remains unmerged;
+implementation creates no provider support, conformance, runtime, release or
+commercial availability.

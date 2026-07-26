@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titmas.cn/schemas/phase-trace.schema.v0.1.json",
+  "title": "TITMAS Provider-neutral Phase Trace v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "events"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "events": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "prefixItems": [
+        {"$ref": "#/$defs/p0"}, {"$ref": "#/$defs/p1"},
+        {"$ref": "#/$defs/p2"}, {"$ref": "#/$defs/p3"},
+        {"$ref": "#/$defs/p4"}, {"$ref": "#/$defs/p5"},
+        {"$ref": "#/$defs/p6"}, {"$ref": "#/$defs/p7"},
+        {"$ref": "#/$defs/p8"}, {"$ref": "#/$defs/p9"}
+      ],
+      "items": false
+    }
+  },
+  "$defs": {
+    "digest": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase_id", "status", "started_at_monotonic_ref", "elapsed_ms", "timeout_budget_ms", "bytes_in", "bytes_out", "failure_category", "predecessor_phase", "executed", "observed_http_status", "observed_returned_model_identifier", "raw_envelope_sha256", "sanitized_result_sha256"],
+      "properties": {
+        "phase_id": {"enum": ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"]},
+        "status": {"enum": ["PASS", "FAIL", "NOT_EXECUTED_PREREQUISITE_FAILED"]},
+        "started_at_monotonic_ref": {"type": "string", "pattern": "^[A-Za-z0-9._:-]{1,128}$"},
+        "elapsed_ms": {"type": "number", "minimum": 0},
+        "timeout_budget_ms": {"type": "number", "minimum": 0},
+        "bytes_in": {"type": "integer", "minimum": 0},
+        "bytes_out": {"type": "integer", "minimum": 0},
+        "failure_category": {"enum": ["NONE", "DNS_TIMEOUT", "TCP_CONNECT_TIMEOUT", "TLS_HANDSHAKE_TIMEOUT", "HTTP_HEADERS_WRITE_TIMEOUT", "HTTP_BODY_WRITE_TIMEOUT", "HTTP_RESPONSE_HEADERS_TIMEOUT", "HTTP_RESPONSE_BODY_TIMEOUT", "HTTP_RESPONSE_TRUNCATED", "CONTENT_EXTRACTION_FAILURE", "RESPONSE_SCHEMA_FAILURE", "SANITIZED_HANDOFF_FAILURE", "BOUNDARY_VIOLATION"]},
+        "predecessor_phase": {"type": ["string", "null"]},
+        "executed": {"type": "boolean"},
+        "observed_http_status": {"type": ["integer", "null"], "minimum": 100, "maximum": 599},
+        "observed_returned_model_identifier": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9._:-]{1,128}$"},
+        "raw_envelope_sha256": {"$ref": "#/$defs/digest"},
+        "sanitized_result_sha256": {"$ref": "#/$defs/digest"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"const": "PASS"}}}, "then": {"properties": {"executed": {"const": true}, "failure_category": {"const": "NONE"}}}},
+        {"if": {"properties": {"status": {"const": "FAIL"}}}, "then": {"properties": {"executed": {"const": true}, "failure_category": {"not": {"const": "NONE"}}}}},
+        {"if": {"properties": {"status": {"const": "NOT_EXECUTED_PREREQUISITE_FAILED"}}}, "then": {"properties": {"executed": {"const": false}, "failure_category": {"const": "NONE"}}}}
+      ]
+    },
+    "p0": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P0"}, "predecessor_phase": {"const": null}}}]},
+    "p1": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P1"}, "predecessor_phase": {"const": "P0"}}}]},
+    "p2": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P2"}, "predecessor_phase": {"const": "P1"}}}]},
+    "p3": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P3"}, "predecessor_phase": {"const": "P2"}}}]},
+    "p4": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P4"}, "predecessor_phase": {"const": "P3"}}}]},
+    "p5": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P5"}, "predecessor_phase": {"const": "P4"}}}]},
+    "p6": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P6"}, "predecessor_phase": {"const": "P5"}}}]},
+    "p7": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P7"}, "predecessor_phase": {"const": "P6"}}}]},
+    "p8": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P8"}, "predecessor_phase": {"const": "P7"}}}]},
+    "p9": {"allOf": [{"$ref": "#/$defs/event"}, {"properties": {"phase_id": {"const": "P9"}, "predecessor_phase": {"const": "P8"}}}]}
+  }
+}

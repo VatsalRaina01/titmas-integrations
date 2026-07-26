@@ -1,0 +1,96 @@
+{
+  "$schema": "./schemas/implementation-declaration.schema.v0.1.json",
+  "document_id": "TITMAS-INTEGRATIONS-RB1-IMPLEMENTATION-DECLARATION-0.1",
+  "version": "0.1.0",
+  "status": "DEVELOPMENT_REFERENCE_IMPLEMENTATION_CREATED_TESTED_NOT_CONFORMANT",
+  "implementation_id": "TITMAS-INTEGRATIONS-RB1-REFERENCE-0.1",
+  "implementation_class": "REFERENCE_IMPLEMENTATION",
+  "owner_ref": "zhangbin",
+  "decision_reference": "CS-D02-PRE-48",
+  "decision_commit": "91995fc07fa7ffc01adf4d3a875ee800e846f76a",
+  "source_version": "0.1.0.dev1",
+  "license_ref": "Apache-2.0",
+  "implemented_specification": {
+    "reference": "commercialization-standards-provider-http-phase-instrumentation/http-phase-instrumentation-contract.v0.1.json",
+    "version": "0.1.0",
+    "sha256": "f72eb33bdb5042514deed499fdabddbc74121bc9c22c16f79316eae2aeca9913",
+    "maturity": "Development",
+    "implementation_status": "REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT"
+  },
+  "artifacts": [
+    {"path": "pyproject.toml", "sha256": "c231da797a8e513158009b9dbb17e8b290e81f7b40cfbf352b5a3fbd3ae31200", "role": "PACKAGE_METADATA"},
+    {"path": "src/titmas_integrations/__init__.py", "sha256": "7e672655b5ecf322e077626f6ee4b09c94409ce3f3ba327badceb772978582bb", "role": "PUBLIC_API"},
+    {"path": "src/titmas_integrations/instrumentation.py", "sha256": "eccfd27d0c5de7ef4262f1e4b71cbdab2d166386e74ffa793ccd5cac4b6204d8", "role": "REFERENCE_IMPLEMENTATION"},
+    {"path": "schemas/phase-trace.schema.v0.1.json", "sha256": "39d5cb4d6ff907cbdbe30bce022eda1107d591e30e4072f0f92934810e82caee", "role": "SERIALIZATION_SCHEMA"},
+    {"path": "tests/test_instrumentation_contract.py", "sha256": "f870a5b339a1e29130ba67e98cb0fd67c8e924cd25aff8b13370ece3623658d3", "role": "POSITIVE_AND_INVARIANT_TESTS"},
+    {"path": "tests/test_negative_boundaries.py", "sha256": "4176979178c624932cb361374c199d824e7415857218339c969da0504f5d395c", "role": "NEGATIVE_BOUNDARY_TESTS"}
+  ],
+  "public_api": [
+    "PhaseId",
+    "PhaseStatus",
+    "FailureCategory",
+    "PhaseEvent",
+    "PhaseTrace",
+    "validate_phase_trace"
+  ],
+  "test_result": {
+    "command": "PYTHONPATH=src python3 -m unittest discover -s tests -v",
+    "tests_run": 20,
+    "failures": 0,
+    "errors": 0,
+    "status": "PASS"
+  },
+  "build_result": {
+    "command": "python3 -m build --no-isolation",
+    "status": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE",
+    "network_install_attempted": false,
+    "artifact_created": false
+  },
+  "support_declaration": {
+    "supported": [],
+    "partial": ["PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION"],
+    "unsupported": [
+      "NETWORK_EXECUTION",
+      "PROVIDER_BINDING",
+      "PROVIDER_SUPPORT",
+      "PROVIDER_CONFORMANCE",
+      "DBOS_EVIDENCE_WRITER",
+      "SAEE_EVALUATOR",
+      "RUNTIME",
+      "PRODUCTION_USE"
+    ],
+    "unknown": [
+      "INDEPENDENT_CONFORMANCE",
+      "SECURITY_REVIEW",
+      "RELEASE"
+    ]
+  },
+  "retention_boundary": {
+    "retention_policy_implemented": false,
+    "caller_must_declare_retention": true,
+    "immutable_record_means_permanent_storage": false,
+    "persistence_store_created": false
+  },
+  "known_limitations": [
+    "DEVELOPMENT_REFERENCE_IMPLEMENTATION_ONLY",
+    "NO_PROVIDER_BINDING",
+    "NO_NETWORK_EXECUTION",
+    "NO_INDEPENDENT_CONFORMANCE",
+    "NO_SECURITY_REVIEW",
+    "BUILD_NOT_EXECUTED_BUILD_MODULE_UNAVAILABLE",
+    "NOT_RELEASED"
+  ],
+  "release_status": "NOT_AUTHORIZED",
+  "commercial_availability": "NOT_CLAIMED",
+  "effects": {
+    "implementation_created": true,
+    "implementation_authorized": true,
+    "provider_supported": false,
+    "conformance_executed": false,
+    "runtime_created": false,
+    "agent_created": false,
+    "permission_granted": false,
+    "evidence_truth_changed": false,
+    "release_authorized": false
+  }
+}

@@ -19,6 +19,7 @@
     "boundaries",
     "ownership",
     "candidate_provenance",
+    "implementation",
     "adoption",
     "effects"
   ],
@@ -33,7 +34,7 @@
       "const": "0.1.0"
     },
     "status": {
-      "const": "RB0_DEVELOPMENT_BASELINE_ADOPTED_BRANCH_NOT_MERGED"
+      "const": "RB1_DEVELOPMENT_REFERENCE_IMPLEMENTATION_CREATED_TESTED_BRANCH_NOT_MERGED"
     },
     "observed_at": {
       "type": "string",
@@ -51,7 +52,9 @@
         "repository_baseline_adopted",
         "application_anchor_commit",
         "verified_baseline_commit",
-        "repository_baseline_clean_clone_verified"
+        "repository_baseline_clean_clone_verified",
+        "implementation_parent_commit",
+        "implementation_decision_commit"
       ],
       "properties": {
         "repository_ref": {
@@ -80,6 +83,12 @@
         },
         "repository_baseline_clean_clone_verified": {
           "const": true
+        },
+        "implementation_parent_commit": {
+          "const": "f80629364752c465316b9d1238fe5447a88565ca"
+        },
+        "implementation_decision_commit": {
+          "const": "91995fc07fa7ffc01adf4d3a875ee800e846f76a"
         }
       }
     },
@@ -147,7 +156,7 @@
           "const": "Development"
         },
         "implementation_status": {
-          "const": "NOT_IMPLEMENTED"
+          "const": "REFERENCE_IMPLEMENTATION_CREATED_NOT_CONFORMANT"
         }
       }
     },
@@ -159,6 +168,7 @@
         "package_created",
         "source_files",
         "tests",
+        "tests_pass",
         "implementation_created",
         "provider_supported",
         "conformance_executed",
@@ -171,16 +181,19 @@
           "const": true
         },
         "package_created": {
-          "const": false
+          "const": true
         },
         "source_files": {
-          "const": 0
+          "const": 2
         },
         "tests": {
-          "const": 0
+          "const": 2
+        },
+        "tests_pass": {
+          "const": 20
         },
         "implementation_created": {
-          "const": false
+          "const": true
         },
         "provider_supported": {
           "const": false
@@ -213,24 +226,27 @@
           "const": []
         },
         "partial": {
-          "const": []
+          "const": [
+            "PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION"
+          ]
         },
         "unsupported": {
           "const": [
-            "INSTALLABLE_PACKAGE",
+            "RELEASED_PACKAGE",
+            "NETWORK_EXECUTION",
             "RUNTIME_ADAPTER",
+            "PROVIDER_BINDING",
             "PROVIDER_SUPPORT",
             "PROVIDER_CONFORMANCE",
+            "DBOS_EVIDENCE_WRITER",
+            "SAEE_EVALUATOR",
             "PRODUCTION_USE"
           ]
         },
         "unknown": {
           "const": [
-            "PACKAGE_NAME",
-            "PUBLIC_API",
-            "PROVIDER_BINDINGS",
             "SECURITY_REVIEW",
-            "CONFORMANCE",
+            "INDEPENDENT_CONFORMANCE",
             "RELEASE"
           ]
         }
@@ -243,24 +259,32 @@
         "install",
         "run",
         "test",
+        "build",
+        "build_result",
         "conformance",
         "rollback"
       ],
       "properties": {
         "install": {
-          "const": "NOT_AVAILABLE"
+          "const": "LOCAL_SOURCE_ONLY_NOT_RELEASED"
         },
         "run": {
-          "const": "NOT_AVAILABLE"
+          "const": "NOT_APPLICABLE_DATA_CONTRACT_LIBRARY"
         },
         "test": {
-          "const": "NOT_AVAILABLE"
+          "const": "PYTHONPATH=src python3 -m unittest discover -s tests -v"
+        },
+        "build": {
+          "const": "python3 -m build --no-isolation"
+        },
+        "build_result": {
+          "const": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE"
         },
         "conformance": {
           "const": "NOT_AVAILABLE"
         },
         "rollback": {
-          "const": "NOT_AVAILABLE"
+          "const": "FOLLOWUP_COMMIT_RESTORE_F80629364752C465316B9D1238FE5447A88565CA"
         }
       }
     },
@@ -408,6 +432,29 @@
         }
       }
     },
+    "implementation": {
+      "const": {
+        "decision_reference": "CS-D02-PRE-48",
+        "decision_commit": "91995fc07fa7ffc01adf4d3a875ee800e846f76a",
+        "declaration_reference": "IMPLEMENTATION-DECLARATION.v0.1.json",
+        "maturity": "Development",
+        "public_api": [
+          "PhaseId",
+          "PhaseStatus",
+          "FailureCategory",
+          "PhaseEvent",
+          "PhaseTrace",
+          "validate_phase_trace"
+        ],
+        "test_result": "PASS_20_OF_20",
+        "build_result": "NOT_EXECUTED_DEPENDENCY_UNAVAILABLE",
+        "network_execution_implemented": false,
+        "provider_binding_created": false,
+        "persistence_store_created": false,
+        "retention_policy_implemented": false,
+        "caller_must_declare_retention": true
+      }
+    },
     "effects": {
       "type": "object",
       "additionalProperties": false,
@@ -429,10 +476,10 @@
           "const": false
         },
         "implementation_authorized": {
-          "const": false
+          "const": true
         },
         "implementation_created": {
-          "const": false
+          "const": true
         },
         "provider_supported": {
           "const": false

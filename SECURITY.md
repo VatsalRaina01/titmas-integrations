@@ -2,15 +2,18 @@
 
 ## Current status
 
-This repository has no implementation, package, runtime, provider binding or
-released version. A formal security contact and private disclosure channel have
-not been assigned.
+This repository has a Development data-contract reference implementation, but
+no network executor, runtime, provider binding, supported or released version.
+A formal security contact and private disclosure channel have not been assigned.
 
 ```text
 SECURITY_CONTACT=NOT_ASSIGNED
 PRIVATE_DISCLOSURE_CHANNEL=NOT_ASSIGNED
 SUPPORTED_VERSIONS=NONE
 SECURITY_REVIEW_EXECUTED=false
+NETWORK_EXECUTION_IMPLEMENTED=false
+PERSISTENCE_STORE_IMPLEMENTED=false
+PROVIDER_BINDING_IMPLEMENTED=false
 ```
 
 Do not place secrets, credentials, tokens, Authorization headers, raw payloads,
@@ -21,7 +24,20 @@ Because no verified private disclosure channel exists yet, do not publish
 exploit details or sensitive reproductions. Record only a non-sensitive notice
 that a private channel is required and wait for an explicitly assigned route.
 
-## Required implementation safeguards
+## Implemented safeguards
+
+The current reference implementation:
+
+- exposes no credential, Authorization, raw-body, prompt, review-content or
+  hidden-reasoning fields;
+- contains no network client or Provider SDK;
+- preserves a single immutable first failure;
+- validates P0-P9 order, predecessor linkage and failure closure;
+- serializes only bounded sanitized metadata;
+- has no persistence or retention scheduler;
+- keeps Observation distinct from Evidence and Truth.
+
+## Safeguards required before any network binding
 
 Any future implementation proposal must define and test:
 
@@ -39,6 +55,7 @@ Any future implementation proposal must define and test:
 Passing a Schema does not constitute a security review. A security report does
 not create release, conformance, certification or commercial authorization.
 
-This RB0 security boundary is applied to `codex/rb0-governance-baseline` under
-`CS-D02-PRE-38`. The branch is not merged, no security review has been executed,
-and no supported version, package, implementation, runtime or release exists.
+The RB0 security boundary is applied under `CS-D02-PRE-38`; the bounded
+reference implementation is authorized by `CS-D02-PRE-48`. The branch is not
+merged, no security review has been executed, and no supported version,
+provider binding, runtime or release exists.
