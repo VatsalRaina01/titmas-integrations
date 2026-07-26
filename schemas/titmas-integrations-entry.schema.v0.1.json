@@ -19,6 +19,7 @@
     "boundaries",
     "ownership",
     "candidate_provenance",
+    "adoption",
     "effects"
   ],
   "properties": {
@@ -32,7 +33,7 @@
       "const": "0.1.0"
     },
     "status": {
-      "const": "RB0_APPLIED_TO_BRANCH_NOT_MERGED"
+      "const": "RB0_DEVELOPMENT_BASELINE_ADOPTED_BRANCH_NOT_MERGED"
     },
     "observed_at": {
       "type": "string",
@@ -43,19 +44,18 @@
       "additionalProperties": false,
       "required": [
         "repository_ref",
-        "target_commit",
         "maturity",
         "repository_baseline_applied",
         "repository_baseline_scope",
         "repository_baseline_validated",
-        "repository_baseline_adopted"
+        "repository_baseline_adopted",
+        "application_anchor_commit",
+        "verified_baseline_commit",
+        "repository_baseline_clean_clone_verified"
       ],
       "properties": {
         "repository_ref": {
           "const": "https://github.com/joy7758/titmas-integrations.git"
-        },
-        "target_commit": {
-          "const": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b"
         },
         "maturity": {
           "const": "Development"
@@ -64,13 +64,22 @@
           "const": true
         },
         "repository_baseline_scope": {
-          "const": "BRANCH_ONLY_NOT_MERGED"
+          "const": "DEVELOPMENT_BRANCH_NOT_MERGED"
         },
         "repository_baseline_validated": {
-          "const": false
+          "const": true
         },
         "repository_baseline_adopted": {
-          "const": false
+          "const": true
+        },
+        "application_anchor_commit": {
+          "const": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b"
+        },
+        "verified_baseline_commit": {
+          "const": "9610748d4a72d81278df2bc296518a469ce2fd30"
+        },
+        "repository_baseline_clean_clone_verified": {
+          "const": true
         }
       }
     },
@@ -436,6 +445,46 @@
         },
         "release_authorized": {
           "const": false
+        }
+      }
+    },
+    "adoption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_reference",
+        "adoption_decision_repository",
+        "adoption_decision_path",
+        "maturity",
+        "adopted_baseline_commit",
+        "target_branch_merged",
+        "adoption_decision_branch",
+        "adoption_decision_commit"
+      ],
+      "properties": {
+        "decision_reference": {
+          "const": "CS-D02-PRE-41"
+        },
+        "adoption_decision_repository": {
+          "const": "https://github.com/joy7758/digital-biosphere-architecture-specification.git"
+        },
+        "adoption_decision_path": {
+          "const": "TITMAS-CS-D02-PRE-41-TITMAS-INTEGRATIONS-RB0-DEVELOPMENT-ADOPTION-AND-TRUTH-SYNCHRONIZATION-DECISION-RECORD.v0.1.json"
+        },
+        "maturity": {
+          "const": "Development"
+        },
+        "adopted_baseline_commit": {
+          "const": "9610748d4a72d81278df2bc296518a469ce2fd30"
+        },
+        "target_branch_merged": {
+          "const": false
+        },
+        "adoption_decision_branch": {
+          "const": "codex/production-observability-baseline"
+        },
+        "adoption_decision_commit": {
+          "const": "8732feb0641c5a044909ec475db832a850bf52d6"
         }
       }
     }

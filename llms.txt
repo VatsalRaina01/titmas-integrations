@@ -6,9 +6,10 @@ implementations.
 Current status:
 - maturity: Development branch baseline
 - RB0 files applied to branch: true
-- repository baseline scope: branch only, not merged
-- repository baseline validated: false
-- repository baseline adopted: false
+- repository baseline scope: Development branch, not merged
+- verified baseline commit: 9610748d4a72d81278df2bc296518a469ce2fd30
+- repository baseline validated: true
+- repository baseline adopted: true
 - license adopted: true
 - package: none
 - source implementation: none
@@ -60,6 +61,7 @@ Commands:
 - conformance: NOT_AVAILABLE
 - rollback: NOT_AVAILABLE
 
-The RB0 governance files and Apache-2.0 license are applied to
-codex/rb0-governance-baseline under CS-D02-PRE-38. The branch is not merged;
-truth-consistency validation and RB0 adoption remain pending.
+The exact Development RB0 baseline at
+9610748d4a72d81278df2bc296518a469ce2fd30 passed PRE-40 clean-clone validation
+and is adopted under CS-D02-PRE-41. The branch is not merged; adoption creates
+no implementation, provider support, conformance, runtime or release.

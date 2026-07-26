@@ -2,16 +2,18 @@
   "$schema": "./schemas/titmas-integrations-entry.schema.v0.1.json",
   "document_id": "TITMAS-INTEGRATIONS-ENTRY-0.1",
   "version": "0.1.0",
-  "status": "RB0_APPLIED_TO_BRANCH_NOT_MERGED",
-  "observed_at": "2026-07-27T03:01:19+08:00",
+  "status": "RB0_DEVELOPMENT_BASELINE_ADOPTED_BRANCH_NOT_MERGED",
+  "observed_at": "2026-07-27T03:23:49+08:00",
   "repository": {
     "repository_ref": "https://github.com/joy7758/titmas-integrations.git",
-    "target_commit": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b",
     "maturity": "Development",
     "repository_baseline_applied": true,
-    "repository_baseline_scope": "BRANCH_ONLY_NOT_MERGED",
-    "repository_baseline_validated": false,
-    "repository_baseline_adopted": false
+    "repository_baseline_scope": "DEVELOPMENT_BRANCH_NOT_MERGED",
+    "repository_baseline_validated": true,
+    "repository_baseline_adopted": true,
+    "application_anchor_commit": "d54bf17ea94ee614b83253cd6abd8cb51bfdd45b",
+    "verified_baseline_commit": "9610748d4a72d81278df2bc296518a469ce2fd30",
+    "repository_baseline_clean_clone_verified": true
   },
   "role": {
     "intended_role": "FUTURE_PROVIDER_NEUTRAL_TITMAS_INTEGRATION_IMPLEMENTATION_TARGET",
@@ -113,5 +115,15 @@
     "conformance_executed": false,
     "certification_authorized": false,
     "release_authorized": false
+  },
+  "adoption": {
+    "decision_reference": "CS-D02-PRE-41",
+    "adoption_decision_repository": "https://github.com/joy7758/digital-biosphere-architecture-specification.git",
+    "adoption_decision_path": "TITMAS-CS-D02-PRE-41-TITMAS-INTEGRATIONS-RB0-DEVELOPMENT-ADOPTION-AND-TRUTH-SYNCHRONIZATION-DECISION-RECORD.v0.1.json",
+    "maturity": "Development",
+    "adopted_baseline_commit": "9610748d4a72d81278df2bc296518a469ce2fd30",
+    "target_branch_merged": false,
+    "adoption_decision_branch": "codex/production-observability-baseline",
+    "adoption_decision_commit": "8732feb0641c5a044909ec475db832a850bf52d6"
   }
 }

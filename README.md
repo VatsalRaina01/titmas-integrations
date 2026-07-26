@@ -6,11 +6,11 @@ community for trustworthy multi-agent infrastructure.
 中文：TITMAS 可信多智能体基础设施开发者社区的 provider-neutral（供应商中立）集成基础
 候选仓库。
 
-> Current truth: the RB0 governance files and Apache-2.0 license are applied to
-> `codex/rb0-governance-baseline`. The branch is not merged, the RB0 baseline is
-> not yet truth-consistency validated or adopted, and the repository has no
-> package, source implementation, tests, supported provider, conformance result,
-> runtime, or release.
+> Current truth: the exact Development RB0 governance baseline at
+> `9610748d4a72d81278df2bc296518a469ce2fd30` passed the PRE-40 clean-clone gate
+> and is adopted under `CS-D02-PRE-41`. The branch is not merged and the
+> repository has no package, source implementation, tests, supported provider,
+> conformance result, runtime, or release.
 
 ## Why this repository exists
 
@@ -47,9 +47,9 @@ Canonical Development contract:
 
 ```text
 RB0_FILES_APPLIED_TO_BRANCH=true
-REPOSITORY_BASELINE_SCOPE=BRANCH_ONLY_NOT_MERGED
-REPOSITORY_BASELINE_VALIDATED=false
-REPOSITORY_BASELINE_ADOPTED=false
+REPOSITORY_BASELINE_SCOPE=DEVELOPMENT_BRANCH_NOT_MERGED
+REPOSITORY_BASELINE_VALIDATED=true
+REPOSITORY_BASELINE_ADOPTED=true
 LICENSE_ADOPTED=true
 PACKAGE_CREATED=false
 SOURCE_FILES=0
@@ -127,8 +127,9 @@ release, permission, certification or commercial availability.
 
 ## Branch status
 
-The exact RB0 candidate prepared in DBA and the Apache-2.0 license were applied
-to `codex/rb0-governance-baseline` under `CS-D02-PRE-38`. This branch has not
-been merged to `main`; RB0 truth-consistency validation and adoption remain
-pending. This truth-surface correction does not create implementation, provider
-support, conformance, runtime, release or commercial availability.
+The exact RB0 candidate and Apache-2.0 license were applied under
+`CS-D02-PRE-38`, corrected under `CS-D02-PRE-39`, and clean-clone verified at
+`9610748d4a72d81278df2bc296518a469ce2fd30` under `CS-D02-PRE-40`. PRE-41
+adopts that exact commit as a Development RB0 baseline. The branch is not merged,
+and adoption creates no implementation, provider support, conformance, runtime,
+release or commercial availability.
