@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titmas.cn/schemas/p0-implementation-declaration.schema.v0.1.json",
+  "title": "TITMAS Integrations P0 Implementation Declaration v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_id",
+    "version",
+    "status",
+    "maturity",
+    "decision_reference",
+    "decision_commit",
+    "target_parent",
+    "platform",
+    "public_api",
+    "implementation_files",
+    "snapshot_inputs",
+    "test_result",
+    "build_result",
+    "capability_truth",
+    "security_boundaries",
+    "known_limitations",
+    "effects"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./schemas/p0-implementation-declaration.schema.v0.1.json"
+    },
+    "document_id": {
+      "const": "TITMAS-INTEGRATIONS-P0-IMPLEMENTATION-DECLARATION-0.1"
+    },
+    "version": {"const": "0.1.0"},
+    "status": {
+      "const": "DEVELOPMENT_POSIX_P0_REFERENCE_IMPLEMENTATION_OFFLINE_TESTS_PASS_NOT_SECURITY_REVIEWED"
+    },
+    "maturity": {"const": "Development"},
+    "decision_reference": {"const": "CS-D02-PRE-67"},
+    "decision_commit": {
+      "const": "aa99c20f40423275a61b732d212751bde2fdca6b"
+    },
+    "target_parent": {
+      "const": "5ac891c5af88b1e9aeacdb3666217c6f832a57a6"
+    },
+    "platform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirement",
+        "observed_local_validation",
+        "linux_validated",
+        "windows_supported",
+        "cross_platform_support_claim"
+      ],
+      "properties": {
+        "requirement": {"const": "POSIX_OS_FORK_WAITPID"},
+        "observed_local_validation": {
+          "const": "Darwin-arm64-macOS-26.5.2-CPython-3.14.5"
+        },
+        "linux_validated": {"const": false},
+        "windows_supported": {"const": false},
+        "cross_platform_support_claim": {"const": false}
+      }
+    },
+    "public_api": {
+      "const": [
+        "EndpointBinding",
+        "P0ResolverObservation",
+        "P0ResolverResult",
+        "ResolverFailureCategory",
+        "resolve_endpoint",
+        "validate_endpoint_continuity"
+      ]
+    },
+    "implementation_files": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/fileDigest"}
+    },
+    "snapshot_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "source_last_updated", "license", "ipv4_sha256", "ipv6_sha256"],
+      "properties": {
+        "policy_id": {"const": "GLOBAL_UNICAST_DESTINATION_PROFILE_V1"},
+        "source_last_updated": {"const": "2025-10-09"},
+        "license": {"const": "CC0-1.0"},
+        "ipv4_sha256": {
+          "const": "e3e39e76d00b1677335db8e9a805c7b9480ea2f4dc9e33f0b93cd3a905128d73"
+        },
+        "ipv6_sha256": {
+          "const": "775feea0621dec8735a44fbf30f762e721e8f0a1b3ab7eb341961a88cfce2139"
+        }
+      }
+    },
+    "test_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command",
+        "tests_run",
+        "existing_tests",
+        "new_tests",
+        "failures",
+        "errors",
+        "real_dns_calls",
+        "real_tcp_calls",
+        "tls_handshakes",
+        "http_requests",
+        "status"
+      ],
+      "properties": {
+        "command": {
+          "const": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m unittest discover -s tests -v"
+        },
+        "tests_run": {"const": 92},
+        "existing_tests": {"const": 30},
+        "new_tests": {"const": 62},
+        "failures": {"const": 0},
+        "errors": {"const": 0},
+        "real_dns_calls": {"const": 0},
+        "real_tcp_calls": {"const": 0},
+        "tls_handshakes": {"const": 0},
+        "http_requests": {"const": 0},
+        "status": {"const": "PASS"}
+      }
+    },
+    "build_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "status", "artifact_published", "snapshot_data_in_wheel", "warning"],
+      "properties": {
+        "command": {
+          "const": "uv build --offline --out-dir <fresh-temporary-directory>"
+        },
+        "status": {"const": "PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED"},
+        "artifact_published": {"const": false},
+        "snapshot_data_in_wheel": {"const": true},
+        "warning": {"const": "SETUPTOOLS_LICENSE_METADATA_DEPRECATION_OPEN"}
+      }
+    },
+    "capability_truth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "p0_resolver_reference_implementation_created",
+        "bounded_dns_capability_implemented",
+        "real_network_executed_during_validation",
+        "p1_tcp_implemented",
+        "p2_tls_implemented",
+        "provider_binding_created",
+        "runtime_created"
+      ],
+      "properties": {
+        "p0_resolver_reference_implementation_created": {"const": true},
+        "bounded_dns_capability_implemented": {"const": true},
+        "real_network_executed_during_validation": {"const": false},
+        "p1_tcp_implemented": {"const": false},
+        "p2_tls_implemented": {"const": false},
+        "provider_binding_created": {"const": false},
+        "runtime_created": {"const": false}
+      }
+    },
+    "security_boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "success_admission_deadline_ms",
+        "total_wall_clock_upper_bound_claim",
+        "ipc_payload_bytes_max",
+        "selected_address_count_max",
+        "credential_environment_allowed",
+        "inherited_file_descriptors_allowed",
+        "retry_allowed",
+        "fallback_allowed",
+        "p1_reresolution_allowed",
+        "endpoint_binding_persisted",
+        "multithreaded_fork_safety_established",
+        "formal_security_review_complete"
+      ],
+      "properties": {
+        "success_admission_deadline_ms": {"const": 5000},
+        "total_wall_clock_upper_bound_claim": {"const": false},
+        "ipc_payload_bytes_max": {"const": 512},
+        "selected_address_count_max": {"const": 1},
+        "credential_environment_allowed": {"const": false},
+        "inherited_file_descriptors_allowed": {"const": false},
+        "retry_allowed": {"const": false},
+        "fallback_allowed": {"const": false},
+        "p1_reresolution_allowed": {"const": false},
+        "endpoint_binding_persisted": {"const": false},
+        "multithreaded_fork_safety_established": {"const": false},
+        "formal_security_review_complete": {"const": false}
+      }
+    },
+    "known_limitations": {
+      "const": [
+        "DEVELOPMENT_REFERENCE_IMPLEMENTATION_ONLY",
+        "PUBLIC_P0_FUNCTION_NOT_REAL_NETWORK_VALIDATED",
+        "TOTAL_WALL_CLOCK_ABSOLUTE_BOUND_NOT_CLAIMED",
+        "POSIX_FORK_REQUIRED",
+        "LINUX_NOT_VALIDATED",
+        "WINDOWS_NOT_SUPPORTED",
+        "NATIVE_THREAD_AND_EXTENSION_FORK_SAFETY_NOT_ESTABLISHED",
+        "SINGLE_ADDRESS_NO_FAILOVER",
+        "P1_P2_NOT_IMPLEMENTED",
+        "NO_PROVIDER_BINDING_OR_SUPPORT",
+        "NO_FORMAL_SECURITY_REVIEW",
+        "NOT_RELEASED"
+      ]
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_created",
+        "permission_granted",
+        "evidence_created",
+        "evidence_truth_changed",
+        "provider_supported",
+        "provider_conformance_executed",
+        "formal_security_review_completed",
+        "release_authorized",
+        "commercial_availability"
+      ],
+      "properties": {
+        "authority_created": {"const": false},
+        "permission_granted": {"const": false},
+        "evidence_created": {"const": false},
+        "evidence_truth_changed": {"const": false},
+        "provider_supported": {"const": false},
+        "provider_conformance_executed": {"const": false},
+        "formal_security_review_completed": {"const": false},
+        "release_authorized": {"const": false},
+        "commercial_availability": {"const": "NOT_CLAIMED"}
+      }
+    }
+  },
+  "$defs": {
+    "fileDigest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "role"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "role": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

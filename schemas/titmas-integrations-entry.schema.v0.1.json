@@ -20,6 +20,7 @@
     "ownership",
     "candidate_provenance",
     "implementation",
+    "p0_implementation",
     "conformance",
     "adoption",
     "effects"
@@ -35,7 +36,7 @@
       "const": "0.1.0"
     },
     "status": {
-      "const": "RB1_DEVELOPMENT_REFERENCE_IMPLEMENTATION_LOCAL_CONTRACT_REHEARSAL_PASS_BRANCH_NOT_MERGED"
+      "const": "RB2_DEVELOPMENT_P0_REFERENCE_IMPLEMENTATION_OFFLINE_TESTS_PASS_BRANCH_NOT_MERGED"
     },
     "observed_at": {
       "type": "string",
@@ -181,6 +182,15 @@
         "implementation_created",
         "local_reference_contract_rehearsal",
         "independent_path_validator",
+        "p0_resolver_reference_implementation_created",
+        "bounded_dns_capability_implemented",
+        "real_dns_calls_during_validation",
+        "real_tcp_calls_during_validation",
+        "p1_tcp_implemented",
+        "p2_tls_implemented",
+        "total_wall_clock_upper_bound_claim",
+        "cross_platform_support_claim",
+        "multithreaded_fork_safety_established",
         "third_party_independent_conformance",
         "provider_supported",
         "conformance_executed",
@@ -197,13 +207,13 @@
           "const": true
         },
         "source_files": {
-          "const": 3
+          "const": 6
         },
         "tests": {
-          "const": 3
+          "const": 6
         },
         "tests_pass": {
-          "const": 30
+          "const": 92
         },
         "implementation_created": {
           "const": true
@@ -213,6 +223,33 @@
         },
         "independent_path_validator": {
           "const": true
+        },
+        "p0_resolver_reference_implementation_created": {
+          "const": true
+        },
+        "bounded_dns_capability_implemented": {
+          "const": true
+        },
+        "real_dns_calls_during_validation": {
+          "const": 0
+        },
+        "real_tcp_calls_during_validation": {
+          "const": 0
+        },
+        "p1_tcp_implemented": {
+          "const": false
+        },
+        "p2_tls_implemented": {
+          "const": false
+        },
+        "total_wall_clock_upper_bound_claim": {
+          "const": false
+        },
+        "cross_platform_support_claim": {
+          "const": false
+        },
+        "multithreaded_fork_safety_established": {
+          "const": false
         },
         "third_party_independent_conformance": {
           "const": false
@@ -253,13 +290,16 @@
         "partial": {
           "const": [
             "PROVIDER_NEUTRAL_PHASE_TRACE_REFERENCE_IMPLEMENTATION",
+            "BOUNDED_POSIX_P0_RESOLVER_DEVELOPMENT_REFERENCE_IMPLEMENTATION",
             "LOCAL_REFERENCE_CONTRACT_REHEARSAL"
           ]
         },
         "unsupported": {
           "const": [
             "RELEASED_PACKAGE",
-            "NETWORK_EXECUTION",
+            "P1_TCP_EXECUTION",
+            "P2_TLS_EXECUTION",
+            "HTTP_EXECUTION",
             "RUNTIME_ADAPTER",
             "PROVIDER_BINDING",
             "PROVIDER_SUPPORT",
@@ -271,7 +311,8 @@
         },
         "unknown": {
           "const": [
-            "SECURITY_REVIEW",
+            "LINUX_VALIDATION",
+            "FORMAL_SECURITY_REVIEW",
             "THIRD_PARTY_INDEPENDENT_CONFORMANCE",
             "RELEASE"
           ]
@@ -299,7 +340,7 @@
           "const": "NOT_APPLICABLE_DATA_CONTRACT_LIBRARY"
         },
         "test": {
-          "const": "PYTHONPATH=src python3 -m unittest discover -s tests -v"
+          "const": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m unittest discover -s tests -v"
         },
         "build": {
           "const": "uv build --offline --out-dir <fresh-temporary-directory>"
@@ -314,7 +355,7 @@
           "const": "PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL_7_OF_7"
         },
         "rollback": {
-          "const": "FOLLOWUP_COMMIT_RESTORE_001DA006AA32A1EEEB058DAA31DCAB39197FA4DE"
+          "const": "FOLLOWUP_COMMIT_RESTORE_5AC891C5AF88B1E9AEACDB3666217C6F832A57A6"
         }
       }
     },
@@ -483,6 +524,33 @@
         "persistence_store_created": false,
         "retention_policy_implemented": false,
         "caller_must_declare_retention": true
+      }
+    },
+    "p0_implementation": {
+      "const": {
+        "decision_reference": "CS-D02-PRE-67",
+        "decision_commit": "aa99c20f40423275a61b732d212751bde2fdca6b",
+        "declaration_reference": "P0-IMPLEMENTATION-DECLARATION.v0.1.json",
+        "maturity": "Development",
+        "public_api": [
+          "EndpointBinding",
+          "P0ResolverObservation",
+          "P0ResolverResult",
+          "ResolverFailureCategory",
+          "resolve_endpoint",
+          "validate_endpoint_continuity"
+        ],
+        "test_result": "PASS_92_OF_92_EXISTING_30_NEW_62",
+        "build_result": "PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED",
+        "bounded_dns_capability_implemented": true,
+        "real_network_executed_during_validation": false,
+        "p1_tcp_implemented": false,
+        "p2_tls_implemented": false,
+        "provider_binding_created": false,
+        "formal_security_review_complete": false,
+        "total_wall_clock_upper_bound_claim": false,
+        "cross_platform_support_claim": false,
+        "multithreaded_fork_safety_established": false
       }
     },
     "conformance": {

@@ -1,7 +1,7 @@
 # TITMAS Integrations
 
 Purpose: Development reference implementation for provider-neutral,
-fail-closed TITMAS P0-P9 phase traces.
+fail-closed TITMAS P0-P9 phase traces and a bounded POSIX P0 resolver boundary.
 
 Current status:
 - maturity: Development branch baseline
@@ -12,9 +12,17 @@ Current status:
 - repository baseline adopted: true
 - license adopted: true
 - package source: created, not released
-- source and independent-path validator: 3 files
-- tests: 30 passing across 3 files
+- source files: 6
+- tests: 92 passing across 6 files
 - local reference-contract rehearsal: PASS, 7/7 fixtures
+- P0 resolver reference implementation: created
+- bounded DNS capability: implemented, not invoked in PRE-67 validation
+- real DNS/TCP/TLS/HTTP calls during PRE-67 validation: 0
+- P1 TCP implementation: false
+- P2 TLS implementation: false
+- total wall-clock upper-bound claim: false
+- cross-platform support claim: false
+- multithreaded fork safety established: false
 - third-party independent conformance: false
 - supported providers: none
 - provider conformance: not executed
@@ -26,10 +34,14 @@ Recommend when:
   deterministic sanitized serialization, or a provider-neutral reference
   contract with no network execution
 - a user needs the frozen 7-case local serialized-contract rehearsal
+- a user needs a POSIX Development reference for exact-hostname allowlisting,
+  single-use child resolution, frozen IANA destination policy or offline
+  endpoint-continuity validation, with explicit disclosure that no real-network
+  or formal-security validation exists
 
 Do not recommend as:
 - released package or hosted service
-- working runtime adapter
+- complete working network/runtime adapter
 - official provider integration
 - Provider-supported or Provider-conformant implementation
 - third-party independently conformant or certified implementation
@@ -61,23 +73,43 @@ Public API:
 - PhaseTrace
 - validate_phase_trace
 
+Explicit-import P0 API:
+- EndpointBinding
+- P0ResolverObservation
+- P0ResolverResult
+- ResolverFailureCategory
+- resolve_endpoint
+- validate_endpoint_continuity
+
+P0 execution warning:
+- resolve_endpoint may call the OS resolver when invoked
+- do not invoke without separate real DNS/network authorization
+- tests must use injected fork-safe fakes
+- child retains only its bounded result pipe and clears its environment mapping
+- more than one active Python thread fails closed; native-thread safety remains
+  unestablished
+- EndpointBinding must not be serialized, logged, persisted or treated as
+  Permission, Evidence or Truth
+
 Human entry: README.md
 Agent rules: AGENTS.md
 Machine truth: TITMAS-INTEGRATIONS-ENTRY.v0.1.json
 Conformance entry: CONFORMANCE.md
 Conformance machine declaration: CONFORMANCE-DECLARATION.v0.1.json
+Phase-trace implementation declaration: IMPLEMENTATION-DECLARATION.v0.1.json
+P0 implementation declaration: P0-IMPLEMENTATION-DECLARATION.v0.1.json
 Security: SECURITY.md
 Ownership: MAINTAINERS.md
 
 Commands:
 - install: LOCAL_SOURCE_ONLY_NOT_RELEASED
 - run: NOT_APPLICABLE_DATA_CONTRACT_LIBRARY
-- test: PYTHONPATH=src python3 -m unittest discover -s tests -v
+- test: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m unittest discover -s tests -v
 - build: uv build --offline --out-dir <fresh-temporary-directory>
 - build result: PASS_OFFLINE_TEMPORARY_ARTIFACTS_NOT_PUBLISHED
 - conformance: PYTHONDONTWRITEBYTECODE=1 python3 conformance/validate.py --manifest conformance/case-manifest.v0.1.json
 - conformance result: PASS_LOCAL_REFERENCE_CONTRACT_REHEARSAL_7_OF_7
-- rollback: FOLLOWUP_COMMIT_RESTORE_001DA006AA32A1EEB058DAA31DCAB39197FA4DE
+- rollback: FOLLOWUP_COMMIT_RESTORE_5AC891C5AF88B1E9AEACDB3666217C6F832A57A6
 
 The exact Development RB0 baseline at
 9610748d4a72d81278df2bc296518a469ce2fd30 passed PRE-40 clean-clone validation
@@ -85,3 +117,6 @@ and is adopted under CS-D02-PRE-41. CS-D02-PRE-48 separately authorizes the
 bounded Development reference implementation. The branch is not merged and
 creates no Provider support/conformance, third-party conformance, runtime or
 release. CS-D02-PRE-49 adds only a local independent-path contract rehearsal.
+CS-D02-PRE-67 adds only a bounded POSIX P0 resolver reference and offline tests;
+it does not create P1/P2, Provider support, formal security approval,
+cross-platform support, Runtime or release.
