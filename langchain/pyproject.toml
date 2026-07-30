@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "titmas-langchain-adapter"
+version = "0.1.0"
+description = "LangChain tool adapter for the TITMAS commercial candidate"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "langchain==1.3.14",
+  "titmas-agent-sdk==0.1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2", "ruff==0.16.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/titmas_langchain"]

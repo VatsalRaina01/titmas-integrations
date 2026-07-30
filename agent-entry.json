@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "name": "TITMAS Agent Integrations",
+  "primary_customer": "AI_AGENT",
+  "service_base_url": "https://redcrag.cn",
+  "api_version": "v1",
+  "surfaces": {
+    "python_sdk": "sdk/python",
+    "typescript_sdk": "sdk/typescript",
+    "mcp_stdio": "mcp",
+    "langchain": "langchain",
+    "openai_agents": "openai-agents"
+  },
+  "machine_endpoints": {
+    "openapi": "/api/v1/openapi.json",
+    "capabilities": "/api/v1/capabilities",
+    "plans": "/api/v1/plans",
+    "catalog": "/api/v1/catalog",
+    "preflight": "/api/v1/preflight",
+    "receipt_verify": "/api/v1/receipts/verify",
+    "usage": "/api/v1/usage",
+    "quota": "/api/v1/quota"
+  },
+  "result_values": ["PASS", "FAIL", "NOT_ASSESSED"],
+  "authority_boundaries": {
+    "formal_conformance": false,
+    "certification": false,
+    "truth_verified": false,
+    "authorization_effect": false
+  },
+  "credential_provisioning": {
+    "public_registration": false,
+    "delegated_credential_required": true,
+    "automatic_access": false
+  },
+  "production_ready": false,
+  "paid_launch_authorized": false
+}
