@@ -1,0 +1,27 @@
+{
+  "name": "@titmas/mcp-adapter",
+  "version": "0.1.0",
+  "description": "Bounded MCP stdio adapter for the TITMAS commercial candidate",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "titmas-mcp": "dist/server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "@titmas/agent-sdk": "file:../sdk/typescript",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "typescript": "7.0.2"
+  },
+  "license": "Apache-2.0"
+}
