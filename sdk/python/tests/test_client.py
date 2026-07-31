@@ -6,6 +6,7 @@ import pytest
 from titmas_agent_sdk import (
     TitmasAuthenticationError,
     TitmasClient,
+    TitmasContractError,
     TitmasScopeError,
     TitmasTransportError,
 )
@@ -115,3 +116,81 @@ def test_get_retries_but_post_is_never_automatically_retried() -> None:
                 object_value={},
             )
     assert calls == {"GET": 2, "POST": 1}
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "formal_conformance",
+        "certification",
+        "truth_claim",
+        "authorization_effect",
+    ],
+)
+def test_preflight_authority_boundary_elevation_fails_closed(field: str) -> None:
+    response = {
+        "result": "PASS",
+        "reason_codes": [],
+        "schema_name": "synthetic",
+        "schema_version": "1.0",
+        "object_type": "SYNTHETIC",
+        "formal_conformance": False,
+        "certification": False,
+        "truth_claim": False,
+        "authorization_effect": False,
+        "receipt": {"receipt_id": "synthetic"},
+        "idempotent_replay": False,
+    }
+    response[field] = True
+    with TitmasClient(
+        credential="synthetic-token",
+        transport=httpx.MockTransport(lambda _: httpx.Response(200, json=response)),
+    ) as client:
+        with pytest.raises(TitmasContractError) as captured:
+            client.preflight(
+                request_id="r1",
+                idempotency_key="i1",
+                tenant_id="t1",
+                agent_identity="a1",
+                object_value={},
+            )
+    assert captured.value.reason_code == "AUTHORITY_BOUNDARY_VIOLATION"
+
+
+def test_receipt_verification_preserves_invalid_and_rejects_authority_elevation() -> None:
+    responses = iter(
+        [
+            {
+                "valid": False,
+                "reason_code": "SIGNATURE_INVALID",
+                "receipt_hash": None,
+                "structure_only": True,
+                "chain_valid": "NOT_ASSESSED",
+                "truth_verified": False,
+                "authorization_effect": False,
+            },
+            {
+                "valid": True,
+                "reason_code": "SIGNATURE_VALID",
+                "receipt_hash": "a" * 64,
+                "structure_only": True,
+                "chain_valid": "NOT_ASSESSED",
+                "truth_verified": True,
+                "authorization_effect": False,
+            },
+        ]
+    )
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=next(responses))
+
+    with TitmasClient(
+        credential="synthetic-token",
+        transport=httpx.MockTransport(handler),
+    ) as client:
+        invalid = client.verify_receipt({"receipt_id": "synthetic"})
+        assert invalid.valid is False
+        assert invalid.reason_code == "SIGNATURE_INVALID"
+        with pytest.raises(TitmasContractError) as captured:
+            client.verify_receipt({"receipt_id": "synthetic"})
+    assert captured.value.reason_code == "AUTHORITY_BOUNDARY_VIOLATION"

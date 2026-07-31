@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "observed_at": "2026-07-31T17:35:32+08:00",
+  "source_url": "https://redcrag.cn/api/v1/openapi.json",
+  "snapshot_path": "openapi/titmas-commercial-api-v1.observed.json",
+  "snapshot_sha256": "f7048e85be48a125eab6d41d3a1540c91b496a6b3417ccb54a8900397045d2f8",
+  "snapshot_bytes": 9379,
+  "openapi_version": "3.1.0",
+  "service_reported_version": "6962da04394d6e9491bf9feeec1c0ed73f0f3204",
+  "retained_live_release_revision": "9bbfce6154d67f4ab50e911b5e49611f5a4a8b57",
+  "gateway_repository_evidence_revision": "c319001cc1cf9e44d8b3d0b142a025c6c9af1678",
+  "reported_version_equals_retained_release": false,
+  "mismatch_status": "KNOWN_RUNTIME_METADATA_DRIFT",
+  "canonical_contract_source": "LIVE_URL",
+  "snapshot_role": "REVIEWED_OBSERVATION_NOT_SECOND_TRUTH_SOURCE",
+  "package_publication_authorized": false,
+  "production_support": false
+}

@@ -6,7 +6,7 @@ python3.13 -m venv .venv
 ```
 
 ```python
-from titmas_agent_sdk import TitmasClient
+from titmas_agent_sdk import TitmasClient, TitmasContractError
 
 with TitmasClient(
     base_url="https://redcrag.cn",
@@ -29,3 +29,7 @@ It does not automatically retry `POST /preflight` or Receipt verification,
 because a timeout after dispatch is not proof that the server did not process
 the operation. Reuse the same idempotency key only after the caller resolves
 that uncertainty.
+
+`TitmasContractError` fails closed when a service response changes the reviewed
+result vocabulary, omits required Receipt status fields, or elevates formal
+Conformance, Certification, Truth, or Authorization.

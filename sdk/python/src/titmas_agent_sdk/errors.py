@@ -32,3 +32,7 @@ class TitmasQuotaError(TitmasApiError):
 
 class TitmasTransportError(TitmasApiError):
     """Transport outcome is unknown; callers must not assume non-dispatch."""
+
+
+class TitmasContractError(TitmasApiError):
+    """Service response violated the reviewed client contract."""

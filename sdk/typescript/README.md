@@ -6,7 +6,7 @@ npm run build
 ```
 
 ```ts
-import { TitmasClient } from "@titmas/agent-sdk";
+import { TitmasClient, TitmasContractError } from "@titmas/agent-sdk";
 
 const client = new TitmasClient({
   baseUrl: "https://redcrag.cn",
@@ -28,3 +28,7 @@ if (result.result === "NOT_ASSESSED") {
 
 Only bounded GET requests retry. POST transport failures produce
 `TitmasTransportError` with `POST_DISPATCH_UNKNOWN`.
+
+`TitmasContractError` fails closed when a service response changes the reviewed
+result vocabulary, omits required Receipt status fields, or elevates formal
+Conformance, Certification, Truth, or Authorization.

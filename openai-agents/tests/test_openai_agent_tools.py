@@ -3,7 +3,6 @@ from __future__ import annotations
 from typing import cast
 
 from titmas_agent_sdk import TitmasClient
-
 from titmas_openai_agents import build_titmas_tools
 
 
