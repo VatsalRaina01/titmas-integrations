@@ -1,7 +1,16 @@
 {
   "schema_version": "1.0",
-  "observed_at": "2026-07-31T00:00:00+08:00",
+  "observed_at": "2026-07-31T17:35:32+08:00",
   "service_api": "https://redcrag.cn/api/v1/openapi.json",
+  "contract_observation": {
+    "snapshot": "openapi/titmas-commercial-api-v1.observed.json",
+    "manifest": "openapi/source-manifest.json",
+    "snapshot_sha256": "f7048e85be48a125eab6d41d3a1540c91b496a6b3417ccb54a8900397045d2f8",
+    "service_reported_version": "6962da04394d6e9491bf9feeec1c0ed73f0f3204",
+    "retained_live_release_revision": "9bbfce6154d67f4ab50e911b5e49611f5a4a8b57",
+    "reported_version_equals_retained_release": false,
+    "snapshot_is_canonical_live_truth": false
+  },
   "components": [
     {
       "id": "python-sdk",
@@ -46,6 +55,19 @@
     "truth_verified": false,
     "authorization_effect": false
   },
+  "runtime_guards": {
+    "python_authority_boundary_fail_closed": true,
+    "typescript_authority_boundary_fail_closed": true,
+    "receipt_structure_only_required": true,
+    "non_idempotent_automatic_retry": false
+  },
+  "known_limitations": [
+    "PACKAGE_REGISTRY_NOT_PUBLISHED",
+    "PUBLIC_CREDENTIAL_SELF_REGISTRATION_UNAVAILABLE",
+    "PYTHON_3_14_NOT_SUPPORTED",
+    "OPENAPI_RESPONSE_SCHEMAS_PARTLY_GENERIC",
+    "PRODUCTION_SUPPORT_FALSE"
+  ],
   "publication_state": "SOURCE_CANDIDATE",
   "package_registry_published": false,
   "production_support": false,

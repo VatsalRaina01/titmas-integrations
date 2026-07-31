@@ -10,6 +10,7 @@ import httpx
 from titmas_agent_sdk.errors import (
     TitmasApiError,
     TitmasAuthenticationError,
+    TitmasContractError,
     TitmasQuotaError,
     TitmasScopeError,
     TitmasTransportError,
@@ -106,34 +107,83 @@ class TitmasClient:
         body = self._post("/api/v1/preflight", envelope)
         result = body.get("result")
         if result not in {"PASS", "FAIL", "NOT_ASSESSED"}:
-            raise TitmasApiError("TITMAS returned an unknown result value", response=body)
+            raise TitmasContractError(
+                "TITMAS returned an unknown result value",
+                reason_code="RESULT_SEMANTICS_VIOLATION",
+                response=body,
+            )
         receipt = body.get("receipt")
         if not isinstance(receipt, dict):
-            raise TitmasApiError("TITMAS response omitted the Receipt", response=body)
+            raise TitmasContractError(
+                "TITMAS response omitted the Receipt",
+                reason_code="RECEIPT_CONTRACT_VIOLATION",
+                response=body,
+            )
+        reason_codes = body.get("reason_codes")
+        if not isinstance(reason_codes, list) or not all(
+            isinstance(item, str) for item in reason_codes
+        ):
+            raise TitmasContractError(
+                "TITMAS returned invalid reason_codes",
+                reason_code="RESULT_SEMANTICS_VIOLATION",
+                response=body,
+            )
+        _require_boolean(body, "idempotent_replay")
+        for field in (
+            "formal_conformance",
+            "certification",
+            "truth_claim",
+            "authorization_effect",
+        ):
+            _require_false(body, field, context="preflight")
         return PreflightOutcome(
             result=cast(Result, result),
-            reason_codes=tuple(str(item) for item in body.get("reason_codes", [])),
+            reason_codes=tuple(reason_codes),
             schema_name=_optional_string(body.get("schema_name")),
             schema_version=_optional_string(body.get("schema_version")),
             object_type=_optional_string(body.get("object_type")),
             receipt=receipt,
-            idempotent_replay=bool(body.get("idempotent_replay", False)),
-            formal_conformance=body.get("formal_conformance") is True,
-            certification=body.get("certification") is True,
-            truth_claim=body.get("truth_claim") is True,
-            authorization_effect=body.get("authorization_effect") is True,
+            idempotent_replay=cast(bool, body["idempotent_replay"]),
+            formal_conformance=False,
+            certification=False,
+            truth_claim=False,
+            authorization_effect=False,
         )
 
     def verify_receipt(self, receipt: dict[str, Any]) -> ReceiptVerification:
         body = self._post("/api/v1/receipts/verify", receipt)
+        _require_boolean(body, "valid")
+        if body.get("structure_only") is not True:
+            raise TitmasContractError(
+                "Receipt verification must remain structure-only",
+                reason_code="RECEIPT_AUTHORITY_BOUNDARY_VIOLATION",
+                response=body,
+            )
+        for field in ("truth_verified", "authorization_effect"):
+            _require_false(body, field, context="receipt verification")
+        reason_code = body.get("reason_code")
+        chain_valid = body.get("chain_valid")
+        if not isinstance(reason_code, str) or not isinstance(chain_valid, str):
+            raise TitmasContractError(
+                "Receipt verification returned invalid status fields",
+                reason_code="RECEIPT_CONTRACT_VIOLATION",
+                response=body,
+            )
+        receipt_hash = body.get("receipt_hash")
+        if receipt_hash is not None and not isinstance(receipt_hash, str):
+            raise TitmasContractError(
+                "Receipt verification returned an invalid hash",
+                reason_code="RECEIPT_CONTRACT_VIOLATION",
+                response=body,
+            )
         return ReceiptVerification(
-            valid=body.get("valid") is True,
-            reason_code=str(body.get("reason_code", "UNKNOWN")),
-            receipt_hash=_optional_string(body.get("receipt_hash")),
-            structure_only=body.get("structure_only") is True,
-            chain_valid=str(body.get("chain_valid", "NOT_ASSESSED")),
-            truth_verified=body.get("truth_verified") is True,
-            authorization_effect=body.get("authorization_effect") is True,
+            valid=cast(bool, body["valid"]),
+            reason_code=reason_code,
+            receipt_hash=receipt_hash,
+            structure_only=True,
+            chain_valid=chain_valid,
+            truth_verified=False,
+            authorization_effect=False,
         )
 
     def _get(self, path: str, *, authenticated: bool = True) -> dict[str, Any]:
@@ -230,3 +280,21 @@ class TitmasClient:
 
 def _optional_string(value: object) -> str | None:
     return value if isinstance(value, str) else None
+
+
+def _require_boolean(body: dict[str, Any], field: str) -> None:
+    if not isinstance(body.get(field), bool):
+        raise TitmasContractError(
+            f"TITMAS response field {field} must be a boolean",
+            reason_code="RESPONSE_CONTRACT_VIOLATION",
+            response=body,
+        )
+
+
+def _require_false(body: dict[str, Any], field: str, *, context: str) -> None:
+    if body.get(field) is not False:
+        raise TitmasContractError(
+            f"{context} field {field} must remain false",
+            reason_code="AUTHORITY_BOUNDARY_VIOLATION",
+            response=body,
+        )

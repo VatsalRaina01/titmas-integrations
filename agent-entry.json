@@ -21,6 +21,14 @@
     "usage": "/api/v1/usage",
     "quota": "/api/v1/quota"
   },
+  "reviewed_contract_observation": {
+    "snapshot": "openapi/titmas-commercial-api-v1.observed.json",
+    "manifest": "openapi/source-manifest.json",
+    "canonical_live_contract": "https://redcrag.cn/api/v1/openapi.json",
+    "service_reported_version": "6962da04394d6e9491bf9feeec1c0ed73f0f3204",
+    "retained_live_release_revision": "9bbfce6154d67f4ab50e911b5e49611f5a4a8b57",
+    "reported_version_equals_retained_release": false
+  },
   "result_values": ["PASS", "FAIL", "NOT_ASSESSED"],
   "authority_boundaries": {
     "formal_conformance": false,
@@ -32,6 +40,11 @@
     "public_registration": false,
     "delegated_credential_required": true,
     "automatic_access": false
+  },
+  "package_state": {
+    "source_candidate": true,
+    "package_registry_published": false,
+    "production_support": false
   },
   "production_ready": false,
   "paid_launch_authorized": false

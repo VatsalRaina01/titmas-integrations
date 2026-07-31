@@ -62,6 +62,10 @@ export class TitmasTransportError extends TitmasApiError {
   override name = "TitmasTransportError";
 }
 
+export class TitmasContractError extends TitmasApiError {
+  override name = "TitmasContractError";
+}
+
 export interface TitmasClientOptions {
   baseUrl?: string;
   credential?: string;
@@ -127,22 +131,102 @@ export class TitmasClient {
     };
     if (input.schemaName !== undefined) body.schema_name = input.schemaName;
     const value = await this.post("/api/v1/preflight", body);
-    if (!["PASS", "FAIL", "NOT_ASSESSED"].includes(String(value.result))) {
-      throw new TitmasApiError("TITMAS returned an unknown result value");
+    const result = String(value.result);
+    if (!["PASS", "FAIL", "NOT_ASSESSED"].includes(result)) {
+      throw contractError(
+        "TITMAS returned an unknown result value",
+        "RESULT_SEMANTICS_VIOLATION",
+        value
+      );
     }
     if (!isRecord(value.receipt)) {
-      throw new TitmasApiError("TITMAS response omitted the Receipt");
+      throw contractError(
+        "TITMAS response omitted the Receipt",
+        "RECEIPT_CONTRACT_VIOLATION",
+        value
+      );
     }
-    return value as unknown as PreflightOutcome;
+    if (
+      !Array.isArray(value.reason_codes) ||
+      !value.reason_codes.every((item) => typeof item === "string")
+    ) {
+      throw contractError(
+        "TITMAS returned invalid reason_codes",
+        "RESULT_SEMANTICS_VIOLATION",
+        value
+      );
+    }
+    requireBoolean(value, "idempotent_replay");
+    for (const field of [
+      "formal_conformance",
+      "certification",
+      "truth_claim",
+      "authorization_effect"
+    ]) {
+      requireFalse(value, field, "preflight");
+    }
+    return {
+      result: result as TitmasResult,
+      reason_codes: value.reason_codes as string[],
+      schema_name: optionalString(value.schema_name),
+      schema_version: optionalString(value.schema_version),
+      object_type: optionalString(value.object_type),
+      formal_conformance: false,
+      certification: false,
+      truth_claim: false,
+      authorization_effect: false,
+      receipt: value.receipt,
+      idempotent_replay: value.idempotent_replay as boolean
+    };
   }
 
   async verifyReceipt(
     receipt: Record<string, unknown>
   ): Promise<ReceiptVerification> {
-    return (await this.post(
+    const value = await this.post(
       "/api/v1/receipts/verify",
       receipt
-    )) as unknown as ReceiptVerification;
+    );
+    requireBoolean(value, "valid");
+    if (value.structure_only !== true) {
+      throw contractError(
+        "Receipt verification must remain structure-only",
+        "RECEIPT_AUTHORITY_BOUNDARY_VIOLATION",
+        value
+      );
+    }
+    requireFalse(value, "truth_verified", "receipt verification");
+    requireFalse(value, "authorization_effect", "receipt verification");
+    if (
+      typeof value.reason_code !== "string" ||
+      typeof value.chain_valid !== "string"
+    ) {
+      throw contractError(
+        "Receipt verification returned invalid status fields",
+        "RECEIPT_CONTRACT_VIOLATION",
+        value
+      );
+    }
+    if (
+      value.receipt_hash !== null &&
+      value.receipt_hash !== undefined &&
+      typeof value.receipt_hash !== "string"
+    ) {
+      throw contractError(
+        "Receipt verification returned an invalid hash",
+        "RECEIPT_CONTRACT_VIOLATION",
+        value
+      );
+    }
+    return {
+      valid: value.valid as boolean,
+      reason_code: value.reason_code,
+      receipt_hash: optionalString(value.receipt_hash),
+      structure_only: true,
+      chain_valid: value.chain_valid,
+      truth_verified: false,
+      authorization_effect: false
+    };
   }
 
   private async get(
@@ -264,6 +348,42 @@ export class TitmasClient {
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function optionalString(value: unknown): string | null {
+  return typeof value === "string" ? value : null;
+}
+
+function requireBoolean(value: Record<string, unknown>, field: string): void {
+  if (typeof value[field] !== "boolean") {
+    throw contractError(
+      `TITMAS response field ${field} must be a boolean`,
+      "RESPONSE_CONTRACT_VIOLATION",
+      value
+    );
+  }
+}
+
+function requireFalse(
+  value: Record<string, unknown>,
+  field: string,
+  context: string
+): void {
+  if (value[field] !== false) {
+    throw contractError(
+      `${context} field ${field} must remain false`,
+      "AUTHORITY_BOUNDARY_VIOLATION",
+      value
+    );
+  }
+}
+
+function contractError(
+  message: string,
+  reasonCode: string,
+  response: Record<string, unknown>
+): TitmasContractError {
+  return new TitmasContractError(message, undefined, reasonCode, response);
 }
 
 function delay(milliseconds: number): Promise<void> {
