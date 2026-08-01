@@ -77,6 +77,24 @@ Machine entry / frozen OpenAPI / generated SDK / MCP
 The failure is not repaired in D12 because API, SDK, MCP, deployment, database
 Schema, quota, Receipt storage, and D04 changes were all forbidden.
 
+## Existing-surface audit
+
+The host also contains an already-running bounded Sandbox Preview. A read-only
+interface audit confirmed that it is a separate legacy validation surface: it
+does not implement the frozen API v1 envelope or the current SDK/MCP preflight
+and Receipt flow. It therefore cannot be used as a hidden compatibility route
+for D12.
+
+```text
+ALIGNED_EXISTING_ENDPOINT_FOUND=false
+NEW_RUNTIME_STARTED=false
+DEPLOYMENT_CHANGED=false
+```
+
+Starting an ad hoc compatibility server or rewriting requests inside the
+harness would make the test easier while invalidating the onboarding claim, so
+neither action was taken.
+
 ## Additional bounded finding
 
 One Agent probed a non-UUID Receipt identifier. The public contract accepted a

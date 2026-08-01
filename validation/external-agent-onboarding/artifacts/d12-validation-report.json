@@ -100,6 +100,15 @@
     ],
     "observed_problem_detail": "missing required fields: agent_identity, timestamp"
   },
+  "existing_surface_audit": {
+    "aligned_existing_endpoint_found": false,
+    "legacy_sandbox_surface_present": true,
+    "legacy_sandbox_supports_frozen_api_v1": false,
+    "legacy_sandbox_supports_current_sdk_mcp_receipt_flow": false,
+    "new_runtime_started": false,
+    "deployment_changed": false,
+    "conclusion": "No already-running endpoint can complete D12 through the frozen SDK and MCP contract without a separately authorized runtime-alignment action."
+  },
   "additional_finding": {
     "finding_id": "D12-F02-INVALID-RECEIPT-ID-500",
     "status": "RECORDED_NOT_REMEDIATED",
@@ -142,6 +151,7 @@
   },
   "limitations": [
     "D12 did not meet the mandatory preflight, Receipt verification, or second-use gates.",
+    "The existing bounded Sandbox Preview is a separate legacy surface and is not a substitute for the frozen API v1 Agent onboarding path.",
     "No API, SDK, MCP, database Schema, Receipt storage, quota, deployment, or D04 change was authorized or made.",
     "The two revoked synthetic credentials and one synthetic Tenant remain auditable database records; they are not customer or production identities.",
     "Both synthetic sessions used the same provider model family and do not establish independent provider-lineage reproducibility.",
