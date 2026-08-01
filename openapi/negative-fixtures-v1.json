@@ -1,0 +1,88 @@
+{
+  "contract_version": "titmas-api-negative-fixtures-v1.0",
+  "fixture_directory": "tests/contracts/v1",
+  "fixtures": [
+    {
+      "id": "invalid_credential",
+      "expected_http_status": 401,
+      "expected_error_code": "AUTH_FAILED",
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_invalid_credential_fixture"
+    },
+    {
+      "id": "expired_credential",
+      "expected_http_status": 401,
+      "expected_error_code": "AUTH_FAILED",
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_expired_credential_fixture"
+    },
+    {
+      "id": "revoked_credential",
+      "expected_http_status": 401,
+      "expected_error_code": "AUTH_FAILED",
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_revoked_credential_fixture"
+    },
+    {
+      "id": "missing_scope",
+      "expected_http_status": 403,
+      "expected_error_code": "SCOPE_DENIED",
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_missing_scope_fixture"
+    },
+    {
+      "id": "unknown_schema",
+      "expected_result": "NOT_ASSESSED",
+      "expected_reason_codes": ["SCHEMA_UNKNOWN"],
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_unknown_schema_fixture"
+    },
+    {
+      "id": "invalid_schema_version",
+      "expected_result": "NOT_ASSESSED",
+      "expected_reason_codes": ["SCHEMA_VERSION_UNSUPPORTED"],
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_invalid_schema_version_fixture"
+    },
+    {
+      "id": "malformed_object",
+      "expected_result": "FAIL",
+      "expected_reason_codes": ["OBJECT_INVALID", "TYPE_MISMATCH"],
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_malformed_object_fixture"
+    },
+    {
+      "id": "unsupported_object",
+      "expected_result": "NOT_ASSESSED",
+      "expected_reason_codes": ["NOT_SUPPORTED"],
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_unsupported_object_fixture"
+    },
+    {
+      "id": "rate_limited",
+      "expected_http_status": 429,
+      "expected_error_code": "RATE_LIMITED",
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_rate_limited_fixture"
+    },
+    {
+      "id": "service_unavailable",
+      "expected_http_status": 503,
+      "expected_error_code": "SERVICE_UNAVAILABLE",
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_service_unavailable_fixture"
+    },
+    {
+      "id": "invalid_receipt",
+      "expected_verification_status": "INVALID_SIGNATURE",
+      "expected_reason_codes": ["OBJECT_INVALID"],
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_invalid_receipt_fixture"
+    },
+    {
+      "id": "unknown_receipt",
+      "expected_http_status": 404,
+      "expected_error_code": "RESOURCE_NOT_FOUND",
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_unknown_receipt_fixture"
+    },
+    {
+      "id": "not_assessed_result",
+      "expected_result": "NOT_ASSESSED",
+      "test": "tests/contracts/v1/test_api_v1_contract.py::test_not_assessed_result_fixture"
+    }
+  ],
+  "failure_closed": true,
+  "authority_elevation": false,
+  "database_effect": false,
+  "receipt_storage_effect": false,
+  "quota_logic_effect": false
+}

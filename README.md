@@ -29,8 +29,8 @@ An AI Agent can use this repository to:
 
 | Surface | Location | Pinned integration baseline |
 |---|---|---|
-| Python SDK | `sdk/python/` | Python 3.11-3.13, httpx 0.28.1 |
-| TypeScript SDK | `sdk/typescript/` | Node 22+, TypeScript 7.0.2 |
+| Python SDK | `titmas-python-sdk/` | generated transport; Python 3.11-3.13 |
+| TypeScript SDK | `titmas-typescript-sdk/` | generated transport; Node 22+ |
 | MCP stdio server | `mcp/` | MCP TypeScript SDK 1.30.0 |
 | LangChain tools | `langchain/` | LangChain 1.3.14 |
 | OpenAI Agents tools | `openai-agents/` | openai-agents 0.19.1 |
@@ -39,17 +39,26 @@ Exact versions were checked against their official package registries on
 2026-07-31. They are compatibility baselines, not claims of adoption by those
 projects.
 
-## Reviewed contract observation
+## Frozen generation contract
+
+- Generation input: `openapi/titmas-api-v1.yaml`
+- SHA-256: `4a56b4b4e1c841f8349ac9e79df82fd610467e7c1c1406e428cd251d5932eaf0`
+- API contract merge: `efdfc84462628abdfbfe111f61253f76569edec0`
+- Generator: OpenAPI Generator `7.24.0`, pinned in `sdk-generation.lock.json`
+
+`generated/` is never hand-edited. `src/` adds bounded TITMAS semantics and
+calls only generated API classes; it contains no second transport client.
+`sdk/python` and `sdk/typescript` are compatibility symlinks, not duplicate
+implementations.
+
+## Historical contract observation
 
 - Live contract: `https://redcrag.cn/api/v1/openapi.json`
 - Reviewed observation: `openapi/titmas-commercial-api-v1.observed.json`
 - Provenance and digest: `openapi/source-manifest.json`
 
-The live contract remains the current public source. The reviewed observation
-exists for reproducible testing and explicit drift review. The service reports
-version `6962da0…`, while the retained live release is `9bbfce6…`; the manifest
-records this as known runtime metadata drift and does not represent either value
-as the other.
+The older live observation remains historical review evidence. D08 generation
+does not use it and does not represent it as the frozen API v1 contract.
 
 ## Permanent boundaries
 
@@ -69,8 +78,11 @@ as the other.
 - Packages are source candidates and are not published to package registries.
 - Public credential self-registration is unavailable.
 - Python 3.14 is outside the current declared runtime range.
-- The OpenAPI observation is not a generated full-schema client contract; some
-  live response schemas remain intentionally generic.
+- Some frozen API response schemas remain intentionally generic and therefore
+  generate `unknown`/`Any` return values.
+- Existing MCP, LangChain and OpenAI Agents adapters have not yet been migrated
+  to provide the new `credential_id`, `schema_version` and `object_digest`
+  fields. Their source remains a separate mapping candidate.
 - Production support, paid launch, formal Conformance, and Certification are
   not authorized.
 

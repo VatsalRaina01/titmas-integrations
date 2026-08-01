@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools==80.10.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "titmas-agent-sdk"
+version = "0.1.0"
+description = "Contract-generated Python SDK for the TITMAS API v1 candidate"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "httpx==0.28.1",
+  "pydantic==2.13.4",
+  "python-dateutil==2.9.0.post0",
+  "typing-extensions==4.16.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy==1.20.2",
+  "pytest==8.4.2",
+  "ruff==0.16.0",
+  "types-python-dateutil==2.9.0.20260124",
+]
+
+[tool.setuptools.packages.find]
+where = ["src", "generated"]
+include = ["titmas_agent_sdk*", "titmas_api_client*"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = ["generated"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "S", "B", "UP"]
+ignore = ["S101"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src"]
+mypy_path = ["generated"]
+
+[[tool.mypy.overrides]]
+module = ["titmas_api_client", "titmas_api_client.*"]
+follow_untyped_imports = true
+ignore_errors = true

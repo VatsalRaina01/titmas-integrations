@@ -14,24 +14,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        surface: [sdk/python, langchain, openai-agents]
+        surface: [titmas-python-sdk, langchain, openai-agents]
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
       - name: Install SDK
-        run: python -m pip install -e "./sdk/python[dev]"
+        run: python -m pip install -e "./titmas-python-sdk[dev]"
       - name: Install adapter
-        if: matrix.surface != 'sdk/python'
+        if: matrix.surface != 'titmas-python-sdk'
         run: python -m pip install -e "./${{ matrix.surface }}[dev]"
       - name: Test
         run: |
           python -m pytest "${{ matrix.surface }}"
           python -m ruff check "${{ matrix.surface }}"
       - name: Type-check Python SDK
-        if: matrix.surface == 'sdk/python'
-        run: python -m mypy sdk/python/src
+        if: matrix.surface == 'titmas-python-sdk'
+        working-directory: titmas-python-sdk
+        run: python -m mypy src
 
   python-aggregate:
     runs-on: ubuntu-latest
@@ -42,19 +43,19 @@ jobs:
           python-version: "3.13"
       - name: Install all Python surfaces
         run: |
-          python -m pip install -e "./sdk/python[dev]"
+          python -m pip install -e "./titmas-python-sdk[dev]"
           python -m pip install -e "./langchain[dev]" -e "./openai-agents[dev]"
       - name: Run aggregate tests and lint
         run: |
-          python -m pytest sdk/python langchain openai-agents
-          python -m ruff check sdk/python langchain openai-agents
+          python -m pytest titmas-python-sdk langchain openai-agents
+          python -m ruff check titmas-python-sdk/src titmas-python-sdk/tests langchain openai-agents
 
   node:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        surface: [sdk/typescript, mcp]
+        surface: [titmas-typescript-sdk, mcp]
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -63,7 +64,7 @@ jobs:
           cache: npm
           cache-dependency-path: ${{ matrix.surface }}/package-lock.json
       - name: Build TypeScript SDK first
-        working-directory: sdk/typescript
+        working-directory: titmas-typescript-sdk
         run: |
           npm ci
           npm test
@@ -84,5 +85,20 @@ jobs:
           jq -e '.result_semantics.preserves_not_assessed == true' integration-manifest.json
           jq -e '.result_semantics.truth_verified == false' integration-manifest.json
           jq -e '.reported_version_equals_retained_release == false' openapi/source-manifest.json
+          jq -e '.generated_contract.handwritten_transport_client == false' agent-entry.json
+          python scripts/validate-generated-sdks.py
           node scripts/verify-openapi-snapshot.mjs
           node --test tests/*.test.mjs
+
+  sdk-generation-reproducibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Regenerate with pinned OpenAPI Generator
+        run: scripts/generate-sdks.sh
+      - name: Verify generated code is reproducible
+        run: |
+          python scripts/validate-generated-sdks.py
+          git diff --exit-code -- \
+            titmas-python-sdk/generated \
+            titmas-typescript-sdk/generated
