@@ -16,6 +16,16 @@ Before changing a client or adapter:
    keys out of source, fixtures, logs, and model prompts;
 7. run all affected package tests plus the aggregate validation workflow.
 
+SDK generation rules:
+
+- `openapi/titmas-api-v1.yaml` is the exact frozen generation input;
+- `titmas-python-sdk/generated/` and `titmas-typescript-sdk/generated/` are
+  mechanical OpenAPI Generator output and must not be hand-edited;
+- regenerate only with `scripts/generate-sdks.sh` and the pinned
+  `sdk-generation.lock.json`;
+- semantic code in each `src/` directory may wrap generated API classes but
+  must not implement HTTP, retries or a second transport client.
+
 Permanent boundaries:
 
 ```text

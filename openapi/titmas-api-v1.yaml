@@ -1,0 +1,3276 @@
+{
+  "components": {
+    "schemas": {
+      "AuthorityBoundaries": {
+        "additionalProperties": false,
+        "properties": {
+          "commercial_offer_active": {
+            "const": false,
+            "type": "boolean"
+          },
+          "evidence_is_truth": {
+            "const": false,
+            "type": "boolean"
+          },
+          "preflight_is_formal_conformance": {
+            "const": false,
+            "type": "boolean"
+          },
+          "production_ready": {
+            "const": false,
+            "type": "boolean"
+          },
+          "receipt_is_certification": {
+            "const": false,
+            "type": "boolean"
+          },
+          "verification_is_authorization": {
+            "const": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "evidence_is_truth",
+          "verification_is_authorization",
+          "preflight_is_formal_conformance",
+          "receipt_is_certification",
+          "commercial_offer_active",
+          "production_ready"
+        ],
+        "type": "object"
+      },
+      "Error": {
+        "additionalProperties": false,
+        "example": {
+          "error_code": "INVALID_REQUEST",
+          "message": "The request does not satisfy the frozen API v1 contract.",
+          "request_id": "request-example-001",
+          "retryable": false,
+          "timestamp": "2026-08-01T00:00:00Z"
+        },
+        "properties": {
+          "error_code": {
+            "enum": [
+              "INVALID_REQUEST",
+              "AUTH_FAILED",
+              "SCOPE_DENIED",
+              "RESOURCE_NOT_FOUND",
+              "IDEMPOTENCY_CONFLICT",
+              "RATE_LIMITED",
+              "INTERNAL_ERROR",
+              "SERVICE_UNAVAILABLE"
+            ],
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "retryable": {
+            "type": "boolean"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "error_code",
+          "message",
+          "request_id",
+          "retryable",
+          "timestamp"
+        ],
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "PreflightRequest": {
+        "additionalProperties": false,
+        "example": {
+          "agent_id": "20000000-0000-4000-8000-000000000001",
+          "credential_id": "40000000-0000-4000-8000-000000000001",
+          "idempotency_key": "idempotency-example-001",
+          "object": {
+            "object_type": "ENTITY",
+            "version": "v0.1"
+          },
+          "object_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+          "request_id": "request-example-001",
+          "schema_id": "entity-object",
+          "schema_version": "v0.1",
+          "tenant_id": "10000000-0000-4000-8000-000000000001"
+        },
+        "properties": {
+          "agent_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "api_version": {
+            "const": "v1",
+            "type": "string"
+          },
+          "credential_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "idempotency_key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "object": {
+            "description": "Transient object for validation; never persisted as raw payload."
+          },
+          "object_digest": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "request_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "schema_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "schema_version": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "agent_id",
+          "credential_id",
+          "schema_id",
+          "schema_version",
+          "object_digest",
+          "request_id",
+          "idempotency_key",
+          "object"
+        ],
+        "type": "object"
+      },
+      "PreflightResult": {
+        "additionalProperties": false,
+        "properties": {
+          "completed_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "reason_codes": {
+            "items": {
+              "$ref": "#/components/schemas/ReasonCode"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "receipt_id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/Result"
+          },
+          "schema_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "schema_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "result",
+          "reason_codes",
+          "receipt_id",
+          "request_id",
+          "schema_id",
+          "schema_version",
+          "completed_at"
+        ],
+        "type": "object"
+      },
+      "ReasonCode": {
+        "enum": [
+          "SCHEMA_UNKNOWN",
+          "SCHEMA_VERSION_UNSUPPORTED",
+          "SCHEMA_INVALID",
+          "CREDENTIAL_INVALID",
+          "CREDENTIAL_EXPIRED",
+          "CREDENTIAL_REVOKED",
+          "SCOPE_DENIED",
+          "OBJECT_VALID",
+          "OBJECT_INVALID",
+          "REQUIRED_FIELD_MISSING",
+          "TYPE_MISMATCH",
+          "INSUFFICIENT_EVIDENCE",
+          "NOT_SUPPORTED",
+          "OUT_OF_SCOPE",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "INTERNAL_ERROR",
+          "INVALID_REQUEST",
+          "AUTH_FAILED",
+          "RESOURCE_NOT_FOUND",
+          "IDEMPOTENCY_CONFLICT"
+        ],
+        "type": "string"
+      },
+      "Receipt": {
+        "additionalProperties": true,
+        "description": "Signed execution record; not Truth, Authorization or Certification.",
+        "properties": {
+          "receipt_id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "receipt_sequence": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "result": {
+            "$ref": "#/components/schemas/Result"
+          },
+          "signature_metadata": {
+            "type": "object"
+          },
+          "tenant_id": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "receipt_id",
+          "receipt_sequence",
+          "tenant_id",
+          "result",
+          "signature_metadata"
+        ],
+        "type": "object"
+      },
+      "ReceiptResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "reason_codes": {
+            "items": {
+              "$ref": "#/components/schemas/ReasonCode"
+            },
+            "type": "array"
+          },
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          },
+          "receipt_id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "request_digest": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "response_digest": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/Result"
+          },
+          "schema_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "schema_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "signature_status": {
+            "const": "SIGNED",
+            "type": "string"
+          },
+          "verification_status": {
+            "$ref": "#/components/schemas/ReceiptVerificationStatus"
+          }
+        },
+        "required": [
+          "receipt_id",
+          "result",
+          "reason_codes",
+          "schema_id",
+          "schema_version",
+          "request_digest",
+          "response_digest",
+          "signature_status",
+          "verification_status",
+          "receipt"
+        ],
+        "type": "object"
+      },
+      "ReceiptVerification": {
+        "additionalProperties": false,
+        "properties": {
+          "reason_codes": {
+            "items": {
+              "$ref": "#/components/schemas/ReasonCode"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "valid": {
+            "type": "boolean"
+          },
+          "verification_status": {
+            "$ref": "#/components/schemas/ReceiptVerificationStatus"
+          }
+        },
+        "required": [
+          "valid",
+          "verification_status",
+          "reason_codes"
+        ],
+        "type": "object"
+      },
+      "ReceiptVerificationStatus": {
+        "enum": [
+          "VALID",
+          "INVALID_SIGNATURE",
+          "UNVERIFIABLE_KEY_UNAVAILABLE",
+          "CHAIN_INVALID",
+          "STRUCTURE_INVALID",
+          "NOT_ASSESSED"
+        ],
+        "type": "string"
+      },
+      "ReceiptVerifyRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          }
+        },
+        "required": [
+          "receipt"
+        ],
+        "type": "object"
+      },
+      "Result": {
+        "description": "A bounded validation result, never Truth or Authorization.",
+        "enum": [
+          "PASS",
+          "FAIL",
+          "NOT_ASSESSED"
+        ],
+        "type": "string"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "ScopedMachineCredential": {
+        "bearerFormat": "TITMAS scoped machine credential",
+        "description": "Credential scopes are checked per operation and grant no core access.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Frozen machine contract for discovery, Schema preflight and Receipt verification. PASS is not formal Conformance; Evidence is not Truth; Verification is not Authorization.",
+    "title": "TITMAS Agent-Native Infrastructure API",
+    "version": "1.0.0-candidate.1",
+    "x-api-version": "v1",
+    "x-authority-boundaries": {
+      "commercial_offer_active": false,
+      "evidence_is_truth": false,
+      "preflight_is_formal_conformance": false,
+      "production_ready": false,
+      "receipt_is_certification": false,
+      "verification_is_authorization": false
+    },
+    "x-contract-version": "titmas-api-v1.0",
+    "x-maturity-state": "FINAL_FORM_TECHNICAL_CANDIDATE_NOT_PRODUCTION",
+    "x-receipt-profile": "titmas-receipt-v1.0",
+    "x-service-id": "titmas-agent-native-infrastructure"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/.well-known/titmas.json": {
+      "get": {
+        "operationId": "titmasDiscover",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Well Known Titmas  Well Known Titmas Json Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Well Known Titmas",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/capabilities": {
+      "get": {
+        "operationId": "titmasGetCapabilities",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Capabilities Api V1 Capabilities Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Capabilities",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/catalog": {
+      "get": {
+        "operationId": "titmasGetCatalog",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "security": [
+          {
+            "ScopedMachineCredential": []
+          }
+        ],
+        "summary": "Catalog",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-required-scope": "titmas.catalog.read",
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "operationId": "titmasHealth",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Health Api V1 Health Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Health",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/plans": {
+      "get": {
+        "operationId": "plans_api_v1_plans_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Plans Api V1 Plans Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Plans",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/preflight": {
+      "post": {
+        "operationId": "titmasPreflight",
+        "parameters": [
+          {
+            "description": "Optional duplicate of the body key; automatic POST retries are forbidden.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreflightRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreflightResult"
+                }
+              }
+            },
+            "description": "PASS, FAIL or NOT_ASSESSED plus a Receipt reference",
+            "headers": {
+              "RateLimit-Limit": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "security": [
+          {
+            "ScopedMachineCredential": []
+          }
+        ],
+        "summary": "Commercial Preflight",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-required-scope": "titmas.preflight.execute",
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/public-keys": {
+      "get": {
+        "operationId": "titmasGetPublicKeys",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Public Keys Api V1 Public Keys Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Public Keys",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/quota": {
+      "get": {
+        "operationId": "titmasGetQuota",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "security": [
+          {
+            "ScopedMachineCredential": []
+          }
+        ],
+        "summary": "Quota",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-required-scope": "titmas.quota.read",
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/readiness": {
+      "get": {
+        "operationId": "titmasReadiness",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Readiness",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/receipts/verify": {
+      "post": {
+        "operationId": "titmasVerifyReceipt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReceiptVerifyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceiptVerification"
+                }
+              }
+            },
+            "description": "Receipt structure and signature verification only; never Authorization or Truth",
+            "headers": {
+              "RateLimit-Limit": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "security": [
+          {
+            "ScopedMachineCredential": []
+          }
+        ],
+        "summary": "Verify",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-required-scope": "titmas.receipt.verify",
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/receipts/{receipt_id}": {
+      "get": {
+        "operationId": "titmasGetReceipt",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "receipt_id",
+            "required": true,
+            "schema": {
+              "title": "Receipt Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceiptResponse"
+                }
+              }
+            },
+            "description": "Receipt projection plus the signed Receipt document",
+            "headers": {
+              "RateLimit-Limit": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "security": [
+          {
+            "ScopedMachineCredential": []
+          }
+        ],
+        "summary": "Receipt",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-required-scope": "titmas.receipt.read",
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/schemas/{schema_id}": {
+      "get": {
+        "operationId": "titmasGetSchema",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "schema_id",
+            "required": true,
+            "schema": {
+              "title": "Schema Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "security": [
+          {
+            "ScopedMachineCredential": []
+          }
+        ],
+        "summary": "Schema",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-required-scope": "titmas.schema.read",
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/service-health": {
+      "get": {
+        "operationId": "service_health_api_v1_service_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Service Health Api V1 Service Health Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Service Health",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/service-metrics-summary": {
+      "get": {
+        "operationId": "service_metrics_summary_api_v1_service_metrics_summary_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Service Metrics Summary Api V1 Service Metrics Summary Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Service Metrics Summary",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/status": {
+      "get": {
+        "operationId": "titmasStatus",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Status Api V1 Status Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "summary": "Status",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-timeout-seconds": 15
+      }
+    },
+    "/api/v1/usage": {
+      "get": {
+        "operationId": "titmasGetUsage",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INVALID_REQUEST",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INVALID_REQUEST"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "AUTH_FAILED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "AUTH_FAILED"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SCOPE_DENIED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SCOPE_DENIED"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RESOURCE_NOT_FOUND",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RESOURCE_NOT_FOUND"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "IDEMPOTENCY_CONFLICT",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": false,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "IDEMPOTENCY_CONFLICT"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "RATE_LIMITED",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "RATE_LIMITED"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "INTERNAL_ERROR",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "INTERNAL_ERROR"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error_code": "SERVICE_UNAVAILABLE",
+                  "message": "Machine-readable API error.",
+                  "request_id": "request-example-001",
+                  "retryable": true,
+                  "timestamp": "2026-08-01T00:00:00Z"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "SERVICE_UNAVAILABLE"
+          }
+        },
+        "security": [
+          {
+            "ScopedMachineCredential": []
+          }
+        ],
+        "summary": "Usage",
+        "x-authority-boundaries": {
+          "commercial_offer_active": false,
+          "evidence_is_truth": false,
+          "preflight_is_formal_conformance": false,
+          "production_ready": false,
+          "receipt_is_certification": false,
+          "verification_is_authorization": false
+        },
+        "x-required-scope": "titmas.usage.read",
+        "x-timeout-seconds": 15
+      }
+    }
+  },
+  "servers": [
+    {
+      "description": "Current bounded gateway",
+      "url": "/"
+    }
+  ],
+  "x-negative-fixtures": [
+    "invalid_credential",
+    "expired_credential",
+    "revoked_credential",
+    "missing_scope",
+    "unknown_schema",
+    "invalid_schema_version",
+    "malformed_object",
+    "unsupported_object",
+    "rate_limited",
+    "service_unavailable",
+    "invalid_receipt",
+    "unknown_receipt",
+    "not_assessed_result"
+  ],
+  "x-result-semantics": {
+    "FAIL": "declared validation rules failed",
+    "NOT_ASSESSED": "insufficient evidence, unsupported condition, or unknown state",
+    "PASS": "declared validation rules satisfied"
+  }
+}

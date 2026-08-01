@@ -14,16 +14,20 @@
   "components": [
     {
       "id": "python-sdk",
-      "path": "sdk/python",
+      "path": "titmas-python-sdk",
       "version": "0.1.0",
       "runtime": "Python >=3.11,<3.14",
+      "generator": "OpenAPI Generator 7.24.0 / python-httpx",
+      "generated_transport": true,
       "dependencies": {"httpx": "0.28.1"}
     },
     {
       "id": "typescript-sdk",
-      "path": "sdk/typescript",
+      "path": "titmas-typescript-sdk",
       "version": "0.1.0",
       "runtime": "Node >=22",
+      "generator": "OpenAPI Generator 7.24.0 / typescript-fetch",
+      "generated_transport": true,
       "dependencies": {"typescript": "7.0.2"}
     },
     {
@@ -61,11 +65,19 @@
     "receipt_structure_only_required": true,
     "non_idempotent_automatic_retry": false
   },
+  "sdk_generation": {
+    "source": "openapi/titmas-api-v1.yaml",
+    "source_sha256": "4a56b4b4e1c841f8349ac9e79df82fd610467e7c1c1406e428cd251d5932eaf0",
+    "api_contract_merge": "efdfc84462628abdfbfe111f61253f76569edec0",
+    "lock": "sdk-generation.lock.json",
+    "handwritten_transport_client": false
+  },
   "known_limitations": [
     "PACKAGE_REGISTRY_NOT_PUBLISHED",
     "PUBLIC_CREDENTIAL_SELF_REGISTRATION_UNAVAILABLE",
     "PYTHON_3_14_NOT_SUPPORTED",
     "OPENAPI_RESPONSE_SCHEMAS_PARTLY_GENERIC",
+    "EXISTING_ADAPTERS_REQUIRE_API_V1_FIELD_MAPPING",
     "PRODUCTION_SUPPORT_FALSE"
   ],
   "publication_state": "SOURCE_CANDIDATE",

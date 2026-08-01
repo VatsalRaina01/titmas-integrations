@@ -5,8 +5,8 @@
   "service_base_url": "https://redcrag.cn",
   "api_version": "v1",
   "surfaces": {
-    "python_sdk": "sdk/python",
-    "typescript_sdk": "sdk/typescript",
+    "python_sdk": "titmas-python-sdk",
+    "typescript_sdk": "titmas-typescript-sdk",
     "mcp_stdio": "mcp",
     "langchain": "langchain",
     "openai_agents": "openai-agents"
@@ -29,6 +29,13 @@
     "retained_live_release_revision": "9bbfce6154d67f4ab50e911b5e49611f5a4a8b57",
     "reported_version_equals_retained_release": false
   },
+  "generated_contract": {
+    "path": "openapi/titmas-api-v1.yaml",
+    "sha256": "4a56b4b4e1c841f8349ac9e79df82fd610467e7c1c1406e428cd251d5932eaf0",
+    "api_contract_merge": "efdfc84462628abdfbfe111f61253f76569edec0",
+    "generator": "OpenAPI Generator 7.24.0",
+    "handwritten_transport_client": false
+  },
   "result_values": ["PASS", "FAIL", "NOT_ASSESSED"],
   "authority_boundaries": {
     "formal_conformance": false,
@@ -43,6 +50,7 @@
   },
   "package_state": {
     "source_candidate": true,
+    "generated_transport": true,
     "package_registry_published": false,
     "production_support": false
   },

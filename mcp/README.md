@@ -3,7 +3,7 @@
 Pinned baseline: `@modelcontextprotocol/sdk@1.30.0`.
 
 ```bash
-cd ../sdk/typescript
+cd ../titmas-typescript-sdk
 npm ci
 npm run build
 cd ../../mcp
@@ -25,3 +25,6 @@ The stdio server exposes bounded tools:
 
 It does not expose Tenant creation, credential creation, payment, deployment,
 formal conformance, Certification, or core source access.
+
+The existing MCP tool input mapping does not yet supply all frozen API v1
+fields; runtime use remains blocked pending a separately authorized MCP mapping.

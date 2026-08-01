@@ -1,0 +1,30 @@
+{
+  "name": "@titmas/agent-sdk",
+  "version": "0.1.0",
+  "description": "Contract-generated TypeScript SDK for the TITMAS API v1 candidate",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./generated": {
+      "types": "./dist/generated/src/index.d.ts",
+      "import": "./dist/generated/src/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "GENERATION.md"],
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test dist-test/tests/*.test.js"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.2",
+    "typescript": "7.0.2"
+  },
+  "license": "Apache-2.0",
+  "private": true
+}

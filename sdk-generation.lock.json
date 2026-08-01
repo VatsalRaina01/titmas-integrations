@@ -1,0 +1,52 @@
+{
+  "lock_version": "titmas-sdk-generation-d08-v1.0",
+  "decision_id": "TITMAS-FINAL-FORM-P0-SDK-GENERATION-D08",
+  "source": {
+    "path": "openapi/titmas-api-v1.yaml",
+    "sha256": "4a56b4b4e1c841f8349ac9e79df82fd610467e7c1c1406e428cd251d5932eaf0",
+    "api_contract_merge": "efdfc84462628abdfbfe111f61253f76569edec0",
+    "role": "AUTHORIZED_FROZEN_PUBLIC_CONTRACT_EXPORT"
+  },
+  "generator": {
+    "name": "OpenAPI Generator",
+    "version": "7.24.0",
+    "release_commit": "203d48678a3f51fc1e3bfe4f7257603530791ebb",
+    "jar_url": "https://github.com/OpenAPITools/openapi-generator/releases/download/v7.24.0/openapi-generator-cli-7.24.0.jar",
+    "jar_sha256": "4b83ccc6fd43056c8c631cd0195e5100bd0550912502527bab09ac76152dab0c",
+    "license": "Apache-2.0"
+  },
+  "postprocess_patches": [
+    {
+      "id": "OPENAPI_GENERATOR_7_24_0_PYTHON_CONST_FALSE",
+      "scope": "titmas-python-sdk/generated/titmas_api_client/models/authority_boundaries.py",
+      "reason": "OpenAPI Generator 7.24.0 renders OAS 3.1 boolean const false as the string enum 'false' in Python validators",
+      "expected_replacements": 6,
+      "contract_changed": false
+    },
+    {
+      "id": "NORMALIZE_GENERATED_TEXT_WHITESPACE",
+      "scope": "titmas-python-sdk/generated and titmas-typescript-sdk/generated text files",
+      "reason": "Remove generator-template trailing whitespace and normalize final newlines deterministically",
+      "contract_changed": false
+    }
+  ],
+  "outputs": {
+    "python": {
+      "path": "titmas-python-sdk/generated",
+      "generator": "python",
+      "library": "httpx"
+    },
+    "typescript": {
+      "path": "titmas-typescript-sdk/generated",
+      "generator": "typescript-fetch"
+    }
+  },
+  "boundaries": {
+    "generated": true,
+    "handwritten_transport_client": false,
+    "package_registry_published": false,
+    "release_authorized": false,
+    "deployment_authorized": false,
+    "contract_authority_effect": false
+  }
+}
