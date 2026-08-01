@@ -31,7 +31,7 @@ An AI Agent can use this repository to:
 |---|---|---|
 | Python SDK | `titmas-python-sdk/` | generated transport; Python 3.11-3.13 |
 | TypeScript SDK | `titmas-typescript-sdk/` | generated transport; Node 22+ |
-| MCP stdio server | `mcp/` | MCP TypeScript SDK 1.30.0 |
+| MCP stdio adapter | `mcp/` | implemented source candidate; official MCP SDK 1.30.0 over TITMAS SDK |
 | LangChain tools | `langchain/` | LangChain 1.3.14 |
 | OpenAI Agents tools | `openai-agents/` | openai-agents 0.19.1 |
 
@@ -80,9 +80,12 @@ does not use it and does not represent it as the frozen API v1 contract.
 - Python 3.14 is outside the current declared runtime range.
 - Some frozen API response schemas remain intentionally generic and therefore
   generate `unknown`/`Any` return values.
-- Existing MCP, LangChain and OpenAI Agents adapters have not yet been migrated
-  to provide the new `credential_id`, `schema_version` and `object_digest`
-  fields. Their source remains a separate mapping candidate.
+- LangChain and OpenAI Agents adapters have not yet been migrated to provide
+  the new `credential_id`, `schema_version` and `object_digest` fields. Their
+  source remains a separate mapping candidate.
+- The MCP adapter is implemented and contract-tested as a source candidate;
+  its package is not published and no MCP service or TITMAS Runtime is
+  deployed by this repository.
 - Production support, paid launch, formal Conformance, and Certification are
   not authorized.
 

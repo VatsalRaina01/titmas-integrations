@@ -36,6 +36,17 @@
     "generator": "OpenAPI Generator 7.24.0",
     "handwritten_transport_client": false
   },
+  "mcp_adapter": {
+    "status": "IMPLEMENTED_SOURCE_CANDIDATE",
+    "tool_contract": "mcp/tool-contract.json",
+    "official_mcp_sdk": "@modelcontextprotocol/sdk@1.30.0",
+    "titmas_sdk": "@titmas/agent-sdk@0.1.0",
+    "tool_count": 8,
+    "direct_gateway_client": false,
+    "automatic_retry": false,
+    "package_registry_published": false,
+    "runtime_deployed": false
+  },
   "result_values": ["PASS", "FAIL", "NOT_ASSESSED"],
   "authority_boundaries": {
     "formal_conformance": false,
