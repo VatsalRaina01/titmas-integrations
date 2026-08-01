@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "observed_at": "2026-07-31T17:35:32+08:00",
+  "observed_at": "2026-08-01T19:29:06+08:00",
   "service_api": "https://redcrag.cn/api/v1/openapi.json",
   "contract_observation": {
     "snapshot": "openapi/titmas-commercial-api-v1.observed.json",
@@ -34,8 +34,16 @@
       "id": "mcp-stdio-adapter",
       "path": "mcp",
       "version": "0.1.0",
+      "implementation_status": "IMPLEMENTED_SOURCE_CANDIDATE",
+      "tool_contract": "mcp/tool-contract.json",
+      "official_mcp_sdk": true,
+      "titmas_sdk_reused": true,
+      "direct_gateway_client": false,
+      "automatic_retry": false,
+      "contract_tests": 9,
       "dependencies": {
         "@modelcontextprotocol/sdk": "1.30.0",
+        "@titmas/agent-sdk": "0.1.0",
         "zod": "4.4.3"
       }
     },
@@ -62,6 +70,10 @@
   "runtime_guards": {
     "python_authority_boundary_fail_closed": true,
     "typescript_authority_boundary_fail_closed": true,
+    "mcp_authority_boundary_fail_closed": true,
+    "mcp_delegated_context_environment_only": true,
+    "mcp_unknown_sdk_error_redacted": true,
+    "mcp_direct_gateway_client": false,
     "receipt_structure_only_required": true,
     "non_idempotent_automatic_retry": false
   },
@@ -77,7 +89,9 @@
     "PUBLIC_CREDENTIAL_SELF_REGISTRATION_UNAVAILABLE",
     "PYTHON_3_14_NOT_SUPPORTED",
     "OPENAPI_RESPONSE_SCHEMAS_PARTLY_GENERIC",
-    "EXISTING_ADAPTERS_REQUIRE_API_V1_FIELD_MAPPING",
+    "NON_MCP_ADAPTERS_REQUIRE_API_V1_FIELD_MAPPING",
+    "MCP_PACKAGE_NOT_PUBLISHED",
+    "MCP_RUNTIME_NOT_DEPLOYED",
     "PRODUCTION_SUPPORT_FALSE"
   ],
   "publication_state": "SOURCE_CANDIDATE",

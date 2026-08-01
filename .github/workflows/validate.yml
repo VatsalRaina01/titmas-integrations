@@ -73,7 +73,7 @@ jobs:
         working-directory: mcp
         run: |
           npm ci
-          npm run build
+          npm test
 
   machine-entry:
     runs-on: ubuntu-latest
@@ -86,7 +86,13 @@ jobs:
           jq -e '.result_semantics.truth_verified == false' integration-manifest.json
           jq -e '.reported_version_equals_retained_release == false' openapi/source-manifest.json
           jq -e '.generated_contract.handwritten_transport_client == false' agent-entry.json
+          jq -e '.mcp_adapter.status == "IMPLEMENTED_SOURCE_CANDIDATE"' agent-entry.json
+          jq -e '.mcp_adapter.direct_gateway_client == false' agent-entry.json
+          jq -e '.titmas_sdk.only_api_transport == true' mcp/tool-contract.json
+          jq -e '.transport.direct_gateway_call == false' mcp/tool-contract.json
+          jq -e '.authority_boundaries.authorization_effect == false' mcp/tool-contract.json
           python scripts/validate-generated-sdks.py
+          node scripts/validate-mcp-adapter.mjs
           node scripts/verify-openapi-snapshot.mjs
           node --test tests/*.test.mjs
 

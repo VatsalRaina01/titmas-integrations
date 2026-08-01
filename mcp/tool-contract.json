@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "adapter": "@titmas/mcp-adapter",
+  "adapter_version": "0.1.0",
+  "status": "IMPLEMENTED_SOURCE_CANDIDATE",
+  "official_mcp_sdk": {
+    "package": "@modelcontextprotocol/sdk",
+    "version": "1.30.0"
+  },
+  "titmas_sdk": {
+    "package": "@titmas/agent-sdk",
+    "version": "0.1.0",
+    "required": true,
+    "only_api_transport": true
+  },
+  "transport": {
+    "mcp": "stdio",
+    "api_transport_owner": "TITMAS_SDK",
+    "direct_gateway_call": false,
+    "automatic_retry": false
+  },
+  "delegated_context": {
+    "source": "PROCESS_ENVIRONMENT_ONLY",
+    "required_for_protected_tools": [
+      "TITMAS_CREDENTIAL",
+      "TITMAS_CREDENTIAL_ID",
+      "TITMAS_TENANT_ID",
+      "TITMAS_AGENT_ID"
+    ],
+    "allowed_as_tool_arguments": false,
+    "allowed_in_tool_results": false
+  },
+  "tools": [
+    {
+      "name": "titmas_capabilities",
+      "sdk_method": "capabilities",
+      "access": "PUBLIC",
+      "arguments": []
+    },
+    {
+      "name": "titmas_status",
+      "sdk_method": "status",
+      "access": "PUBLIC",
+      "arguments": []
+    },
+    {
+      "name": "titmas_catalog",
+      "sdk_method": "catalog",
+      "access": "DELEGATED",
+      "arguments": []
+    },
+    {
+      "name": "titmas_preflight",
+      "sdk_method": "preflight",
+      "access": "DELEGATED",
+      "arguments": [
+        "request_id",
+        "idempotency_key",
+        "schema_id",
+        "schema_version",
+        "object_digest",
+        "object"
+      ],
+      "side_effects": ["MAY_CONSUME_QUOTA", "MAY_CREATE_RECEIPT"],
+      "silent_retry": false
+    },
+    {
+      "name": "titmas_get_receipt",
+      "sdk_method": "receipt",
+      "access": "DELEGATED",
+      "arguments": ["receipt_id"]
+    },
+    {
+      "name": "titmas_verify_receipt",
+      "sdk_method": "verifyReceipt",
+      "access": "DELEGATED",
+      "arguments": ["receipt"]
+    },
+    {
+      "name": "titmas_usage",
+      "sdk_method": "usage",
+      "access": "DELEGATED",
+      "arguments": []
+    },
+    {
+      "name": "titmas_quota",
+      "sdk_method": "quota",
+      "access": "DELEGATED",
+      "arguments": []
+    }
+  ],
+  "result_values": ["PASS", "FAIL", "NOT_ASSESSED"],
+  "error_contract": {
+    "known_contract_reason_code_preserved": true,
+    "unknown_reason_code": "SDK_REQUEST_FAILED",
+    "automatic_retry": false,
+    "raw_exception_exposed": false
+  },
+  "authority_boundaries": {
+    "formal_conformance": false,
+    "certification": false,
+    "truth_verified": false,
+    "authorization_effect": false,
+    "permission_grant": false
+  },
+  "publication": {
+    "package_registry_published": false,
+    "release_created": false,
+    "deployment_created": false,
+    "production_support": false
+  }
+}
