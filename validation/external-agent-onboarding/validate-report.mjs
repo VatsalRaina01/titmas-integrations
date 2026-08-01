@@ -35,6 +35,37 @@ for (const session of report.sessions ?? []) {
     evidenceErrors.push(`${session.path}_EVIDENCE_DIGEST_MISMATCH`);
   }
 }
+if (report.post_d13_rerun?.summary_report) {
+  const summaryText = await readFile(
+    resolve("artifacts", report.post_d13_rerun.summary_report),
+    "utf8"
+  );
+  if (containsCredential(summaryText)) {
+    evidenceErrors.push("POST_D13_SUMMARY_SECRET_FINDING");
+  }
+  const summary = JSON.parse(summaryText);
+  const postD13Artifacts = {
+    raw_sanitized_sha256: "post-d13-run-raw-sanitized.json",
+    mcp_sanitized_sha256: "post-d13-mcp-sanitized-evidence.json",
+    sdk_sanitized_sha256: "post-d13-sdk-sanitized-evidence.json"
+  };
+  for (const [digestKey, filename] of Object.entries(postD13Artifacts)) {
+    const artifact = await readFile(resolve("artifacts", filename), "utf8");
+    if (containsCredential(artifact)) {
+      evidenceErrors.push(`POST_D13_${digestKey.toUpperCase()}_SECRET_FINDING`);
+    }
+    if (sha256Text(artifact) !== summary.evidence?.[digestKey]) {
+      evidenceErrors.push(`POST_D13_${digestKey.toUpperCase()}_DIGEST_MISMATCH`);
+    }
+  }
+  if (
+    summary.p0_10_result !== report.p0_10_result ||
+    summary.active_credential_count_after_closure !== 0 ||
+    summary.success_gate_met !== false
+  ) {
+    evidenceErrors.push("POST_D13_SUMMARY_STATUS_MISMATCH");
+  }
+}
 result.errors.push(...evidenceErrors);
 result.valid = result.errors.length === 0;
 if (!result.valid) {

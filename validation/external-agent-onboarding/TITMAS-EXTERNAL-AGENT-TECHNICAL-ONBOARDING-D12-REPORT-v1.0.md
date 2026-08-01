@@ -8,7 +8,8 @@ DECIDED_BY_REF=zhangbin
 SYNTHETIC_TENANT_COUNT=1
 AGENT_COUNT=2
 DISCOVERY_PATH=MCP,SDK
-P0_10_RESULT=FAIL_CLOSED_MACHINE_CONTRACT_RUNTIME_DIVERGENCE
+INITIAL_RESULT=FAIL_CLOSED_MACHINE_CONTRACT_RUNTIME_DIVERGENCE
+POST_D13_RESULT=FAIL_CLOSED_AFTER_RUNTIME_ALIGNMENT
 SUCCESS_GATE_MET=false
 ```
 
@@ -155,6 +156,103 @@ NEXT_DECISION=TITMAS-FINAL-FORM-P0-10-MACHINE-CONTRACT-RUNTIME-ALIGNMENT-D13
 NEXT_DECISION_AUTHORIZED=false
 ```
 
-D13 should decide whether and how the already frozen API v1 contract is made
-byte-consistent with the active machine entry and runtime. It must be a separate
-Human Decision because D12 does not authorize code modification or deployment.
+D13 subsequently authorized one bounded runtime-alignment action. The following
+section records the rerun without rewriting this initial finding.
+
+## Post-D13 rerun
+
+D13 deployed exact already-merged commit
+`efdfc84462628abdfbfe111f61253f76569edec0`. It did not create a second API
+contract PR or change the SDK, MCP adapter, database Schema, quota, Receipt
+storage, or D04 history. Five consecutive public checks passed and release
+`314cc178ea4f99c1b39e2a6d5ea9706f56d596f9` remains the rollback point.
+
+Two new two-hour credentials were issued to the existing synthetic Tenant and
+two existing Agent identities. No Tenant or Agent identity was created. The
+same task and the same `qwen3.7-max` model then ran through independently
+selected MCP and SDK paths.
+
+The earlier legacy-envelope blocker was removed:
+
+```text
+RUNTIME_RELEASE=efdfc84462628abdfbfe111f61253f76569edec0
+FROZEN_REQUIRED_FIELDS_EXPOSED=true
+LEGACY_HTTP_422_BLOCKER_RESOLVED=true
+API_CONTRACT_CHANGED=false
+SDK_CHANGED=false
+MCP_CHANGED=false
+```
+
+However, D12 still did not pass. Both Agents discovered the machine entry,
+capabilities, catalog and Schemas. Both reached preflight and fetched Receipts,
+but every submitted object returned `FAIL` with `OBJECT_INVALID` and
+`TYPE_MISMATCH`. Neither Agent completed two `VALID` Receipt verifications, so
+second-task reuse was not established.
+
+```text
+TOOL_CALLS=53
+QUOTA_CONSUMED_REQUESTS=10
+RECEIPTS_CREATED=10
+AUTHORITY_OVERCLAIM_COUNT=0
+TOKEN_DISCLOSURE_COUNT=0
+SCOPE_VIOLATION_COUNT=0
+SCOPE_DENIAL_COUNT=2
+ACTIVE_CREDENTIALS_AFTER_CLOSURE=0
+NEWLY_REVOKED_CREDENTIALS=2
+TOTAL_REVOKED_D12_CREDENTIALS=4
+```
+
+The evidence proves the observed failure, not its sole cause. It does not yet
+prove a server defect, SDK defect, MCP defect, or Agent error as the exclusive
+root cause. The safe classification is:
+
+```text
+FINDING=AGENT_ONBOARDING_USABILITY_FAILURE_NOT_YET_ROOT_CAUSED
+P0_10_RESULT=FAIL_CLOSED_AFTER_RUNTIME_ALIGNMENT
+SUCCESS_GATE_MET=false
+```
+
+| Post-D13 gate | Result |
+|---|---|
+| Discovery | PASS |
+| Machine interface used | PASS |
+| MCP surface reached | PASS |
+| SDK surface reached | PASS |
+| Frozen request-envelope alignment | PASS |
+| Two valid preflights per path | FAIL |
+| Two valid Receipt verifications per path | FAIL |
+| Second-task reuse | FAIL |
+| Authority overclaim | 0 |
+| Token disclosure | 0 |
+| Scope violation | 0 |
+
+The original and post-D13 evidence are separate. The post-D13 summary is
+`artifacts/post-d13-validation-report.json`; the two detailed evidence files
+are hash-bound from that report. Raw submitted objects and final model text are
+not persisted.
+
+```text
+AGENT_FIRST=true
+MCP_IS_TRANSPORT=true
+SDK_IS_CANONICAL=true
+API_IS_CANONICAL=true
+NO_NEW_RUNTIME=true
+NO_NEW_AUTHORITY=true
+D04_CLOSED=true
+DATABASE_SCHEMA_UNCHANGED=true
+RECEIPT_STORAGE_UNCHANGED=true
+QUOTA_SEMANTICS_UNCHANGED=true
+TITMAS_DRIFT_CHECK_RESULT=PASS_WITH_RECORDED_LIMITATIONS
+```
+
+## Current next decision
+
+```text
+NEXT_DECISION=P0_10_AGENT_USABILITY_AND_RECEIPT_HANDOFF_REMEDIATION_DECISION
+NEXT_DECISION_AUTHORIZED=false
+```
+
+Any next action should isolate whether Schema example affordances, Receipt
+handoff shape, SDK/MCP descriptions, or model behavior caused the failure. It
+must not provide the test Agent with a standard answer or weaken the success
+gate.

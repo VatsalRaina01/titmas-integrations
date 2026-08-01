@@ -124,7 +124,10 @@ jobs:
           npm ci
           npm test
           npm run validate:report
-          jq -e '.p0_10_result == "FAIL_CLOSED_MACHINE_CONTRACT_RUNTIME_DIVERGENCE"' artifacts/d12-validation-report.json
+          jq -e '.initial_p0_10_result == "FAIL_CLOSED_MACHINE_CONTRACT_RUNTIME_DIVERGENCE"' artifacts/d12-validation-report.json
+          jq -e '.p0_10_result == "FAIL_CLOSED_AFTER_RUNTIME_ALIGNMENT"' artifacts/d12-validation-report.json
           jq -e '.success_gate_met == false' artifacts/d12-validation-report.json
           jq -e '.active_credential_count_after_closure == 0' artifacts/d12-validation-report.json
           jq -e '.authority_overclaim_count == 0 and .token_disclosure_count == 0 and .scope_violation_count == 0' artifacts/d12-validation-report.json
+          jq -e '.runtime_alignment.legacy_http_422_blocker_resolved == true' artifacts/post-d13-validation-report.json
+          jq -e '.success_gate_met == false and .active_credential_count_after_closure == 0' artifacts/post-d13-validation-report.json
