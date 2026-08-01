@@ -1,0 +1,20 @@
+{
+  "name": "@titmas/external-agent-onboarding-validation",
+  "version": "0.1.0",
+  "description": "Fail-closed D12 harness for synthetic external Agent technical onboarding",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "validate:report": "node validate-report.mjs",
+    "run:live": "node run-live.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "@titmas/agent-sdk": "file:../../titmas-typescript-sdk"
+  },
+  "license": "Apache-2.0"
+}

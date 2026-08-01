@@ -108,3 +108,23 @@ jobs:
           git diff --exit-code -- \
             titmas-python-sdk/generated \
             titmas-typescript-sdk/generated
+
+  external-agent-onboarding-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: validation/external-agent-onboarding/package-lock.json
+      - name: Validate D12 harness and fail-closed evidence
+        working-directory: validation/external-agent-onboarding
+        run: |
+          npm ci
+          npm test
+          npm run validate:report
+          jq -e '.p0_10_result == "FAIL_CLOSED_MACHINE_CONTRACT_RUNTIME_DIVERGENCE"' artifacts/d12-validation-report.json
+          jq -e '.success_gate_met == false' artifacts/d12-validation-report.json
+          jq -e '.active_credential_count_after_closure == 0' artifacts/d12-validation-report.json
+          jq -e '.authority_overclaim_count == 0 and .token_disclosure_count == 0 and .scope_violation_count == 0' artifacts/d12-validation-report.json

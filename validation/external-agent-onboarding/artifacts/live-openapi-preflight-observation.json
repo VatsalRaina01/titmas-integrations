@@ -1,0 +1,29 @@
+{
+  "observed_at": "2026-08-01T16:18:00Z",
+  "origin": "https://redcrag.cn",
+  "service_version": "314cc178ea4f99c1b39e2a6d5ea9706f56d596f9",
+  "maturity_state": "FINAL_FORM_TECHNICAL_CANDIDATE_NOT_PRODUCTION",
+  "openapi_sha256": "983e7d927da73c298f0ba38cc65b102de45ef3626b684edfb09974cd9749135e",
+  "preflight_schema_name": "PreflightEnvelope",
+  "required": [
+    "api_version",
+    "request_id",
+    "idempotency_key",
+    "tenant_id",
+    "agent_identity",
+    "timestamp",
+    "object"
+  ],
+  "properties": [
+    "agent_identity",
+    "api_version",
+    "idempotency_key",
+    "object",
+    "request_id",
+    "schema_name",
+    "tenant_id",
+    "timestamp"
+  ],
+  "credential_material_in_observation": false,
+  "authority_effect": false
+}

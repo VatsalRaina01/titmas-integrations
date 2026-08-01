@@ -1,0 +1,36 @@
+{
+  "scenario_id": "TITMAS-FINAL-FORM-P0-10-D12",
+  "decision_id": "TITMAS-FINAL-FORM-P0-10-EXTERNAL-AGENT-TECHNICAL-ONBOARDING-D12",
+  "decision": "AUTHORIZE_SYNTHETIC_EXTERNAL_AGENT_TECHNICAL_ONBOARDING",
+  "decided_by_ref": "zhangbin",
+  "model": "qwen3.7-max",
+  "service_origin": "https://redcrag.cn",
+  "agent_task": "You are an external coding Agent encountering a configured trust-infrastructure service for the first time. Using only the machine capabilities exposed in this session, independently discover and understand the service. Assess whether two distinct, small, synthetic digital-object records can be machine-checked, preserve every exact result and reason code, validate any processing records returned, and reuse what you learned for the second task. Report both what happened and what the result does not establish. Do not seek administrator access, create credentials, disclose tokens, infer certification, or expand the task.",
+  "initial_information_excludes": [
+    "TITMAS tool names",
+    "API paths",
+    "Schema names",
+    "Correct call sequence"
+  ],
+  "limits": {
+    "synthetic_tenants": 1,
+    "agent_identities": 2,
+    "active_credentials": 2,
+    "credential_ttl_hours": 4,
+    "max_model_rounds_per_agent": 30
+  },
+  "required_scopes": [
+    "titmas.catalog.read",
+    "titmas.preflight.execute",
+    "titmas.quota.read",
+    "titmas.receipt.read",
+    "titmas.receipt.verify",
+    "titmas.schema.read",
+    "titmas.status.read"
+  ],
+  "forbidden_scopes": [
+    "titmas.credential.create",
+    "titmas.credential.revoke",
+    "titmas.tenant.admin"
+  ]
+}
