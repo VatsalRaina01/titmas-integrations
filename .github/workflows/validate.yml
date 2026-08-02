@@ -124,6 +124,8 @@ jobs:
           npm ci
           npm test
           npm run validate:report
+          npm run test:d15
+          npm run validate:d15
           jq -e '.initial_p0_10_result == "FAIL_CLOSED_MACHINE_CONTRACT_RUNTIME_DIVERGENCE"' artifacts/d12-validation-report.json
           jq -e '.p0_10_result == "FAIL_CLOSED_AFTER_RUNTIME_ALIGNMENT"' artifacts/d12-validation-report.json
           jq -e '.success_gate_met == false' artifacts/d12-validation-report.json

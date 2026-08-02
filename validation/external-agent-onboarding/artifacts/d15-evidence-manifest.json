@@ -1,0 +1,41 @@
+{
+  "schema_version": "v1.0",
+  "artifact_type": "D15_EVIDENCE_MANIFEST",
+  "decision_id": "TITMAS-P0-10-PRIVACY-PRESERVING-STRUCTURAL-DIAGNOSTIC-D15",
+  "generated_from": "ALLOWLISTED_SANITIZED_IN_MEMORY_DIAGNOSTIC_ONLY",
+  "evidence": {
+    "d15-structural-diagnostic-results.json": {
+      "sha256": "6e876389fbd17ed6167c811df3384f0c5646516606b0dfa2e3131b4c8ba38d2e",
+      "bytes": 7510
+    },
+    "d15-object-issue-summary.json": {
+      "sha256": "988a2769b1ec24a2fbfa3b595e3154a858c60306b4e088daae0259e0077645cd",
+      "bytes": 1929
+    },
+    "d15-receipt-handoff-summary.json": {
+      "sha256": "818c8e992cfcab97060974d0fe7a516268909f94518fb8942082c902a43800df",
+      "bytes": 1061
+    },
+    "TITMAS-P0-10-STRUCTURAL-DIAGNOSTIC-D15-REPORT-v1.0.md": {
+      "sha256": "034a4efb914b4679e97d3c795a3e16996449ba3d827daf605d435dd3474f3178",
+      "bytes": 4161
+    }
+  },
+  "frozen_baseline": {
+    "openapi_sha256": "4a56b4b4e1c841f8349ac9e79df82fd610467e7c1c1406e428cd251d5932eaf0",
+    "python_sdk_tree": "eecb5fc7adb4a5212f24009b5eac8dc7f3850653",
+    "typescript_sdk_tree": "83a9535962f5ff4a0e9af4450cea9229c930d6b0",
+    "mcp_tree": "fffa5e19a1eeb7e2de6f4b35a78f1ea4d882720e",
+    "gateway_runtime_release": "efdfc84462628abdfbfe111f61253f76569edec0"
+  },
+  "d12_retained": {
+    "p0_10_result": "FAIL_CLOSED_AFTER_RUNTIME_ALIGNMENT",
+    "initial_failure_artifact": "d12-validation-report.json",
+    "initial_failure_sha256": "4b35b56b2e8a63a29c0d2eb6b29e2328f31e5ab4f1c99a541d4d34b9ab035fc6",
+    "post_d13_failure_artifact": "post-d13-validation-report.json",
+    "post_d13_failure_sha256": "90e60766263f2facd510e52107106bcc7d599f29d8836fa04a890d1607d5fa6f"
+  },
+  "raw_object_in_manifest": false,
+  "raw_receipt_in_manifest": false,
+  "credential_material_in_manifest": false
+}
