@@ -1,0 +1,709 @@
+{
+  "schema_version": "v0.1",
+  "session_id": "D12-02-SDK",
+  "path": "SDK",
+  "path_selection": "INDEPENDENT_COVERAGE_PATH",
+  "agent_identity_reference": "sha256:7c9266020a645561",
+  "credential_reference": "sha256:17504656b714c57c",
+  "credential_ttl_hours_maximum": 4,
+  "delegated_scope_count": 7,
+  "discovery_success": true,
+  "capability_read_success": true,
+  "schema_selection_success": true,
+  "preflight_success": false,
+  "result_handling_success": true,
+  "receipt_fetch_success": true,
+  "receipt_verification_success": false,
+  "second_task_reuse": false,
+  "reason_codes": [
+    "OBJECT_INVALID",
+    "Response returned an error code",
+    "TYPE_MISMATCH"
+  ],
+  "tool_calls": 36,
+  "latency_ms": 649410,
+  "authority_overclaim_count": 0,
+  "token_disclosure_count": 0,
+  "scope_violation_count": 0,
+  "scope_denial_count": 0,
+  "final_response_sha256": "20ecf684d09b120518f1b5507039dd3a4649a7dad6828be8fcb48f1523b58e82",
+  "final_response_byte_length": 5724,
+  "credential_material_in_provider_input": false,
+  "evidence": [
+    {
+      "sequence": 1,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "discover_machine_interface",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "93510418932ce0ae43a2b933d7615f9cd42e669ce0d853cc12ba90043776b621",
+        "byte_length": 7197,
+        "reason_codes": []
+      },
+      "latency_ms": 238
+    },
+    {
+      "sequence": 2,
+      "source": "SDK",
+      "tool_name": "sdk_capabilities",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "18e016b92b24c5e04e5daaa0edfe6ca04ad06d8b5b30fea2da13bd4f738eb9e2",
+        "byte_length": 1748,
+        "reason_codes": []
+      },
+      "latency_ms": 103
+    },
+    {
+      "sequence": 3,
+      "source": "SDK",
+      "tool_name": "sdk_status",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "2c0b4cda3febb661430aaae2c0356302902665c3c69df20fe24797197b32d283",
+        "byte_length": 1710,
+        "reason_codes": []
+      },
+      "latency_ms": 39
+    },
+    {
+      "sequence": 4,
+      "source": "SDK",
+      "tool_name": "sdk_catalog",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "7b5a1c862152883e4e868c6614a5625b01b57e929436f3d9f3883cbaaa0c31d9",
+        "byte_length": 7934,
+        "reason_codes": []
+      },
+      "latency_ms": 95
+    },
+    {
+      "sequence": 5,
+      "source": "SDK",
+      "tool_name": "sdk_quota",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "343cd80798da9d00f7e62afb07df63e8c26de91a9943db2cdc1a4955c963913b",
+        "byte_length": 570,
+        "reason_codes": []
+      },
+      "latency_ms": 95
+    },
+    {
+      "sequence": 6,
+      "source": "SDK",
+      "tool_name": "sdk_schema",
+      "argument_sha256": "366dc1ad51c07f2ba4434cfd8f5f000101feecb3bc114c1e0cf7eb394c455b60",
+      "argument_keys": [
+        "schema_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "ef3a4d436ab94344cdb926ecc1435b1f902feca409497b6a9861cf8386b55cb0",
+        "byte_length": 4026,
+        "reason_codes": []
+      },
+      "latency_ms": 86
+    },
+    {
+      "sequence": 7,
+      "source": "SDK",
+      "tool_name": "sdk_schema",
+      "argument_sha256": "b8ebc689d16974f11608dc9cff76396f249e9a86b00291be000b8cc19c2bd7a9",
+      "argument_keys": [
+        "schema_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "06d29afc61522ba09164d3e48636a53fd32497009eda9e887984d366c91267ed",
+        "byte_length": 1975,
+        "reason_codes": []
+      },
+      "latency_ms": 103
+    },
+    {
+      "sequence": 8,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "2b0abf55c601c0c0249b54a7fd5ba36bada0cd8da6bf6f4bc48894efcf592fc6",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "305d5d1d88d6b0ca87bec54fddeffb7b472b9d52c46ae0df1882ae6f9f69c2bc",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 9,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "cdac7a7ca64495925e311171f08313ebca95372944d8785cbd65f24dc8e9b5c0",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "586da25b4bd8c366d3fd5639858342aa93b468a40f4d7f66694baad8ea64e628",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 10,
+      "source": "SDK",
+      "tool_name": "sdk_preflight",
+      "argument_sha256": "c4b827e196d532edc466cfeed573095188a140ebe31e17b18fd871187a4778eb",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "4b0cb5516966e9c106b8d2b2fe0c80dcbb5f43c2496619d7cc74eae871e7f171",
+        "byte_length": 382,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:e05aa3aa3d1ae001"
+      },
+      "latency_ms": 141
+    },
+    {
+      "sequence": 11,
+      "source": "SDK",
+      "tool_name": "sdk_preflight",
+      "argument_sha256": "fec55150e6ff41c2346b8672b1247e2f796ac4b973e911bef91b6cfb6f4be4c7",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "a7fe89dc9db149f870e4326b32c69f0e8ed891e64597a1c7544df678465036ee",
+        "byte_length": 382,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:d76b9b0a3bbe55cf"
+      },
+      "latency_ms": 90
+    },
+    {
+      "sequence": 12,
+      "source": "SDK",
+      "tool_name": "sdk_schema",
+      "argument_sha256": "3d06912016232510d13b6e402aaa58a33652a1004d4c9a0d120f7804a0d9ccf4",
+      "argument_keys": [
+        "schema_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "5bd14af6cd3a9df237f4d96a7bfe10aefbb5630f212313b3491d01f635bf3c33",
+        "byte_length": 1996,
+        "reason_codes": []
+      },
+      "latency_ms": 81
+    },
+    {
+      "sequence": 13,
+      "source": "SDK",
+      "tool_name": "sdk_schema",
+      "argument_sha256": "7bc19deb1418c9eaac47768741cdc09e1fbb2f39d6e959363d1cb9aa20e39e1b",
+      "argument_keys": [
+        "schema_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "3a1c31101ed82da2db4b2e87a960e2f77203833ac32283f91643d2329e5b0060",
+        "byte_length": 1979,
+        "reason_codes": []
+      },
+      "latency_ms": 157
+    },
+    {
+      "sequence": 14,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "241e241774b7139039a03a575c4ea422cf320825591753adb529dc00bd2ef7a9",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "b90f9617fa96e73aab3dc20059cb18ab982c71bc1eb138bdcb46f03342e65913",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 15,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "cdac7a7ca64495925e311171f08313ebca95372944d8785cbd65f24dc8e9b5c0",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "586da25b4bd8c366d3fd5639858342aa93b468a40f4d7f66694baad8ea64e628",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 16,
+      "source": "SDK",
+      "tool_name": "sdk_preflight",
+      "argument_sha256": "14ba31470b376ce864060690d0beff24d05a8ba11545cec4f39ddd83e9f1e1ac",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "9bac20a2a32d5fd6e8c3a9ff06dfa96b01c020d330d495df6b14cdc91f84cf47",
+        "byte_length": 386,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:25e45a5e116ca612"
+      },
+      "latency_ms": 90
+    },
+    {
+      "sequence": 17,
+      "source": "SDK",
+      "tool_name": "sdk_preflight",
+      "argument_sha256": "09a185af4ff64c3e7764470f5797d292dc7e91ac8077ef6f72e3592ca73a525d",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "ca17fb5e446b892b20fbb3ce98ba5933f29cdc3488588bb9d02c0ecf1fcb0188",
+        "byte_length": 382,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:e336f811731c31eb"
+      },
+      "latency_ms": 90
+    },
+    {
+      "sequence": 18,
+      "source": "SDK",
+      "tool_name": "sdk_schema",
+      "argument_sha256": "304eaa34969a8d7711b1bcd27f01225396da7de1f19083139c8c8bbdda30d1a4",
+      "argument_keys": [
+        "schema_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "4be69c2394cdc03cb599de3dca5e9ad73ab07212c6740b5c56ba6abbe58b7f65",
+        "byte_length": 1835,
+        "reason_codes": []
+      },
+      "latency_ms": 329
+    },
+    {
+      "sequence": 19,
+      "source": "SDK",
+      "tool_name": "sdk_schema",
+      "argument_sha256": "7deecf352822e7417046ea84b83256560783dbf52a176f1cd026e357466f4bef",
+      "argument_keys": [
+        "schema_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "a64565095bbfa44be52e48cdf1e458c3684f5a3ddd5e356003235fde9fc87f32",
+        "byte_length": 2269,
+        "reason_codes": []
+      },
+      "latency_ms": 78
+    },
+    {
+      "sequence": 20,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "ef86afa08a4f97ffece1d07d3a55dd1d4c7b81627ecb7811695f5d53c7fddf28",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "41e6d2c12687079ee6c844924db7d09dfefa777b160b9ffa619aa47169268ea7",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 21,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "4e79e36e070a1814e26a1d79169ed33561da72eef54dfb5c0b69df69e2df9a4a",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "ce86fe9d90ef8c1a3c73f3a5397a2de1b53e3157c8989d875eb0262e6ea14998",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 22,
+      "source": "SDK",
+      "tool_name": "sdk_preflight",
+      "argument_sha256": "682d29d332f79971afd2a076199056fd367db84e054400b97c3b0d844194989d",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "bfe5c94180d64c0b0b7134ac09a59a8faa6dfb962cc163e3298d450eb912646e",
+        "byte_length": 388,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:2fe3fe789008f0d1"
+      },
+      "latency_ms": 275
+    },
+    {
+      "sequence": 23,
+      "source": "SDK",
+      "tool_name": "sdk_preflight",
+      "argument_sha256": "4fcec310fb79d6db790c8b94c497f741efc0014ab022d1c4e57dde19e34a60e0",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "21f8c1fb130da7a22dc34935b4c484ffdbb251ab6f3d9a6dd8c4b1ee744b9d27",
+        "byte_length": 382,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:cffe5fe475d0b4a2"
+      },
+      "latency_ms": 87
+    },
+    {
+      "sequence": 24,
+      "source": "SDK",
+      "tool_name": "sdk_schema",
+      "argument_sha256": "475413e7e85245ee4ab7d68d87198c0d0da4fc7373e753e3ee7c0dd3a443c24b",
+      "argument_keys": [
+        "schema_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "3c7e166e867197098fdd1722bd18c3bbca0e3a23c25b035ffc7d7bbef7644a57",
+        "byte_length": 2129,
+        "reason_codes": []
+      },
+      "latency_ms": 166
+    },
+    {
+      "sequence": 25,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "1ed3223c6cdf55619b00240140c7ced2d46aea0775124ebb1b8f1f10b1e54114",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "d1c0e66c0474f35d821af16fd61e79472d2cab4cd4aecab2237618902d47549a",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 26,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "8d958f767fd14fbd5b9b3ea96c15ecbf467f733cecc4f70e6cf8b0a52b27fbf7",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "eb6912261c2b09c642a953c8935f733cb21229cc7a50929a0d4284d9a5a18f8a",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 27,
+      "source": "SDK",
+      "tool_name": "sdk_preflight",
+      "argument_sha256": "99c8382ef202aee343f93d91240ec92c387cbd52e553be97c603a43077291e14",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "6d2320751ea031ca4ccfe2b49d7de29c317aa9769e93d87baa36f5a18689ffc9",
+        "byte_length": 384,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:71b09b2d4cb5112b"
+      },
+      "latency_ms": 91
+    },
+    {
+      "sequence": 28,
+      "source": "SDK",
+      "tool_name": "sdk_preflight",
+      "argument_sha256": "fe9f0fa0a37c70e973a8de992e3c804d5af90dd5bea5918f7845e915d3ffe081",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "cd9c3495ef79a1dfe1c532f6c4201b5784f5d6788cd6d59c636a503783f482ac",
+        "byte_length": 382,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:ae6f196eb4ce1cea"
+      },
+      "latency_ms": 87
+    },
+    {
+      "sequence": 29,
+      "source": "SDK",
+      "tool_name": "sdk_get_receipt",
+      "argument_sha256": "da02c4402ed972630c8316ea603fa2dcf0d4927119d0e5129ddf5735a84f90d4",
+      "argument_keys": [
+        "receipt_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "caa3e0a818dcf5e72db3790c23b0dddb2a0a363382c5a894e75827e9eb1d654e",
+        "byte_length": 1981,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL"
+      },
+      "latency_ms": 87
+    },
+    {
+      "sequence": 30,
+      "source": "SDK",
+      "tool_name": "sdk_get_receipt",
+      "argument_sha256": "b94aaf53110b45b72a0a6f7303bd6716809bc367718f72a2be9f083d3e789052",
+      "argument_keys": [
+        "receipt_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "3ab58b11abd98a6ba5b96f97f80d04b7e3570ce1c76d25e819a3c79a93590eb6",
+        "byte_length": 1981,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL"
+      },
+      "latency_ms": 77
+    },
+    {
+      "sequence": 31,
+      "source": "SDK",
+      "tool_name": "sdk_verify_receipt",
+      "argument_sha256": "7b454fa79454a432cd15b44412a49cfde002d89e2b5a2248526e6e490bf7cb8c",
+      "argument_keys": [
+        "receipt"
+      ],
+      "result": {
+        "ok": false,
+        "sha256": "610149c500c70a18c4d26cf0650b58053f2aa32c774bff34cb25f660485df4ef",
+        "byte_length": 113,
+        "reason_codes": [
+          "Response returned an error code"
+        ]
+      },
+      "latency_ms": 82
+    },
+    {
+      "sequence": 32,
+      "source": "SDK",
+      "tool_name": "sdk_verify_receipt",
+      "argument_sha256": "a59097a653c0bd440c75b0281f06c0e1cc3ed50e0875ef14ced31897113b5db1",
+      "argument_keys": [
+        "receipt"
+      ],
+      "result": {
+        "ok": false,
+        "sha256": "610149c500c70a18c4d26cf0650b58053f2aa32c774bff34cb25f660485df4ef",
+        "byte_length": 113,
+        "reason_codes": [
+          "Response returned an error code"
+        ]
+      },
+      "latency_ms": 206
+    },
+    {
+      "sequence": 33,
+      "source": "SDK",
+      "tool_name": "sdk_verify_receipt",
+      "argument_sha256": "16b79bb7d23e0171be0c6cb13caff3910d169ff478721c8f9fafbab88c1b63dd",
+      "argument_keys": [
+        "receipt"
+      ],
+      "result": {
+        "ok": false,
+        "sha256": "610149c500c70a18c4d26cf0650b58053f2aa32c774bff34cb25f660485df4ef",
+        "byte_length": 113,
+        "reason_codes": [
+          "Response returned an error code"
+        ]
+      },
+      "latency_ms": 82
+    },
+    {
+      "sequence": 34,
+      "source": "SDK",
+      "tool_name": "sdk_verify_receipt",
+      "argument_sha256": "26456ab75044f2cf34eeb162d69a773c47c9c9cbd0979d58afbe44fcb34cf00a",
+      "argument_keys": [
+        "receipt"
+      ],
+      "result": {
+        "ok": false,
+        "sha256": "610149c500c70a18c4d26cf0650b58053f2aa32c774bff34cb25f660485df4ef",
+        "byte_length": 113,
+        "reason_codes": [
+          "Response returned an error code"
+        ]
+      },
+      "latency_ms": 83
+    },
+    {
+      "sequence": 35,
+      "source": "SDK",
+      "tool_name": "sdk_verify_receipt",
+      "argument_sha256": "24d1670f561f014efa9115e0ba9e3963bddbc847b371e2e3f2ef99ef1734ed50",
+      "argument_keys": [
+        "receipt"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "d533b1dca266749308c289485054df1e26ba694621fa761ed14583eb5caef84a",
+        "byte_length": 209,
+        "reason_codes": [
+          "OBJECT_INVALID"
+        ],
+        "valid": false,
+        "verification_status": "INVALID_SIGNATURE"
+      },
+      "latency_ms": 84
+    },
+    {
+      "sequence": 36,
+      "source": "SDK",
+      "tool_name": "sdk_verify_receipt",
+      "argument_sha256": "b18563d66abb4bb31896913c894564539e874265124e5254065489199dad2744",
+      "argument_keys": [
+        "receipt"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "d533b1dca266749308c289485054df1e26ba694621fa761ed14583eb5caef84a",
+        "byte_length": 209,
+        "reason_codes": [
+          "OBJECT_INVALID"
+        ],
+        "valid": false,
+        "verification_status": "INVALID_SIGNATURE"
+      },
+      "latency_ms": 84
+    }
+  ],
+  "limitations": [
+    "Synthetic inputs only; no customer or production data was used.",
+    "Receipt verification checks declared structure and cryptographic status, not Truth or Authority.",
+    "One tenant does not establish cross-tenant production onboarding readiness."
+  ]
+}

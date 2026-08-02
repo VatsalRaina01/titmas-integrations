@@ -1,0 +1,38 @@
+{
+  "schema_version": "v1.0",
+  "artifact_type": "D15_RECEIPT_HANDOFF_SUMMARY",
+  "decision_id": "TITMAS-P0-10-PRIVACY-PRESERVING-STRUCTURAL-DIAGNOSTIC-D15",
+  "root_cause": {
+    "root_cause_category": "RECEIPT_HANDOFF_NOT_ASSESSED",
+    "affected_layer": "NOT_ASSESSED",
+    "supporting_observations": [
+      "handoff_count=0",
+      "agent_nested_receipt_match=0",
+      "fetched_to_wire_receipt_mismatch=0",
+      "wire_verify_contract_valid=0",
+      "wire_verify_contract_invalid=0"
+    ],
+    "counterevidence": [
+      "Fewer than two comparable Receipt handoffs were observed."
+    ],
+    "excluded_layers": [],
+    "confidence_score": 0.55,
+    "confidence_level": "LOW",
+    "structural_diagnostic_reproduced": false,
+    "relevant_observations_agree": false,
+    "competing_layers_excluded_by_evidence": false
+  },
+  "sessions": [
+    {
+      "session_id": "D15-01-MCP",
+      "path": "MCP",
+      "handoffs": []
+    },
+    {
+      "session_id": "D15-02-SDK",
+      "path": "SDK",
+      "handoffs": []
+    }
+  ],
+  "raw_receipt_persisted": false
+}

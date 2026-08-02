@@ -1,0 +1,45 @@
+{
+  "scenario_id": "TITMAS-P0-10-D15-FINAL",
+  "decision_id": "TITMAS-P0-10-PRIVACY-PRESERVING-STRUCTURAL-DIAGNOSTIC-D15",
+  "decision": "AUTHORIZE_ONE_FINAL_BOUNDED_ANALYSIS_ONLY_DIAGNOSTIC",
+  "decided_by_ref": "zhangbin",
+  "model": "qwen3.7-max",
+  "service_origin": "https://redcrag.cn",
+  "task_class": "Independently determine whether one small synthetic digital-object record can be machine-checked and whether any returned processing record can be structurally and cryptographically verified. Use only the machine capabilities exposed in this session. Preserve every exact result and reason code, do not infer Authority, Truth, Certification, adoption, or production readiness, and stop after at most five preflight attempts.",
+  "initial_information_excludes": [
+    "TITMAS tool names",
+    "API paths",
+    "Schema names",
+    "Correct object",
+    "Field error positions",
+    "Expected field types",
+    "Hidden fixtures",
+    "Tool call order",
+    "Correct Receipt wrapper"
+  ],
+  "limits": {
+    "agent_sessions": 2,
+    "preflight_calls_per_session": 5,
+    "total_preflight_calls": 10,
+    "active_credentials": 2,
+    "credential_ttl_hours": 2,
+    "max_model_rounds_per_agent": 24
+  },
+  "required_scopes": [
+    "titmas.catalog.read",
+    "titmas.preflight.execute",
+    "titmas.quota.read",
+    "titmas.receipt.read",
+    "titmas.receipt.verify",
+    "titmas.schema.read",
+    "titmas.status.read"
+  ],
+  "forbidden_scopes": [
+    "titmas.usage.read",
+    "titmas.credential.create",
+    "titmas.credential.revoke",
+    "titmas.tenant.admin",
+    "titmas.billing.read",
+    "admin"
+  ]
+}

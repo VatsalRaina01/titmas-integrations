@@ -1,0 +1,59 @@
+{
+  "schema_version": "v1.0",
+  "artifact_type": "D15_OBJECT_ISSUE_SUMMARY",
+  "decision_id": "TITMAS-P0-10-PRIVACY-PRESERVING-STRUCTURAL-DIAGNOSTIC-D15",
+  "root_cause": {
+    "root_cause_category": "MULTI_LAYER_OR_NOT_ASSESSED",
+    "affected_layer": "NOT_ASSESSED",
+    "supporting_observations": [
+      "attempt_count=1",
+      "locally_invalid_before_mapping=0",
+      "mapped_object_unchanged=1",
+      "gateway_local_result_agreement=0"
+    ],
+    "counterevidence": [],
+    "excluded_layers": [],
+    "confidence_score": 0.58,
+    "confidence_level": "LOW",
+    "structural_diagnostic_reproduced": false,
+    "relevant_observations_agree": false,
+    "competing_layers_excluded_by_evidence": false
+  },
+  "gateway_local_validator_agree": "NOT_ASSESSED",
+  "sessions": [
+    {
+      "session_id": "D15-01-MCP",
+      "path": "MCP",
+      "attempts": []
+    },
+    {
+      "session_id": "D15-02-SDK",
+      "path": "SDK",
+      "attempts": [
+        {
+          "attempt": 1,
+          "schema_id": "entity-object",
+          "schema_version": "v0.1",
+          "object_digest_reference": "sha256:2883ef39cce386059c3d43ebcb0c32e7a5d3afb2f37340037361e09119420173",
+          "supplied_digest_matches": false,
+          "property_count": 0,
+          "local_schema_valid": null,
+          "local_validation_issue_count": 0,
+          "local_validation_issues": [],
+          "local_validator_status": "NOT_ASSESSED_VALIDATOR_ERROR",
+          "mapped_object_matches_agent_input": true,
+          "gateway_result": null,
+          "gateway_reason_codes": [],
+          "gateway_local_agreement": "NOT_ASSESSED",
+          "feedback": {
+            "field_localization_available": false,
+            "expected_type_available": false,
+            "missing_required_field_available": false,
+            "machine_readable_repair_action_available": false
+          }
+        }
+      ]
+    }
+  ],
+  "raw_object_persisted": false
+}

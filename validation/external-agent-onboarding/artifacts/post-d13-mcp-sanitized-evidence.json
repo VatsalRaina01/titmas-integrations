@@ -1,0 +1,337 @@
+{
+  "schema_version": "v0.1",
+  "session_id": "D12-01-MCP",
+  "path": "MCP",
+  "path_selection": "AUTONOMOUS_PRIMARY_SELECTION",
+  "agent_identity_reference": "sha256:e0362138d1f6b7ff",
+  "credential_reference": "sha256:dfe21130348ebebf",
+  "credential_ttl_hours_maximum": 4,
+  "delegated_scope_count": 7,
+  "discovery_success": true,
+  "capability_read_success": true,
+  "schema_selection_success": true,
+  "preflight_success": false,
+  "result_handling_success": true,
+  "receipt_fetch_success": true,
+  "receipt_verification_success": false,
+  "second_task_reuse": false,
+  "reason_codes": [
+    "DELEGATED_SCOPE_ABSENT",
+    "OBJECT_INVALID",
+    "RESOURCE_OUTSIDE_DISCOVERED_SCHEMA_BOUNDARY",
+    "SDK_REQUEST_FAILED",
+    "TYPE_MISMATCH"
+  ],
+  "tool_calls": 17,
+  "latency_ms": 233458,
+  "authority_overclaim_count": 0,
+  "token_disclosure_count": 0,
+  "scope_violation_count": 0,
+  "scope_denial_count": 2,
+  "final_response_sha256": "f33d85270b850f2d4a8bc7c12c173897b776cc8d41bce908434e08a1e15700ca",
+  "final_response_byte_length": 9507,
+  "credential_material_in_provider_input": false,
+  "evidence": [
+    {
+      "sequence": 1,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "discover_machine_interface",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "93510418932ce0ae43a2b933d7615f9cd42e669ce0d853cc12ba90043776b621",
+        "byte_length": 7197,
+        "reason_codes": []
+      },
+      "latency_ms": 228
+    },
+    {
+      "sequence": 2,
+      "source": "MCP",
+      "tool_name": "titmas_capabilities",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "18e016b92b24c5e04e5daaa0edfe6ca04ad06d8b5b30fea2da13bd4f738eb9e2",
+        "byte_length": 1748,
+        "reason_codes": []
+      },
+      "latency_ms": 395
+    },
+    {
+      "sequence": 3,
+      "source": "MCP",
+      "tool_name": "titmas_status",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "2c0b4cda3febb661430aaae2c0356302902665c3c69df20fe24797197b32d283",
+        "byte_length": 1710,
+        "reason_codes": []
+      },
+      "latency_ms": 111
+    },
+    {
+      "sequence": 4,
+      "source": "MCP",
+      "tool_name": "titmas_catalog",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "7b5a1c862152883e4e868c6614a5625b01b57e929436f3d9f3883cbaaa0c31d9",
+        "byte_length": 7934,
+        "reason_codes": []
+      },
+      "latency_ms": 101
+    },
+    {
+      "sequence": 5,
+      "source": "MCP",
+      "tool_name": "titmas_quota",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": true,
+        "sha256": "d8e849223389632862ec3a92299f0b0c61d5a4f1220d6ff862b1716127e531dc",
+        "byte_length": 572,
+        "reason_codes": []
+      },
+      "latency_ms": 153
+    },
+    {
+      "sequence": 6,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "read_discovered_resource",
+      "argument_sha256": "0776ffa6f02dacf2cd888302dcc5b7996ecf98809c7764580b599bd074855b3a",
+      "argument_keys": [
+        "path"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "ef3a4d436ab94344cdb926ecc1435b1f902feca409497b6a9861cf8386b55cb0",
+        "byte_length": 4026,
+        "reason_codes": []
+      },
+      "latency_ms": 90
+    },
+    {
+      "sequence": 7,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "read_discovered_resource",
+      "argument_sha256": "64fdaf05c045b40b807720a46cb1908b003516eba6f3371a0a620013c4d7c20f",
+      "argument_keys": [
+        "path"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "06d29afc61522ba09164d3e48636a53fd32497009eda9e887984d366c91267ed",
+        "byte_length": 1975,
+        "reason_codes": []
+      },
+      "latency_ms": 134
+    },
+    {
+      "sequence": 8,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "f2b767b0857552e182863ef7b7524bac1c67270b8742f48b5a72da1a520ae4a0",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "99dba6a4ade0c65f8dd6f31072285f6475ebf243303cb055627071d49b29b330",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 9,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "canonical_sha256",
+      "argument_sha256": "d3c11a21ca82cd7b03b01a59ddce5dcf0ed3bf538c98be24032f82800dcec903",
+      "argument_keys": [
+        "value"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "704e2195c96935f5ab61bf346ac7b84367148448dbb60f91efe02eace865ec45",
+        "byte_length": 121,
+        "reason_codes": []
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 10,
+      "source": "MCP",
+      "tool_name": "titmas_preflight",
+      "argument_sha256": "0787b80a5eeaa648f8f388b7ab49b6f7c754ccc8542896b374c823f77a34e3ee",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "351b83ee32b3dd699d444d3da80362b1fd4279557dcf17ee64be081f4713dbd7",
+        "byte_length": 378,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:22f1222604596c7f"
+      },
+      "latency_ms": 202
+    },
+    {
+      "sequence": 11,
+      "source": "MCP",
+      "tool_name": "titmas_preflight",
+      "argument_sha256": "bd610b48f21933dbf7157d8553a0321846bef32128824e0bda88f70a51517c80",
+      "argument_keys": [
+        "idempotency_key",
+        "object",
+        "object_digest",
+        "request_id",
+        "schema_id",
+        "schema_version"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "a8bca9683547e234021941c10598a78249f65c5727d2888b072d87126387fe38",
+        "byte_length": 378,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL",
+        "receipt_reference": "sha256:be8f43ee0c9a7f67"
+      },
+      "latency_ms": 178
+    },
+    {
+      "sequence": 12,
+      "source": "MCP",
+      "tool_name": "titmas_get_receipt",
+      "argument_sha256": "d1c6e67c038145c7d0c5c6345a543bf5e342ad67e53cf8db3720c147ad98043c",
+      "argument_keys": [
+        "receipt_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "10318281160550074e2e83c4836811839f28d63ddd35e988ad7e5a32f95d73b1",
+        "byte_length": 1915,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL"
+      },
+      "latency_ms": 92
+    },
+    {
+      "sequence": 13,
+      "source": "MCP",
+      "tool_name": "titmas_get_receipt",
+      "argument_sha256": "ff6b61c40e3780386861e7f320c8ecf00dfb8c7c04e4d7cf4882449006ebeffa",
+      "argument_keys": [
+        "receipt_id"
+      ],
+      "result": {
+        "ok": true,
+        "sha256": "b3f5e822c58f095c60d81860a67620b972c60d52f294d4c80a254147732597eb",
+        "byte_length": 1977,
+        "reason_codes": [
+          "OBJECT_INVALID",
+          "TYPE_MISMATCH"
+        ],
+        "result": "FAIL"
+      },
+      "latency_ms": 99
+    },
+    {
+      "sequence": 14,
+      "source": "MCP",
+      "tool_name": "titmas_verify_receipt",
+      "argument_sha256": "7d5df5dd88e5e79ae4a5760de3d2bcc7c0ee594a82fe2e6dd42f6a9f448b0006",
+      "argument_keys": [
+        "receipt"
+      ],
+      "result": {
+        "ok": false,
+        "sha256": "42a22272c61b4fe52680a8e6470b3677a0a8882c7470b859b8c3946c05df3c2d",
+        "byte_length": 205,
+        "reason_codes": [
+          "SDK_REQUEST_FAILED"
+        ]
+      },
+      "latency_ms": 93
+    },
+    {
+      "sequence": 15,
+      "source": "MCP",
+      "tool_name": "titmas_verify_receipt",
+      "argument_sha256": "98bfeb04c0376a3cd0672b467f7a238ff4c08e98fd67de7f1b623b624da17b87",
+      "argument_keys": [
+        "receipt"
+      ],
+      "result": {
+        "ok": false,
+        "sha256": "42a22272c61b4fe52680a8e6470b3677a0a8882c7470b859b8c3946c05df3c2d",
+        "byte_length": 205,
+        "reason_codes": [
+          "SDK_REQUEST_FAILED"
+        ]
+      },
+      "latency_ms": 96
+    },
+    {
+      "sequence": 16,
+      "source": "GENERIC_MACHINE_CAPABILITY",
+      "tool_name": "read_discovered_resource",
+      "argument_sha256": "68237b488af7bf49e839b41e37141a0123959140703c6e8d310f000346e362ae",
+      "argument_keys": [
+        "path"
+      ],
+      "result": {
+        "ok": false,
+        "sha256": "baf8cbdf97b53e36fe1523bfd22d3a748fc73d3c28da6a7f79cc8595ff3be70b",
+        "byte_length": 125,
+        "reason_codes": [
+          "RESOURCE_OUTSIDE_DISCOVERED_SCHEMA_BOUNDARY"
+        ]
+      },
+      "latency_ms": 0
+    },
+    {
+      "sequence": 17,
+      "source": "MCP",
+      "tool_name": "titmas_usage",
+      "argument_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "argument_keys": [],
+      "result": {
+        "ok": false,
+        "sha256": "4b2083ab568705e2eb35d568955edc4cd4c92e57ca384b08e7f4279c27f59238",
+        "byte_length": 104,
+        "reason_codes": [
+          "DELEGATED_SCOPE_ABSENT"
+        ]
+      },
+      "latency_ms": 0
+    }
+  ],
+  "limitations": [
+    "Synthetic inputs only; no customer or production data was used.",
+    "Receipt verification checks declared structure and cryptographic status, not Truth or Authority.",
+    "One tenant does not establish cross-tenant production onboarding readiness."
+  ]
+}

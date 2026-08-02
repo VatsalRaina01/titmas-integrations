@@ -91,3 +91,23 @@ does not use it and does not represent it as the frozen API v1 contract.
 
 See [`agent-entry.json`](agent-entry.json) for the compact machine-readable
 entry and each surface README for clean-install commands.
+
+## External Agent onboarding validation
+
+The D12 synthetic onboarding run is recorded under
+[`validation/external-agent-onboarding/`](validation/external-agent-onboarding/).
+Two unfamiliar Agent sessions discovered both MCP and SDK surfaces, but the run
+failed closed at preflight because the active runtime contract differs from the
+frozen API v1 contract used by the generated SDK and MCP adapter.
+
+Current status:
+
+```text
+P0_10_RESULT=FAIL_CLOSED_MACHINE_CONTRACT_RUNTIME_DIVERGENCE
+API_IS_CANONICAL=false
+ACTIVE_D12_CREDENTIALS=0
+```
+
+Do not interpret source-level SDK/MCP tests as proof of live technical
+onboarding until a separately authorized runtime-alignment decision is executed
+and D12 is rerun.

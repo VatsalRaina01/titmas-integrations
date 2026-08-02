@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://redcrag.cn/schemas/diagnostic/titmas-p0-10-d15-artifact-v1.0.json",
+  "title": "TITMAS P0-10 D15 allowlisted diagnostic artifact",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "decision_id"],
+  "properties": {
+    "schema_version": {"const": "v1.0"},
+    "artifact_type": {
+      "enum": [
+        "D15_STRUCTURAL_DIAGNOSTIC_RESULTS",
+        "D15_OBJECT_ISSUE_SUMMARY",
+        "D15_RECEIPT_HANDOFF_SUMMARY",
+        "D15_EVIDENCE_MANIFEST"
+      ]
+    },
+    "decision_id": {"const": "TITMAS-P0-10-PRIVACY-PRESERVING-STRUCTURAL-DIAGNOSTIC-D15"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"artifact_type": {"const": "D15_STRUCTURAL_DIAGNOSTIC_RESULTS"}}},
+      "then": {
+        "required": [
+          "status",
+          "sessions",
+          "object_construction",
+          "receipt_handoff",
+          "credential_closure",
+          "privacy_findings",
+          "p0_10_result",
+          "next_human_decision"
+        ],
+        "properties": {
+          "sessions": {"type": "array", "minItems": 2, "maxItems": 2},
+          "p0_10_result": {"const": "FAIL_CLOSED_AFTER_RUNTIME_ALIGNMENT"},
+          "new_pr_created": {"const": false},
+          "credential_closure": {
+            "type": "object",
+            "required": [
+              "all_d15_credentials_revoked",
+              "active_d15_credentials",
+              "revoked_credential_http_401_verified"
+            ],
+            "properties": {
+              "all_d15_credentials_revoked": {"const": true},
+              "active_d15_credentials": {"const": 0},
+              "revoked_credential_http_401_verified": {"const": true}
+            }
+          },
+          "privacy_findings": {
+            "type": "object",
+            "required": [
+              "raw_object_findings",
+              "raw_receipt_findings",
+              "token_findings",
+              "authorization_header_findings",
+              "identity_disclosure_findings"
+            ],
+            "properties": {
+              "raw_object_findings": {"const": 0},
+              "raw_receipt_findings": {"const": 0},
+              "token_findings": {"const": 0},
+              "authorization_header_findings": {"const": 0},
+              "identity_disclosure_findings": {"const": 0}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"artifact_type": {"const": "D15_OBJECT_ISSUE_SUMMARY"}}},
+      "then": {
+        "required": ["root_cause", "gateway_local_validator_agree", "sessions", "raw_object_persisted"],
+        "properties": {"raw_object_persisted": {"const": false}}
+      }
+    },
+    {
+      "if": {"properties": {"artifact_type": {"const": "D15_RECEIPT_HANDOFF_SUMMARY"}}},
+      "then": {
+        "required": ["root_cause", "sessions", "raw_receipt_persisted"],
+        "properties": {"raw_receipt_persisted": {"const": false}}
+      }
+    },
+    {
+      "if": {"properties": {"artifact_type": {"const": "D15_EVIDENCE_MANIFEST"}}},
+      "then": {
+        "required": ["evidence", "frozen_baseline", "d12_retained"],
+        "properties": {
+          "raw_object_in_manifest": {"const": false},
+          "raw_receipt_in_manifest": {"const": false},
+          "credential_material_in_manifest": {"const": false}
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}
