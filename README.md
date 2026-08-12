@@ -92,6 +92,11 @@ does not use it and does not represent it as the frozen API v1 contract.
 See [`agent-entry.json`](agent-entry.json) for the compact machine-readable
 entry and each surface README for clean-install commands.
 
+The MCP source candidate's transitive dependency audit and lock-only
+remediation are recorded in
+[`MCP-TRANSITIVE-DEPENDENCY-REMEDIATION-v1.0.md`](MCP-TRANSITIVE-DEPENDENCY-REMEDIATION-v1.0.md).
+This does not publish or deploy the MCP package.
+
 ## External Agent onboarding validation
 
 The D12 synthetic onboarding run is recorded under
