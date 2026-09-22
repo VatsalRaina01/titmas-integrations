@@ -2,7 +2,26 @@
   "schema_version": "1.0",
   "name": "TITMAS Agent Integrations",
   "primary_customer": "AI_AGENT",
-  "service_base_url": "https://redcrag.cn",
+  "public_reference": {
+    "status": "AVAILABLE",
+    "kind": "DETERMINISTIC_LOCAL_REFERENCE",
+    "repository": "https://github.com/joy7758/titmas-demo",
+    "release": "https://github.com/joy7758/titmas-demo/releases/tag/v0.1.0",
+    "quick_start": [
+      "git clone https://github.com/joy7758/titmas-demo.git",
+      "cd titmas-demo/examples/digital-cell",
+      "python3 run.py"
+    ]
+  },
+  "live_service": {
+    "status": "UNAVAILABLE",
+    "observed_at": "2026-09-22",
+    "reason": "LEGACY_SERVICE_ORIGIN_UNREACHABLE",
+    "base_url": null,
+    "historical_origin": "https://redcrag.cn",
+    "calls_supported": false
+  },
+  "service_base_url": null,
   "api_version": "v1",
   "surfaces": {
     "python_sdk": "titmas-python-sdk",
@@ -21,10 +40,13 @@
     "usage": "/api/v1/usage",
     "quota": "/api/v1/quota"
   },
+  "machine_endpoints_status": "CONTRACT_ONLY_NO_LIVE_ORIGIN",
   "reviewed_contract_observation": {
     "snapshot": "openapi/titmas-commercial-api-v1.observed.json",
     "manifest": "openapi/source-manifest.json",
-    "canonical_live_contract": "https://redcrag.cn/api/v1/openapi.json",
+    "canonical_live_contract": null,
+    "historical_observed_contract_url": "https://redcrag.cn/api/v1/openapi.json",
+    "observation_status": "HISTORICAL_UNREACHABLE",
     "service_reported_version": "6962da04394d6e9491bf9feeec1c0ed73f0f3204",
     "retained_live_release_revision": "9bbfce6154d67f4ab50e911b5e49611f5a4a8b57",
     "reported_version_equals_retained_release": false
@@ -66,5 +88,6 @@
     "production_support": false
   },
   "production_ready": false,
-  "paid_launch_authorized": false
+  "paid_launch_authorized": false,
+  "live_service_available": false
 }
