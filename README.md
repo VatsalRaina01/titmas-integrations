@@ -1,7 +1,52 @@
 # TITMAS Agent Integrations
 
+## 中文入口：带着你的智能体先跑一个小样例
+
+TITMAS 面向智能体行动控制与执行证据；本仓库是公共互操作入口，不是私有核心。
+**AI 说完成了，不等于实际交付已经达标。** 先了解怎样保留失败、通过和尚未评估，
+再决定是否接入；不要把结果通过解释成权限、认证或客户接受。
+
+- [无密钥离线样例](examples/offline-review/README.zh-CN.md)：复用现有 Python SDK，
+  三个预设合成响应；不是自动语义检查、真实模型评价或在线服务。
+- [实际内部返工的脱敏讲解](docs/contribution-intake/CASE-STORY.zh-CN.md)：
+  AI阅读、制作返工和TITMAS规则聚合各自做什么；不是外部客户证明。
+- [贡献说明](CONTRIBUTING.zh-CN.md)、[三个任务定义](docs/contribution-intake/tasks.json)及
+  [当前公开任务](https://github.com/joy7758/titmas-integrations/issues?q=is%3Aissue%20is%3Aopen%20label%3Abounded-contribution)：
+  只在维护者已发布的开放任务下认领，不自动合并。
+- [精确许可范围](LICENSE.md)：指定新增文件及明确列出的Python SDK可许可部分采用Apache-2.0；
+  **第三方许可与私有核心不变**，不是全仓库开源声明。
+- [准备与激活规则](docs/contribution-intake/readiness.json)：分支候选不等于上线，当前任务状态以GitHub为准。
+
+首次安装依赖需要网络；演示运行不需要 Key 或网络。Linux/公开采用只以实际验证记录为准。
+
 Public-safe SDKs and adapters for the TITMAS Agent-Native Commercial
 Infrastructure Candidate.
+
+## Current public usability
+
+The runnable public TITMAS experience is the frozen, deterministic
+[TITMAS Digital Cell Demo](https://github.com/joy7758/titmas-demo). It requires
+only Python 3.9+ and no credential, network service, package registry, or
+private repository access:
+
+```bash
+git clone https://github.com/joy7758/titmas-demo.git
+cd titmas-demo/examples/digital-cell
+python3 run.py
+```
+
+The commercial API previously observed at `https://redcrag.cn/api/v1` is not a
+current public service. Its URL is retained only as historical contract
+provenance. The SDKs and adapters in this repository remain source candidates;
+they do not grant a live origin or credential.
+
+```text
+PUBLIC_REFERENCE_STATUS=AVAILABLE
+PUBLIC_REFERENCE_REPOSITORY=https://github.com/joy7758/titmas-demo
+LIVE_SERVICE_STATUS=UNAVAILABLE
+LIVE_SERVICE_CALLS_SUPPORTED=false
+SDK_AND_ADAPTER_STATUS=SOURCE_CANDIDATE
+```
 
 An AI Agent can use this repository to:
 
@@ -17,11 +62,11 @@ An AI Agent can use this repository to:
 
 ```json
 {
-  "service": "https://redcrag.cn",
-  "openapi": "https://redcrag.cn/api/v1/openapi.json",
-  "capabilities": "https://redcrag.cn/api/v1/capabilities",
-  "plans": "https://redcrag.cn/api/v1/plans",
-  "receipt_keys": "https://redcrag.cn/api/v1/receipt-keys"
+  "public_reference": "https://github.com/joy7758/titmas-demo",
+  "public_release": "https://github.com/joy7758/titmas-demo/releases/tag/v0.1.0",
+  "live_service_status": "UNAVAILABLE",
+  "service_base_url": null,
+  "source_candidate_entry": "agent-entry.json"
 }
 ```
 
@@ -53,12 +98,13 @@ implementations.
 
 ## Historical contract observation
 
-- Live contract: `https://redcrag.cn/api/v1/openapi.json`
+- Historical observed contract: `https://redcrag.cn/api/v1/openapi.json`
 - Reviewed observation: `openapi/titmas-commercial-api-v1.observed.json`
 - Provenance and digest: `openapi/source-manifest.json`
 
-The older live observation remains historical review evidence. D08 generation
-does not use it and does not represent it as the frozen API v1 contract.
+The older observation remains historical review evidence. It is not a current
+service endpoint or live truth source. D08 generation does not use it and does
+not represent it as the frozen API v1 contract.
 
 ## Permanent boundaries
 
@@ -75,6 +121,8 @@ does not use it and does not represent it as the frozen API v1 contract.
 
 ## Current limitations
 
+- The historical `redcrag.cn` service origin is unavailable and must not be
+  presented as a current public API.
 - Packages are source candidates and are not published to package registries.
 - Public credential self-registration is unavailable.
 - Python 3.14 is outside the current declared runtime range.
@@ -101,18 +149,20 @@ This does not publish or deploy the MCP package.
 
 The D12 synthetic onboarding run is recorded under
 [`validation/external-agent-onboarding/`](validation/external-agent-onboarding/).
-Two unfamiliar Agent sessions discovered both MCP and SDK surfaces, but the run
-failed closed at preflight because the active runtime contract differs from the
-frozen API v1 contract used by the generated SDK and MCP adapter.
+D12 initially found a runtime-contract divergence. D13 later aligned that
+contract, but D15 still closed the Agent-first acceptance gate. The historical
+service origin is now unavailable, so no live onboarding path is claimed.
 
 Current status:
 
 ```text
-P0_10_RESULT=FAIL_CLOSED_MACHINE_CONTRACT_RUNTIME_DIVERGENCE
+P0_10_RESULT=FAIL_CLOSED_AFTER_RUNTIME_ALIGNMENT
 API_IS_CANONICAL=false
 ACTIVE_D12_CREDENTIALS=0
+LIVE_SERVICE_STATUS=UNAVAILABLE
+LIVE_SERVICE_CALLS_SUPPORTED=false
 ```
 
 Do not interpret source-level SDK/MCP tests as proof of live technical
-onboarding until a separately authorized runtime-alignment decision is executed
-and D12 is rerun.
+onboarding. A future live service requires a separately authorized deployment,
+fresh public readback, and a new external-Agent onboarding validation.

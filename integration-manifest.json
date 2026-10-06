@@ -1,10 +1,21 @@
 {
   "schema_version": "1.0",
   "observed_at": "2026-08-01T19:29:06+08:00",
-  "service_api": "https://redcrag.cn/api/v1/openapi.json",
+  "service_api": null,
+  "service_status": "UNAVAILABLE",
+  "service_status_observed_at": "2026-09-22",
+  "service_status_reason": "LEGACY_SERVICE_ORIGIN_UNREACHABLE",
+  "public_reference": {
+    "status": "AVAILABLE",
+    "repository": "https://github.com/joy7758/titmas-demo",
+    "release": "https://github.com/joy7758/titmas-demo/releases/tag/v0.1.0",
+    "runtime_kind": "DETERMINISTIC_LOCAL_REFERENCE"
+  },
   "contract_observation": {
     "snapshot": "openapi/titmas-commercial-api-v1.observed.json",
     "manifest": "openapi/source-manifest.json",
+    "historical_source_url": "https://redcrag.cn/api/v1/openapi.json",
+    "status": "HISTORICAL_UNREACHABLE",
     "snapshot_sha256": "f7048e85be48a125eab6d41d3a1540c91b496a6b3417ccb54a8900397045d2f8",
     "service_reported_version": "6962da04394d6e9491bf9feeec1c0ed73f0f3204",
     "retained_live_release_revision": "9bbfce6154d67f4ab50e911b5e49611f5a4a8b57",
@@ -85,6 +96,8 @@
     "handwritten_transport_client": false
   },
   "known_limitations": [
+    "LIVE_SERVICE_UNAVAILABLE",
+    "LEGACY_REDCRAG_ORIGIN_UNREACHABLE",
     "PACKAGE_REGISTRY_NOT_PUBLISHED",
     "PUBLIC_CREDENTIAL_SELF_REGISTRATION_UNAVAILABLE",
     "PYTHON_3_14_NOT_SUPPORTED",

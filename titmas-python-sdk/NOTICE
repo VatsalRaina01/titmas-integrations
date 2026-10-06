@@ -1,0 +1,19 @@
+TITMAS Python SDK
+Copyright 2026 zhangbin, for the project-owned contributions.
+
+The project-owned code and licensable generated output listed in the repository
+LICENSE-SCOPE.json are made available under Apache License 2.0 by the owner.
+This grant does not relicense third-party dependencies, other repository files,
+the frozen source specification, or the private TITMAS core.
+
+Generated output retains its OpenAPI Generator attribution and metadata.
+Generator: OpenAPI Generator 7.24.0
+Source: https://github.com/OpenAPITools/openapi-generator/tree/v7.24.0
+Upstream generated-code guidance:
+https://github.com/OpenAPITools/openapi-generator/blob/v7.24.0/README.md#34---license-information-on-generated-code
+
+The generator and its templates have their own Apache-2.0 license. The SDK
+grant is the owner's explicit decision, not an inference from that license.
+Existing third-party notices and dependency licenses remain applicable.
+See THIRD_PARTY_NOTICES.md for provenance and dependency boundaries.
+No upstream endorsement, warranty, certification, or service access is granted.

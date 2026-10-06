@@ -1,0 +1,171 @@
+{
+  "files": [
+    {
+      "path": "titmas-python-sdk/GENERATION.md",
+      "sha256": "8797527eae3b383ee655e12edeb20d11dc311a9e754c7536f161fe622d3a6901"
+    },
+    {
+      "path": "titmas-python-sdk/README.md",
+      "sha256": "55d41a3a2a4ed71f653d82b0bbde61cc1b1b16af718ebb3e92bb4bdcf06baeb7"
+    },
+    {
+      "path": "titmas-python-sdk/examples/preflight.py",
+      "sha256": "dceaeb79600b49461952303b09fd2bf66ac2e4f1e9738dcd46f4466d7b0ad6d7"
+    },
+    {
+      "path": "titmas-python-sdk/generated/.openapi-generator-ignore",
+      "sha256": "a6ed8f4e275eee926d27e0c52f30f2d1c4d8409465ac1fbc4511f7cc62de51db"
+    },
+    {
+      "path": "titmas-python-sdk/generated/.openapi-generator/FILES",
+      "sha256": "006029d9b2a967f0a1ef158b843a102571cfa485df6d35595f7bf1cd5a34c995"
+    },
+    {
+      "path": "titmas-python-sdk/generated/.openapi-generator/VERSION",
+      "sha256": "b46fd7e23ff094c9f018207d339b1abf3d4633753facd2e12c2225982e84c993"
+    },
+    {
+      "path": "titmas-python-sdk/generated/GENERATION_METADATA.json",
+      "sha256": "2b835484d817be5cdbbeab2d1ce2c8cff3e81172c84c7996ba435782e2709ced"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/__init__.py",
+      "sha256": "6e9ab5344f2a64e77ce6039c3061eeef0a318e38d6d872a730f04f9b08d41a29"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/api/__init__.py",
+      "sha256": "f46b6b9033cf38501f7e0dcb2eec2367644fb6dc8b3b384154add40141e078fa"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/api/default_api.py",
+      "sha256": "42c9bacbf8eccfe869dd92aac88395ae0a37a57168691207a960d43bd67ec893"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/api_client.py",
+      "sha256": "16ffd1b70e158e40e5324d1a44dd060b7d363607f6269fd52724a1e78134d43b"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/api_response.py",
+      "sha256": "78cc70d66a6625ca0667782cf73ea3338a18a19d741a3937df7b3db0ac46bfbb"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/configuration.py",
+      "sha256": "f018e2efec2f2c7dd4f309c94dcf1d16b2b4557e5f2f23fb401218987111c35c"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/exceptions.py",
+      "sha256": "3bae8e30b5c6a0dc4395d367a84cbcacea336955bb897ed2396335ed8d7d0736"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/__init__.py",
+      "sha256": "256490a3a9202e359d0236cf7ca2e48d4b2a784478d446f4b7811573a5dfe9c3"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/authority_boundaries.py",
+      "sha256": "9723d52e10ff4e7d79d366ea332c40268fd2cadac1fd97bd48181595ac87a694"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/error.py",
+      "sha256": "9d36abba9caed800707a7a4e316272edbe09f97f9569d81bf719bfa5e9b81c20"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/http_validation_error.py",
+      "sha256": "9dd01861615f124555d474123bde4856972f8adc608be9d837f6bd730157c089"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/location_inner.py",
+      "sha256": "294f332a9e99184cc2c2e5fd9e56198c707ebe372ec75eddbc8217ceba7a5ea7"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/preflight_request.py",
+      "sha256": "83339d47147561266d5422eff951094e2b048fa915699b4c42dc30ef6fd3055e"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/preflight_result.py",
+      "sha256": "2a77b54edd7a20fae200e1919455c937fd07d74fc03bf133402d7bb89ee65a80"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/reason_code.py",
+      "sha256": "4e03354865d52acaad637828adbefc255a7d19d8be34f636fee3133b9cc410f1"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/receipt.py",
+      "sha256": "f446c8f7985b226e4ce5adbbba39a835dd632eefc4bf751172b4cd95c128bc73"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/receipt_response.py",
+      "sha256": "b2e1dad7370a79f9ab7b7346ddfcdfebf064a5c7fe0666357efa08ef46be4f5f"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/receipt_verification.py",
+      "sha256": "163b88f5514ef343c974fab67c4a324180fc670836647d22073ccea56683540c"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/receipt_verification_status.py",
+      "sha256": "617f0d8b6d3503ab5b073510bbd9a6a752ba62603a9ed0c0770881c3eb992040"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/receipt_verify_request.py",
+      "sha256": "ad2ab5e7d0688fab10f26e45950a4a911c67e12d04dbaff8f43972b8877b7337"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/result.py",
+      "sha256": "a3532cd3b857a6a745bc584c64ba5f861e3f0032138da9e93fff08fdbb05011a"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/models/validation_error.py",
+      "sha256": "9d5092b633e648c4b6d4ea78df4dab953788c95bb5930b3cab331b72b7416789"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/rest.py",
+      "sha256": "451a045d8887bd7f7b04c6bafced87420bf941a37b79c7983ce6a3b278814585"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client/sync_helper.py",
+      "sha256": "8e624b56d658727d3b7a711e2c9c5545fea63e09b26fbb39d8fd4bc02a0967f5"
+    },
+    {
+      "path": "titmas-python-sdk/generated/titmas_api_client_README.md",
+      "sha256": "2cb10db08a6b0ba1d9be9da7c6e27132e4c313473b354cd630888ab5ab497b25"
+    },
+    {
+      "path": "titmas-python-sdk/pyproject.toml",
+      "sha256": "9253858998fc7f3c854879ecf63664ed1d273d0a40e3c9058a42c10a27f3f18c"
+    },
+    {
+      "path": "titmas-python-sdk/src/titmas_agent_sdk/__init__.py",
+      "sha256": "e218970755deb036f64d3467b56220a7551aa00009df35e457bf784c125668c1"
+    },
+    {
+      "path": "titmas-python-sdk/src/titmas_agent_sdk/client.py",
+      "sha256": "01b6c02d6ac31e00f891a9aee8f011e615537ba443dab514aedf59984632c462"
+    },
+    {
+      "path": "titmas-python-sdk/src/titmas_agent_sdk/semantics.py",
+      "sha256": "1b0985c8e76d27dff2badc63b0edd8bc846e8e727ee893ff7b5b5fefd5eba3e0"
+    },
+    {
+      "path": "titmas-python-sdk/tests/test_client.py",
+      "sha256": "ee1073dec15a0b8f18f0c9eb5bfab9771b2afef83e20a1a0a8c710dd9ca783c6"
+    },
+    {
+      "path": "titmas-python-sdk/tests/test_generated_transport.py",
+      "sha256": "d82adbd5a494bb53856efa2e0f9ff6cc163f720d8a883630fd85ac9a352314ed"
+    }
+  ],
+  "authors": [
+    "BIN Zhang"
+  ],
+  "historical_grant_found": false,
+  "generator_license_is_sdk_license": false,
+  "owner_approval_date": "2026-10-06",
+  "owner_approval": "EXPLICIT_BOUNDED_PYTHON_SDK_APACHE_2_0",
+  "approved_by": "zhangbin",
+  "source_commit": "650351e4f50ef8f0a025fbdf56d42a20c2665c78",
+  "hashes_are": "PRE_LICENSE_CHANGE_BYTES_NOT_CURRENT_CHECKSUMS",
+  "limitations": [
+    "Git author history is not independent legal certification",
+    "Third-party dependencies retain their own licenses",
+    "Private core and frozen API input are excluded"
+  ]
+}

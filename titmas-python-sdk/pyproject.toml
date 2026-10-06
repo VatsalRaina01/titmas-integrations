@@ -7,6 +7,8 @@ name = "titmas-agent-sdk"
 version = "0.1.0"
 description = "Contract-generated Python SDK for the TITMAS API v1 candidate"
 readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md"]
 requires-python = ">=3.11,<3.14"
 dependencies = [
   "httpx==0.28.1",
