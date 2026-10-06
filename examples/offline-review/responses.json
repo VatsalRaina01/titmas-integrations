@@ -1,0 +1,50 @@
+{
+  "kind": "SYNTHETIC_PRESET_RESPONSES",
+  "cases": [
+    {
+      "case_id": "before",
+      "explanation_zh": "返工前：预设响应为未通过，SDK 应保留问题，不能写成完成。",
+      "response": {
+        "completed_at": "2026-10-06T00:00:00Z",
+        "reason_codes": [
+          "OBJECT_INVALID"
+        ],
+        "receipt_id": "30000000-0000-4000-8000-000000000001",
+        "request_id": "synthetic-before",
+        "result": "FAIL",
+        "schema_id": null,
+        "schema_version": null
+      }
+    },
+    {
+      "case_id": "after",
+      "explanation_zh": "返工后：预设响应为通过，但不意味着事实正确、客户接受或允许执行。",
+      "response": {
+        "completed_at": "2026-10-06T00:00:00Z",
+        "reason_codes": [
+          "OBJECT_VALID"
+        ],
+        "receipt_id": "30000000-0000-4000-8000-000000000002",
+        "request_id": "synthetic-after",
+        "result": "PASS",
+        "schema_id": null,
+        "schema_version": null
+      }
+    },
+    {
+      "case_id": "incomplete",
+      "explanation_zh": "证据不足：预设响应为尚未评估，不能改写成通过或普通失败。",
+      "response": {
+        "completed_at": "2026-10-06T00:00:00Z",
+        "reason_codes": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "receipt_id": "30000000-0000-4000-8000-000000000003",
+        "request_id": "synthetic-incomplete",
+        "result": "NOT_ASSESSED",
+        "schema_id": null,
+        "schema_version": null
+      }
+    }
+  ]
+}

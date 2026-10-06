@@ -1,0 +1,28 @@
+{
+  "scope_version": "1.0",
+  "copyright": "2026 zhangbin",
+  "license": "Apache-2.0",
+  "license_text": "LICENSES/Apache-2.0.txt",
+  "scope_kind": "EXACT_NEW_FILES_ONLY",
+  "approved_by": "zhangbin",
+  "approval_quote": "按推荐范围采用 Apache-2.0",
+  "existing_file_licenses_changed": false,
+  "private_core_included": false,
+  "files": [
+    "docs/contribution-intake/VALIDATION.zh-CN.md",
+    "examples/offline-review/run.py",
+    "examples/offline-review/responses.json",
+    "examples/offline-review/README.zh-CN.md",
+    "tests/test_offline_review.py",
+    "CONTRIBUTING.zh-CN.md",
+    "docs/contribution-intake/readiness.json",
+    "docs/contribution-intake/tasks.json",
+    "docs/contribution-intake/C01-clean-start.zh-CN.md",
+    "docs/contribution-intake/C02-negative-case.zh-CN.md",
+    "docs/contribution-intake/C03-result-explanation.zh-CN.md",
+    "docs/contribution-intake/CASE-STORY.zh-CN.md",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    "LICENSE.md",
+    "LICENSE-SCOPE.json"
+  ]
+}

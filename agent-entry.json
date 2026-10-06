@@ -2,6 +2,22 @@
   "schema_version": "1.0",
   "name": "TITMAS Agent Integrations",
   "primary_customer": "AI_AGENT",
+  "bounded_contribution_preparation": {
+    "status": "CANDIDATE_NOT_ACTIVATED",
+    "readiness": "docs/contribution-intake/readiness.json",
+    "tasks": "docs/contribution-intake/tasks.json",
+    "guide": "CONTRIBUTING.zh-CN.md",
+    "license_scope": "LICENSE-SCOPE.json",
+    "example": "examples/offline-review/README.zh-CN.md",
+    "commands": [
+      ".venv/bin/python examples/offline-review/run.py --json",
+      ".venv/bin/python -m pytest tests/test_offline_review.py -q"
+    ],
+    "commands_require_local_sdk_install": true,
+    "synthetic_preset_responses_only": true,
+    "external_task_claiming_active": false,
+    "private_core_access_granted": false
+  },
   "public_reference": {
     "status": "AVAILABLE",
     "kind": "DETERMINISTIC_LOCAL_REFERENCE",

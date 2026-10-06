@@ -1,0 +1,33 @@
+{
+  "kind": "BOUNDED_PUBLIC_INTEROPERABILITY_CONTRIBUTION_PREPARATION",
+  "status": "REVIEW_CANDIDATE_NOT_ACTIVATED",
+  "owner": "zhangbin",
+  "user_authorization": "执行此前三个任务、案例及入口准备方案；不含未知私有源码导出或未选定许可证",
+  "primary_repository": "joy7758/titmas-integrations",
+  "base_pr": 7,
+  "base_commit": "8d7f450f04f503c39df4e79d3bbdde93f1131df7",
+  "license_decision": "APACHE_2_0_FOR_EXACT_NEW_FILES_APPROVED_BY_ZHANGBIN",
+  "existing_sdk_license_changed": false,
+  "license_scope": "../../LICENSE-SCOPE.json",
+  "linux_clean_run": "NOT_RUN",
+  "local_demo": "PASS_MACOS_PYTHON_3_13",
+  "public_entry_active": false,
+  "activation_requires": [
+    "EXACT_DIFF_REVIEW_AND_MERGE",
+    "LINUX_CLEAN_RUN_PASS",
+    "PUBLIC_DEFAULT_BRANCH_READBACK",
+    "EXISTING_SDK_LICENSE_GAP_DISCLOSED_NOT_RELICENSED",
+    "OWNER_CONFIRMATION_OF_MERGE_CONTROLS"
+  ],
+  "issues_published": false,
+  "security_review": "HOLD_EXISTING_DEPENDENCY_ALERTS_REQUIRE_SCOPED_TRIAGE",
+  "existing_dependency_alerts": {"moderate": 3, "high": 1, "critical": 1},
+  "promotion_ready": false,
+  "branch_controls": "NO_CLASSIC_PROTECTION_OR_APPLICABLE_RULES_OBSERVED_2026_10_06",
+  "private_core_exported": false,
+  "production_access_granted": false,
+  "sdk_changed": false,
+  "canonical_contract_changed": false,
+  "task_status_source": "tasks.json",
+  "boundary": "PUBLIC_CONTRIBUTION_TO_SELECTED_ASSETS_NE_OPEN_CORE_OR_COMMUNITY_ESTABLISHMENT"
+}
