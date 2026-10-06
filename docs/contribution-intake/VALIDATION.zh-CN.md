@@ -13,6 +13,10 @@
 - 新增代码和既有 Python 源码静态检查、SDK mypy：通过。
 - 演示实际中文输出和 JSON 均已运行；测试阻断 socket/API 客户端创建，保留三值结果。
 - 冻结 API、SDK、MCP、历史证据和依赖锁文件未修改。
+- 提交 `2639351c8ca8eec02f32aab563686b49cbd1be33` 的
+  [GitHub Actions](https://github.com/joy7758/titmas-integrations/actions/runs/37424724455)
+  共10个作业全部通过，其中新增 Ubuntu 离线样例作业完成安装、测试和中文及 JSON 输出检查，
+  既有 SDK 确定性再生成作业亦通过。这不消除下列依赖告警或许可缺口。
 - 新/修改文件做私有路径、私有仓库、常见密钥格式扫描并人工审读，未发现匹配；
   不是完整秘密扫描或独立安全审计。
 
@@ -25,8 +29,8 @@
 
 ## 仍需处理
 
-1. 本地 Docker daemon 不可用，未在本机运行 Linux；新增 GitHub Actions Linux 任务，
-   结果以候选提交对应的实际 CI 为准。没有伪造通过。
+1. 本地 Docker daemon 不可用，未在本机运行 Linux。随后上述 GitHub Ubuntu 作业通过，
+   因而补足该提交的隔离环境验证；不声称已在所有开发者机器运行。
 2. npm audit 在既有 MCP 依赖图报告 5 个受影响包：3 moderate、1 high、1 critical；
    历史 onboarding 包安装也给出相同数量，不能重复计成10个独立漏洞。
    fast-uri 为 high，proxy-addr 为 critical；其余为 hono、ip-address、qs。

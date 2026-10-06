@@ -9,7 +9,14 @@
   "license_decision": "APACHE_2_0_FOR_EXACT_NEW_FILES_APPROVED_BY_ZHANGBIN",
   "existing_sdk_license_changed": false,
   "license_scope": "../../LICENSE-SCOPE.json",
-  "linux_clean_run": "NOT_RUN",
+  "linux_clean_run": "PASS_GITHUB_UBUNTU_JOB",
+  "validation_receipt": {
+    "checked_commit": "2639351c8ca8eec02f32aab563686b49cbd1be33",
+    "run_url": "https://github.com/joy7758/titmas-integrations/actions/runs/37424724455",
+    "offline_job_url": "https://github.com/joy7758/titmas-integrations/actions/runs/37424724455/job/112141680814",
+    "successful_jobs": 10,
+    "scope": "该提交的 GitHub Ubuntu 作业通过，不代表后续提交、外部采用或独立安全审计"
+  },
   "local_demo": "PASS_MACOS_PYTHON_3_13",
   "public_entry_active": false,
   "activation_requires": [
