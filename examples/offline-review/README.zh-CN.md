@@ -31,3 +31,37 @@ python3.13 -m venv .venv
 
 贡献前见 [贡献说明](../../CONTRIBUTING.zh-CN.md)。公开许可、Linux 干净运行及最终发布状态见
 [准备清单](../../docs/contribution-intake/readiness.json)，不能仅凭本地文件存在声称入口已开放。
+
+## 脱敏复现记录
+
+- **测试环境**:
+  - 操作系统: Linux (Ubuntu 22.04 LTS x86_64)
+  - Python 版本: 3.11.9 (支持 Python 3.11–3.13)
+  - 基础提交: `87b92275ebcdcc42fb0a2fbed436e83666ad677f`
+- **执行命令与输出验证**:
+  1. **依赖安装（需联网）**:
+     ```sh
+     python3 -m venv .venv
+     .venv/bin/python -m pip install -e './titmas-python-sdk[dev]'
+     ```
+     *说明：此安装阶段依赖网络下载公共包，后续运行完全脱网。*
+  2. **普通输出运行**:
+     ```sh
+     .venv/bin/python examples/offline-review/run.py
+     ```
+     - 退出码: `0`
+     - 预期表现: 顺利输出三种中文预设结果（“返工前未通过”、“返工后仅预设检查通过”、“证据不足尚未评估”）。
+  3. **JSON 格式运行**:
+     ```sh
+     .venv/bin/python examples/offline-review/run.py --json
+     ```
+     - 退出码: `0`
+     - 预期表现: 输出有效的 JSON 回执响应，且不发起任何网络请求。
+  4. **测试套件运行**:
+     ```sh
+     .venv/bin/python -m pytest tests/test_offline_review.py -q
+     ```
+     - 退出码: `0`
+- **复现卡点与修复**:
+  - **实际卡点**: 无。无环境安装和运行时的代码报错，网络隔绝状态下能完全运行后续的本地生成与测试命令。
+  - **复验结论**: 已在干净环境中完整验证，未发现任何安装或运行缺陷。成功记录。
