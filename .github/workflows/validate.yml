@@ -9,6 +9,22 @@ permissions:
   contents: read
 
 jobs:
+  dependency-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: "22"
+      - name: Audit locked dependencies without executing install scripts
+        run: |
+          npm audit --prefix mcp --package-lock-only --ignore-scripts --audit-level=moderate
+          npm audit --prefix validation/external-agent-onboarding --package-lock-only --ignore-scripts --audit-level=moderate
   offline-contribution-example:
     runs-on: ubuntu-latest
     timeout-minutes: 10

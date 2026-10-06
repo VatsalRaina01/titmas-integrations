@@ -23,6 +23,8 @@
     "docs/contribution-intake/CASE-STORY.zh-CN.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
     "LICENSE.md",
-    "LICENSE-SCOPE.json"
+    "LICENSE-SCOPE.json",
+    "SECURITY.md",
+    "docs/contribution-intake/SECURITY-REMEDIATION-20261006.zh-CN.md"
   ]
 }

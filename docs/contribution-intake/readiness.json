@@ -27,10 +27,20 @@
     "OWNER_CONFIRMATION_OF_MERGE_CONTROLS"
   ],
   "issues_published": false,
-  "security_review": "HOLD_EXISTING_DEPENDENCY_ALERTS_REQUIRE_SCOPED_TRIAGE",
+  "security_review": "KNOWN_NPM_ALERTS_REMOVED_WITHIN_EXISTING_RANGES_NOT_INDEPENDENT_AUDIT",
   "existing_dependency_alerts": {"moderate": 3, "high": 1, "critical": 1},
+  "current_dependency_audit": {
+    "observed_on": "2026-10-06",
+    "mcp_known_vulnerabilities": 0,
+    "historical_validation_package_known_vulnerabilities": 0,
+    "record": "SECURITY-REMEDIATION-20261006.zh-CN.md"
+  },
   "promotion_ready": false,
-  "branch_controls": "NO_CLASSIC_PROTECTION_OR_APPLICABLE_RULES_OBSERVED_2026_10_06",
+  "branch_controls": "PR_AND_11_ACTIONS_CHECKS_REQUIRED_ADMIN_ENFORCED_NO_FORCE_PUSH_NO_DELETE",
+  "github_approval_policy": "SINGLE_OWNER_MANUAL_MERGE_0_INDEPENDENT_APPROVALS_NOT_INDEPENDENT_REVIEW",
+  "fork_workflow_approval": "ALL_EXTERNAL_CONTRIBUTORS",
+  "private_vulnerability_reporting": "ENABLED_VERIFIED_2026_10_06",
+  "existing_python_sdk_license": "OWNER_SCOPE_CLARIFICATION_PENDING",
   "private_core_exported": false,
   "production_access_granted": false,
   "sdk_changed": false,
