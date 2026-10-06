@@ -10,11 +10,12 @@ TITMAS 面向智能体行动控制与执行证据；本仓库是公共互操作�
   三个预设合成响应；不是自动语义检查、真实模型评价或在线服务。
 - [实际内部返工的脱敏讲解](docs/contribution-intake/CASE-STORY.zh-CN.md)：
   AI阅读、制作返工和TITMAS规则聚合各自做什么；不是外部客户证明。
-- [有界贡献准备说明](CONTRIBUTING.zh-CN.md)及
-  [三个任务草稿](docs/contribution-intake/tasks.json)：尚未开放认领，不自动合并。
-- [精确许可范围](LICENSE.md)：本轮指定新增文件为 Apache-2.0；
-  **不改变已有 SDK、第三方文件或私有核心许可**，不是全仓库开源声明。
-- [准备状态](docs/contribution-intake/readiness.json)：候选验证不等于公开入口已激活。
+- [贡献说明](CONTRIBUTING.zh-CN.md)、[三个任务定义](docs/contribution-intake/tasks.json)及
+  [当前公开任务](https://github.com/joy7758/titmas-integrations/issues?q=is%3Aissue%20is%3Aopen%20label%3Abounded-contribution)：
+  只在维护者已发布的开放任务下认领，不自动合并。
+- [精确许可范围](LICENSE.md)：指定新增文件及明确列出的Python SDK可许可部分采用Apache-2.0；
+  **第三方许可与私有核心不变**，不是全仓库开源声明。
+- [准备与激活规则](docs/contribution-intake/readiness.json)：分支候选不等于上线，当前任务状态以GitHub为准。
 
 首次安装依赖需要网络；演示运行不需要 Key 或网络。Linux/公开采用只以实际验证记录为准。
 

@@ -1,8 +1,8 @@
 {
-  "kind": "LOCAL_CONTRIBUTION_TASK_DRAFTS",
-  "version": "0.1",
-  "status": "DRAFT_NOT_PUBLISHED",
-  "claiming": "WAIT_FOR_PUBLICATION",
+  "kind": "BOUNDED_CONTRIBUTION_TASK_DEFINITIONS",
+  "version": "0.2",
+  "status": "LIVE_AVAILABILITY_RESOLVED_FROM_GITHUB_ISSUES",
+  "claiming": "ONLY_ON_OPEN_OWNER_PUBLISHED_TASK_ISSUE_AFTER_DEFAULT_BRANCH_MERGE",
   "max_concurrent_tasks": 3,
   "max_tasks_per_participant": 1,
   "commands": [
@@ -18,7 +18,8 @@
         "examples/offline-review/README.zh-CN.md",
         "docs/contribution-intake/"
       ],
-      "kind": "REPRODUCTION_NOT_CONFIRMED_BUG"
+      "kind": "REPRODUCTION_NOT_CONFIRMED_BUG",
+      "issue_search": "https://github.com/joy7758/titmas-integrations/issues?q=is%3Aissue%20label%3Abounded-contribution%20C01"
     },
     {
       "id": "C02",
@@ -28,7 +29,8 @@
         "tests/test_offline_review.py",
         "examples/offline-review/responses.json"
       ],
-      "kind": "TEST_GAP_CANDIDATE"
+      "kind": "TEST_GAP_CANDIDATE",
+      "issue_search": "https://github.com/joy7758/titmas-integrations/issues?q=is%3Aissue%20label%3Abounded-contribution%20C02"
     },
     {
       "id": "C03",
@@ -39,7 +41,8 @@
         "examples/offline-review/README.zh-CN.md",
         "tests/test_offline_review.py"
       ],
-      "kind": "USABILITY_VALIDATION"
+      "kind": "USABILITY_VALIDATION",
+      "issue_search": "https://github.com/joy7758/titmas-integrations/issues?q=is%3Aissue%20label%3Abounded-contribution%20C03"
     }
   ],
   "forbidden_paths": [
@@ -55,5 +58,6 @@
     "NO_AUTOMATIC_MERGE",
     "NO_DEPLOYMENT",
     "NO_SCHEMA_OR_AUTHORITY_CHANGE"
-  ]
+  ],
+  "live_status_source": "https://github.com/joy7758/titmas-integrations/issues?q=is%3Aissue%20is%3Aopen%20label%3Abounded-contribution"
 }

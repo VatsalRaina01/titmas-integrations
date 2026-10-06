@@ -3,11 +3,14 @@
 Copyright 2026 zhangbin。
 
 依据 Owner 本轮明确批准，只有 [LICENSE-SCOPE.json](LICENSE-SCOPE.json) 中逐项列明的
-新增文件采用 [Apache License 2.0](LICENSES/Apache-2.0.txt)。
+文件采用 [Apache License 2.0](LICENSES/Apache-2.0.txt)。
 这份清单不是目录通配授权，不自动覆盖未来文件。
 
-原有 SDK、生成代码、冻结契约、第三方材料、历史文档继续遵循各自原有许可；
-不追溯更改、不推定缺失许可证文件已获 Apache 许可。
+2026-10-06 Owner另行明确批准：清单内Python SDK的本项目有权许可部分及可许可生成产物
+补充Apache-2.0。授权前版本摘要见清单对应来源记录；生成代码不做手工修改。
+这不是从生成器许可推断SDK许可，也不重写历史版本。
+未列明SDK、冻结契约、第三方材料、其他历史文档继续遵循各自原有许可；
+不推定缺失许可证文件已获Apache许可。
 其中已有 TypeScript SDK 的 package.json 声明 Apache-2.0，该事实保留，不表示所有其他文件同许可。
 没有明确许可的既有文件，其复用权限仍需单独核对。
 私有核心不包含在本仓库或本次许可中。

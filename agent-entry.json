@@ -3,7 +3,7 @@
   "name": "TITMAS Agent Integrations",
   "primary_customer": "AI_AGENT",
   "bounded_contribution_preparation": {
-    "status": "CANDIDATE_NOT_ACTIVATED",
+    "status": "BOUNDED_TASK_DEFINITIONS_WITH_LIVE_GITHUB_STATUS",
     "readiness": "docs/contribution-intake/readiness.json",
     "tasks": "docs/contribution-intake/tasks.json",
     "guide": "CONTRIBUTING.zh-CN.md",
@@ -15,8 +15,11 @@
     ],
     "commands_require_local_sdk_install": true,
     "synthetic_preset_responses_only": true,
-    "external_task_claiming_active": false,
-    "private_core_access_granted": false
+    "external_task_claiming_active": null,
+    "private_core_access_granted": false,
+    "live_task_status_source": "https://github.com/joy7758/titmas-integrations/issues?q=is%3Aissue%20is%3Aopen%20label%3Abounded-contribution",
+    "claiming_requires": "MERGED_DEFAULT_BRANCH_AND_OPEN_OWNER_TASK_ISSUE",
+    "feature_branch_is_active": false
   },
   "public_reference": {
     "status": "AVAILABLE",
@@ -85,7 +88,11 @@
     "package_registry_published": false,
     "runtime_deployed": false
   },
-  "result_values": ["PASS", "FAIL", "NOT_ASSESSED"],
+  "result_values": [
+    "PASS",
+    "FAIL",
+    "NOT_ASSESSED"
+  ],
   "authority_boundaries": {
     "formal_conformance": false,
     "certification": false,

@@ -34,3 +34,9 @@ Authorization. The SDK never automatically retries protected POST operations.
 Packages are not published and no credential or service access is granted.
 
 Regenerate only with `../scripts/generate-sdks.sh`; never edit `generated/`.
+
+## License / 许可
+
+本项目有权许可的原创代码及生成产物采用 [Apache-2.0](LICENSE)。
+精确范围见 [仓库清单](../LICENSE-SCOPE.json)；保留 [来源与第三方声明](THIRD_PARTY_NOTICES.md) 和 [NOTICE](NOTICE)。
+不扩展到第三方依赖、冻结OpenAPI输入、其他目录或私有核心，不授予线上服务访问。

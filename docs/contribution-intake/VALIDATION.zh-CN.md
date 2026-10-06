@@ -59,3 +59,16 @@
 main合并保护、外部工作流人工审批和私密安全渠道已配置并回读。
 细节见 [修正记录](SECURITY-REMEDIATION-20261006.zh-CN.md)。
 本节不是独立安全审计；Python SDK许可与完整公开激活继续单独核对。
+
+## Python SDK限定许可补充（2026-10-06）
+
+Owner明确同意仅对Python SDK本项目有权许可部分补充Apache-2.0，保留第三方及私有核心。
+来源见PYTHON-SDK-LICENSE-PROVENANCE.json（授权前38文件摘要），NOTICE及THIRD_PARTY_NOTICES.md。
+生成代码、运行逻辑、冻结输入和生成工具不变；只改SDK许可元数据与说明。
+本地wheel核对License-Expression=Apache-2.0及LICENSE/NOTICE/THIRD_PARTY_NOTICES.md全部包含；
+wheel仅本地验证，没有发布。
+
+保留过程：首次测试有3项旧“仅新增文件/永远草稿”断言失败，按明确授权改为精确Python清单、
+实时GitHub任务状态以及不自动激活；新增生成字节保全和许可元数据测试。一次导入排序检查失败后修正。
+本轮最终CI以PR当前Head对应GitHub运行记录为准，不将旧提交CI移植为新提交PASS。
+当前任务是否已发布/可认领由默认分支与开放Issue组合决定，机器状态null表示待实时核验，不表示通过。

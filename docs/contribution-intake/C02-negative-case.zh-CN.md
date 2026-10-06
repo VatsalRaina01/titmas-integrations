@@ -1,6 +1,6 @@
-# C02：补充一个真正遗漏的反例（Issue 草稿）
+# C02：补充一个真正遗漏的反例
 
-尚未公开；建议标签：help wanted、tests；预计 1–2 小时。
+任务定义；可认领状态以GitHub开放任务为准。标签：help wanted、tests；预计 1–2 小时。
 先看 tests/test_offline_review.py 与既有 SDK 测试。UNKNOWN/APPROVED/布尔/数字/null结果、
 空原因列表、非合成输入、无网络与工作目录变化已有覆盖，禁止重复刷相同用例。
 

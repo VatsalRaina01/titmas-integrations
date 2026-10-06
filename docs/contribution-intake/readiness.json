@@ -1,13 +1,13 @@
 {
-  "kind": "BOUNDED_PUBLIC_INTEROPERABILITY_CONTRIBUTION_PREPARATION",
-  "status": "REVIEW_CANDIDATE_NOT_ACTIVATED",
+  "kind": "BOUNDED_PUBLIC_INTEROPERABILITY_CONTRIBUTION_SURFACE",
+  "status": "PREPARED_LIVE_ACTIVATION_REQUIRES_DEFAULT_BRANCH_AND_OPEN_TASK",
   "owner": "zhangbin",
-  "user_authorization": "执行此前三个任务、案例及入口准备方案；不含未知私有源码导出或未选定许可证",
+  "user_authorization": "已批准有限公开贡献准备、安全修正、合并、任务和自有入口；2026-10-06补充限定Python SDK许可。",
   "primary_repository": "joy7758/titmas-integrations",
   "base_pr": 7,
   "base_commit": "8d7f450f04f503c39df4e79d3bbdde93f1131df7",
-  "license_decision": "APACHE_2_0_FOR_EXACT_NEW_FILES_APPROVED_BY_ZHANGBIN",
-  "existing_sdk_license_changed": false,
+  "license_decision": "EXACT_LISTED_NEW_FILES_AND_BOUNDED_PYTHON_SDK_APACHE_2_0_APPROVED",
+  "existing_sdk_license_changed": true,
   "license_scope": "../../LICENSE-SCOPE.json",
   "linux_clean_run": "PASS_GITHUB_UBUNTU_JOB",
   "validation_receipt": {
@@ -18,33 +18,40 @@
     "scope": "该提交的 GitHub Ubuntu 作业通过，不代表后续提交、外部采用或独立安全审计"
   },
   "local_demo": "PASS_MACOS_PYTHON_3_13",
-  "public_entry_active": false,
+  "public_entry_active": null,
   "activation_requires": [
     "EXACT_DIFF_REVIEW_AND_MERGE",
-    "LINUX_CLEAN_RUN_PASS",
+    "CURRENT_HEAD_CI_PASS",
     "PUBLIC_DEFAULT_BRANCH_READBACK",
-    "EXISTING_SDK_LICENSE_GAP_DISCLOSED_NOT_RELICENSED",
-    "OWNER_CONFIRMATION_OF_MERGE_CONTROLS"
+    "LICENSE_SCOPE_CONFIRMED",
+    "LIVE_OPEN_TASK_ISSUE"
   ],
-  "issues_published": false,
+  "issues_published": null,
   "security_review": "KNOWN_NPM_ALERTS_REMOVED_WITHIN_EXISTING_RANGES_NOT_INDEPENDENT_AUDIT",
-  "existing_dependency_alerts": {"moderate": 3, "high": 1, "critical": 1},
+  "existing_dependency_alerts": {
+    "moderate": 3,
+    "high": 1,
+    "critical": 1
+  },
   "current_dependency_audit": {
     "observed_on": "2026-10-06",
     "mcp_known_vulnerabilities": 0,
     "historical_validation_package_known_vulnerabilities": 0,
     "record": "SECURITY-REMEDIATION-20261006.zh-CN.md"
   },
-  "promotion_ready": false,
+  "promotion_ready": null,
   "branch_controls": "PR_AND_11_ACTIONS_CHECKS_REQUIRED_ADMIN_ENFORCED_NO_FORCE_PUSH_NO_DELETE",
   "github_approval_policy": "SINGLE_OWNER_MANUAL_MERGE_0_INDEPENDENT_APPROVALS_NOT_INDEPENDENT_REVIEW",
   "fork_workflow_approval": "ALL_EXTERNAL_CONTRIBUTORS",
   "private_vulnerability_reporting": "ENABLED_VERIFIED_2026_10_06",
-  "existing_python_sdk_license": "OWNER_SCOPE_CLARIFICATION_PENDING",
+  "existing_python_sdk_license": "APACHE_2_0_OWNER_APPROVED_LISTED_PROJECT_OWNED_AND_LICENSABLE_GENERATED_FILES",
   "private_core_exported": false,
   "production_access_granted": false,
   "sdk_changed": false,
+  "sdk_license_metadata_changed": true,
   "canonical_contract_changed": false,
   "task_status_source": "tasks.json",
-  "boundary": "PUBLIC_CONTRIBUTION_TO_SELECTED_ASSETS_NE_OPEN_CORE_OR_COMMUNITY_ESTABLISHMENT"
+  "boundary": "PUBLIC_CONTRIBUTION_TO_SELECTED_ASSETS_NE_OPEN_CORE_OR_COMMUNITY_ESTABLISHMENT",
+  "live_activation_source": "https://github.com/joy7758/titmas-integrations/issues?q=is%3Aissue%20is%3Aopen%20label%3Abounded-contribution",
+  "state_resolution": "Feature branches are preparation only. On default main, a published open bounded-contribution issue is required before claiming a task. Query GitHub for current task and PR states; null is unasserted, not success."
 }

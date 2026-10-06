@@ -1,6 +1,6 @@
-# C03：验证中文结果说明不会误导使用者（Issue 草稿）
+# C03：验证中文结果说明不会误导使用者
 
-尚未公开；建议标签：help wanted、documentation；预计 1–2 小时。
+任务定义；可认领状态以GitHub开放任务为准。标签：help wanted、documentation；预计 1–2 小时。
 对照 run.py 默认输出与 --json 结果，找实际理解卡点；未复现误导前不称为 Bug。
 已经有三值保留与基本文字/JSON一致性测试，不重复它们。
 
